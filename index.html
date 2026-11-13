@@ -1,0 +1,349 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>樂衍北區 · 工作管理</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--sb:220px;--sb-bg:#1e293b;--bg:#f1f5f9;--white:#fff;--border:#e2e8f0;--txt:#0f172a;--txt2:#64748b;--txt3:#94a3b8;--blue:#3b82f6;--r:8px}
+body{font-family:'Noto Sans TC',system-ui,sans-serif;font-size:14px;background:var(--bg);color:var(--txt);display:flex;min-height:100vh}
+button{cursor:pointer;font:inherit;border:none;background:none}
+.sidebar{width:var(--sb);background:var(--sb-bg);display:flex;flex-direction:column;position:fixed;top:0;left:0;height:100vh;z-index:200;transition:transform .25s}
+.sb-logo{padding:20px 18px 16px;border-bottom:1px solid #2d3f55;display:flex;align-items:center;gap:10px}
+.sb-dots{display:flex;gap:5px} .sb-dot{width:8px;height:8px;border-radius:50%}
+.sb-brand{font-weight:700;color:#f8fafc;font-size:15px} .sb-brand small{display:block;font-size:10px;font-weight:400;color:#94a3b8;margin-top:1px}
+nav{flex:1;padding:12px 10px}
+.nav-item{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:var(--r);color:#94a3b8;font-size:13px;font-weight:500;margin-bottom:2px;cursor:pointer;transition:background .15s,color .15s}
+.nav-item:hover{background:#293548;color:#e2e8f0} .nav-item.active{background:var(--blue);color:#fff}
+.nav-icon{font-size:16px;width:20px;text-align:center;flex-shrink:0}
+.sb-footer{padding:16px 18px;border-top:1px solid #2d3f55;font-size:11px;color:#475569}
+.app{margin-left:var(--sb);flex:1;display:flex;flex-direction:column;min-width:0}
+.topbar{background:var(--white);border-bottom:1px solid var(--border);padding:0 24px;height:56px;display:flex;align-items:center;gap:14px;position:sticky;top:0;z-index:100}
+.menu-btn{font-size:18px;color:#64748b;display:none;padding:4px 8px}
+.page-title{font-size:16px;font-weight:600;flex:1}
+.user-pill{background:#f1f5f9;border:1px solid var(--border);padding:4px 12px;border-radius:20px;font-size:12px;color:#64748b}
+.date-chip{font-size:12px;color:#94a3b8}
+.content{padding:24px;flex:1}
+.stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:24px}
+.stat-card{background:var(--white);border-radius:var(--r);padding:18px 20px;border:1px solid var(--border)}
+.stat-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px}
+.stat-icon{width:38px;height:38px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:17px}
+.stat-num{font-size:26px;font-weight:700;line-height:1} .stat-label{font-size:12px;color:#64748b;margin-top:4px} .stat-sub{font-size:11px;color:#94a3b8;margin-top:5px}
+.section-hd{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+.section-title{font-size:14px;font-weight:600}
+.btn-primary{background:var(--blue);color:#fff;padding:7px 14px;border-radius:6px;font-size:12px;font-weight:500;cursor:pointer}
+.btn-sm{padding:5px 12px;border-radius:6px;font-size:12px;border:1px solid var(--border);color:#64748b;background:var(--white);cursor:pointer}
+.card{background:var(--white);border-radius:var(--r);border:1px solid var(--border);overflow:hidden;margin-bottom:16px}
+.table-wrap{overflow-x:auto} table{width:100%;border-collapse:collapse;font-size:13px}
+th{padding:10px 14px;text-align:left;font-size:11px;color:#94a3b8;border-bottom:1px solid var(--border);white-space:nowrap;font-weight:600}
+td{padding:10px 14px;border-bottom:1px solid #f8fafc;vertical-align:middle} tr:last-child td{border-bottom:none} tr:hover td{background:#fafafa}
+.badge{display:inline-block;padding:3px 9px;border-radius:20px;font-size:11px;font-weight:500;white-space:nowrap}
+.filter-tabs{display:flex;gap:4px;padding:4px;background:#f1f5f9;border-radius:8px;margin-bottom:16px;flex-wrap:wrap}
+.filter-tab{padding:5px 12px;border-radius:6px;font-size:12px;font-weight:500;color:#64748b;cursor:pointer;white-space:nowrap;transition:background .15s}
+.filter-tab:hover{background:#e2e8f0} .filter-tab.active{background:var(--white);color:var(--txt);box-shadow:0 1px 3px rgba(0,0,0,.1)}
+.case-list{display:flex;flex-direction:column}
+.case-card{background:var(--white);padding:14px 18px;display:flex;align-items:center;gap:14px;cursor:pointer;border-bottom:1px solid #f1f5f9;transition:background .1s}
+.case-card:hover{background:#f7f9ff} .case-card.selected{background:#eff6ff;border-left:3px solid var(--blue)}
+.case-num{font-size:11px;color:#94a3b8;width:40px;flex-shrink:0}
+.case-info{flex:1;min-width:0}
+.case-name{font-size:13px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.case-sub{font-size:11px;color:#64748b;margin-top:2px}
+.case-right{text-align:right;flex-shrink:0} .case-amt{font-size:13px;font-weight:600} .case-date{font-size:11px;color:#94a3b8;margin-top:2px}
+.stage-bar{display:flex;gap:2px;margin-top:8px} .stage-dot{height:4px;border-radius:2px;flex:1;background:#e2e8f0} .stage-dot.done{background:#3b82f6} .stage-dot.active{background:#f59e0b}
+.detail-panel{background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:24px;margin-top:16px}
+.detail-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:20px;padding-bottom:16px;border-bottom:1px solid var(--border)}
+.detail-title{font-size:17px;font-weight:700} .detail-id{font-size:11px;color:#94a3b8;margin-top:3px}
+.close-btn{font-size:20px;color:#94a3b8;padding:4px 10px;border-radius:4px;cursor:pointer} .close-btn:hover{background:#f1f5f9;color:var(--txt)}
+.detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px}
+.info-item label{font-size:11px;color:#94a3b8;display:block;margin-bottom:3px} .info-item span{font-size:13px;font-weight:500}
+.stage-timeline{display:flex;margin-bottom:20px;overflow-x:auto;padding-bottom:4px}
+.stage-step{display:flex;flex-direction:column;align-items:center;flex:1;min-width:68px}
+.stage-step-line{display:flex;align-items:center;width:100%}
+.stage-circle{width:28px;height:28px;border-radius:50%;border:2px solid #e2e8f0;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;flex-shrink:0;background:var(--white);color:#94a3b8}
+.stage-circle.done{background:var(--blue);border-color:var(--blue);color:#fff} .stage-circle.current{background:#f59e0b;border-color:#f59e0b;color:#fff}
+.stage-line{flex:1;height:2px;background:#e2e8f0} .stage-line.done{background:var(--blue)}
+.stage-lbl{font-size:10px;color:#94a3b8;margin-top:5px;text-align:center} .stage-lbl.done{color:var(--blue)} .stage-lbl.current{color:#f59e0b;font-weight:600}
+.payment-row{display:flex;gap:12px;margin-bottom:20px}
+.pay-box{flex:1;padding:12px 14px;border-radius:6px;border:1px solid var(--border)}
+.pay-box.paid{background:#f0fdf4;border-color:#86efac} .pay-box.pending{background:#fffbeb;border-color:#fcd34d}
+.pay-label{font-size:10px;color:#94a3b8;margin-bottom:3px} .pay-amount{font-size:15px;font-weight:700} .pay-status{font-size:11px;margin-top:3px}
+.note-box{background:#f8fafc;border-radius:6px;padding:12px 14px;font-size:13px;color:#64748b;line-height:1.6}
+.placeholder{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:80px 20px;color:#94a3b8;text-align:center;background:var(--white);border-radius:var(--r);border:1px solid var(--border)}
+.placeholder-icon{font-size:48px;margin-bottom:16px} .placeholder h3{font-size:16px;color:#64748b;margin-bottom:8px} .placeholder p{font-size:13px;line-height:1.6;max-width:300px}
+.todo-item{display:flex;align-items:flex-start;gap:10px;padding:11px 16px;border-bottom:1px solid #f8fafc} .todo-item:last-child{border-bottom:none}
+.todo-dot{width:8px;height:8px;border-radius:50%;margin-top:4px;flex-shrink:0} .todo-txt{font-size:13px;flex:1} .todo-sub{font-size:11px;color:#94a3b8;margin-top:2px}
+.dash-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}
+.overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:150}
+@media(max-width:900px){
+  .sidebar{transform:translateX(-100%)} .sidebar.open{transform:none} .app{margin-left:0} .menu-btn{display:block}
+  .stats-row{grid-template-columns:1fr 1fr} .dash-grid{grid-template-columns:1fr} .detail-grid{grid-template-columns:1fr}
+  .overlay.show{display:block}
+}
+@media(max-width:480px){.stats-row{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<aside class="sidebar" id="sidebar">
+  <div class="sb-logo">
+    <div class="sb-dots"><div class="sb-dot" style="background:#f59e0b"></div><div class="sb-dot" style="background:#3b82f6"></div></div>
+    <div class="sb-brand">樂衍 <small>北區工作管理</small></div>
+  </div>
+  <nav>
+    <div class="nav-item" data-page="dashboard"><span class="nav-icon">📊</span> 儀表板</div>
+    <div class="nav-item" data-page="cases"><span class="nav-icon">📁</span> 業務案件</div>
+    <div class="nav-item" data-page="dispatch"><span class="nav-icon">🔧</span> 報修派工</div>
+    <div class="nav-item" data-page="calendar"><span class="nav-icon">📅</span> 行事曆</div>
+    <div class="nav-item" data-page="settings"><span class="nav-icon">⚙️</span> 管理資料</div>
+  </nav>
+  <div class="sb-footer"><div>靜態原型 · 第一階段</div><div style="color:#3b82f6;margin-top:2px">v1.0 · 建模中</div></div>
+</aside>
+<div class="overlay" id="overlay"></div>
+<div class="app">
+  <header class="topbar">
+    <button class="menu-btn" id="menuBtn">☰</button>
+    <div class="page-title" id="pageTitle">儀表板</div>
+    <div style="display:flex;align-items:center;gap:10px;margin-left:auto">
+      <span class="date-chip" id="todayDate"></span>
+      <span class="user-pill">北區經理</span>
+    </div>
+  </header>
+  <div style="padding:10px 24px;background:#fff7ed;color:#9a3412;font-size:13px">第一階段示範原型｜所有案件、客戶與金額均為假資料，尚未串接正式系統。</div><div class="content" id="content"></div>
+</div>
+<script>
+(function() {
+var CASES=[
+  {id:"C001",client:"台北信義牙醫診所",contact:"王院長",phone:"02-2345-6789",address:"台北市信義區松仁路100號",type:"牙醫診所裝修",status:"施工",statusIdx:4,amount:850000,deposit:255000,depositPaid:true,balance:595000,balancePaid:false,start:"2026-11-01",end:"2026-11-30",note:"含候診區、診療間3間、後勤消毒區，使用環保材料"},
+  {id:"C002",client:"新北板橋商辦空間",contact:"陳副總",phone:"02-2971-1234",address:"新北市板橋區文化路一段300號",type:"商業辦公空間",status:"報價",statusIdx:1,amount:1200000,deposit:0,depositPaid:false,balance:1200000,balancePaid:false,start:null,end:null,note:"約60坪，開放式辦公室改造，含會議室隔間"},
+  {id:"C003",client:"桃園中壢百貨商場",contact:"李店長",phone:"03-452-5678",address:"桃園市中壢區元化路200號",type:"零售商場裝修",status:"驗收",statusIdx:5,amount:2500000,deposit:750000,depositPaid:true,balance:1750000,balancePaid:false,start:"2026-10-01",end:"2026-11-20",note:"地下1樓至3樓公共區域翻新"},
+  {id:"C004",client:"新竹竹北科技廠辦",contact:"張工程師",phone:"03-658-9876",address:"新竹縣竹北市縣政九路123號",type:"廠辦複合空間",status:"簽約",statusIdx:2,amount:680000,deposit:0,depositPaid:false,balance:680000,balancePaid:false,start:null,end:null,note:"研發辦公室加小型展示間，兩週內啟動施工"},
+  {id:"C005",client:"台北大安住宅",contact:"黃先生",phone:"0912-345-678",address:"台北市大安區仁愛路四段56號",type:"住宅空間",status:"洽談",statusIdx:0,amount:null,deposit:0,depositPaid:false,balance:null,balancePaid:false,start:null,end:null,note:"三房兩廳全室翻新，預算未定，現場評估中"},
+  {id:"C006",client:"新北三重醫療診所",contact:"吳院長",phone:"02-2983-4567",address:"新北市三重區重新路五段789號",type:"診所空間",status:"收尾款",statusIdx:6,amount:450000,deposit:135000,depositPaid:true,balance:315000,balancePaid:false,start:"2026-10-15",end:"2026-11-10",note:"已驗收完成，待尾款入帳後結案"},
+  {id:"C007",client:"台北松山零售門市",contact:"林店長",phone:"02-2767-8901",address:"台北市松山區敦化北路168號",type:"零售門市",status:"結案",statusIdx:7,amount:320000,deposit:96000,depositPaid:true,balance:224000,balancePaid:true,start:"2026-09-01",end:"2026-10-15",note:"已結案，客戶評價良好，計畫二店合作"},
+  {id:"C008",client:"桃園八德物流中心",contact:"許主任",phone:"03-368-1234",address:"桃園市八德區興豐路1500號",type:"倉儲辦公空間",status:"收訂金",statusIdx:3,amount:960000,deposit:288000,depositPaid:true,balance:672000,balancePaid:false,start:"2026-11-15",end:"2026-12-20",note:"訂金已入帳，材料採購中，11/15正式開工"}
+];
+var DISPATCH=[
+  {id:"D001",client:"信義ATT4FUN購物中心",address:"台北市信義區松壽路12號",region:"雙北",category:"弱電維護",engineer:"示範工程師甲",date:"2026-11-14",status:"待派工",note:"監視器系統異常"},
+  {id:"D002",client:"板橋大遠百貨",address:"新北市板橋區縣民大道二段8號",region:"雙北",category:"硬體維護",engineer:"示範工程師乙",date:"2026-11-14",status:"已派工",note:"冷氣主機電源異常"},
+  {id:"D003",client:"桃園統領百貨",address:"桃園市桃園區中正路1號",region:"桃竹",category:"弱電維護",engineer:"示範工程師丙",date:"2026-11-15",status:"待派工",note:"廣播系統噪音"},
+  {id:"D004",client:"新竹Big City",address:"新竹市東區中央路229號",region:"桃竹",category:"硬體維護",engineer:"示範工程師丁",date:"2026-11-13",status:"進行中",note:"電梯周邊設備維護"},
+  {id:"D005",client:"信義誠品書店",address:"台北市信義區松高路11號",region:"雙北",category:"弱電維護",engineer:"示範工程師甲",date:"2026-11-16",status:"待派工",note:"網路設備更換"},
+  {id:"D006",client:"新北COSTCO汐止店",address:"新北市汐止區新台五路一段168號",region:"雙北",category:"硬體維護",engineer:"示範工程師乙",date:"2026-11-13",status:"已完成",note:"消防設備保養完成"}
+];
+var STATUS_MAP={
+  "洽談":{color:"#64748b",bg:"#f1f5f9"},"報價":{color:"#3b82f6",bg:"#eff6ff"},
+  "簽約":{color:"#8b5cf6",bg:"#f5f3ff"},"收訂金":{color:"#f59e0b",bg:"#fffbeb"},
+  "施工":{color:"#f97316",bg:"#fff7ed"},"驗收":{color:"#06b6d4",bg:"#ecfeff"},
+  "收尾款":{color:"#10b981",bg:"#f0fdf4"},"結案":{color:"#334155",bg:"#e2e8f0"}
+};
+var DS={
+  "待派工":{color:"#f59e0b",bg:"#fffbeb"},"已派工":{color:"#3b82f6",bg:"#eff6ff"},
+  "進行中":{color:"#f97316",bg:"#fff7ed"},"已完成":{color:"#10b981",bg:"#f0fdf4"}
+};
+var STAGES=["洽談","報價","簽約","收訂金","施工","驗收","收尾款","結案"];
+var PAGE="dashboard", FILTER="all", SEL=null;
+
+function fmt(n){return n==null?"—":"NT$"+Number(n).toLocaleString();}
+function fmtD(d){return d?d.replace(/-/g,"/"):"—";}
+function badge(s){var m=STATUS_MAP[s]||{color:"#64748b",bg:"#f1f5f9"};return "<span class=badge style=color:"+m.color+";background:"+m.bg+">"+s+"</span>";}
+function dbadge(s){var m=DS[s]||{color:"#64748b",bg:"#f1f5f9"};return "<span class=badge style=color:"+m.color+";background:"+m.bg+">"+s+"</span>";}
+function sbar(idx){return "<div class=stage-bar>"+STAGES.map(function(_,i){return "<div class='stage-dot"+(i<idx?" done":i===idx?" active":"")+"'></div>";}).join("")+"</div>";}
+
+// ── NAVIGATION ──────────────────────────────────────────────────────
+document.querySelectorAll(".nav-item").forEach(function(el){
+  el.addEventListener("click",function(){go(el.dataset.page);});
+});
+document.getElementById("menuBtn").addEventListener("click",function(){
+  document.getElementById("sidebar").classList.toggle("open");
+  document.getElementById("overlay").classList.toggle("show");
+});
+document.getElementById("overlay").addEventListener("click",function(){
+  document.getElementById("sidebar").classList.remove("open");
+  document.getElementById("overlay").classList.remove("show");
+});
+
+// ── EVENT DELEGATION ────────────────────────────────────────────────
+document.getElementById("content").addEventListener("click",function(e){
+  var el=e.target.closest("[data-nav]");
+  if(el){go(el.dataset.nav);return;}
+  el=e.target.closest("[data-filter]");
+  if(el){FILTER=el.dataset.filter;SEL=null;render();return;}
+  el=e.target.closest("[data-case]");
+  if(el){SEL=SEL===el.dataset.case?null:el.dataset.case;render();return;}
+  el=e.target.closest("[data-close-detail]");
+  if(el){SEL=null;render();}
+});
+
+function go(page){
+  PAGE=page;SEL=null;
+  document.querySelectorAll(".nav-item").forEach(function(el){el.classList.toggle("active",el.dataset.page===page);});
+  var t={dashboard:"儀表板",cases:"業務案件",dispatch:"報修派工",calendar:"行事曆",settings:"管理資料"};
+  document.getElementById("pageTitle").textContent=t[page]||page;
+  document.getElementById("sidebar").classList.remove("open");
+  document.getElementById("overlay").classList.remove("show");
+  render();
+}
+
+// ── DASHBOARD ───────────────────────────────────────────────────────
+function renderDashboard(){
+  var today="2026-11-13";
+  var td=DISPATCH.filter(function(d){return d.date===today;});
+  var active=CASES.filter(function(c){return c.status!=="結案";}).length;
+  var pendPay=CASES.filter(function(c){return !c.balancePaid&&c.amount!==null;});
+  var pendAmt=pendPay.reduce(function(s,c){return s+(c.balance||0);},0);
+  var closed=CASES.filter(function(c){return c.status==="結案";}).length;
+
+  var stats="<div class=stats-row>"
+    +"<div class=stat-card><div class=stat-top><div><div class=stat-num>"+td.length+"</div><div class=stat-label>今日派工</div>"
+    +"<div class=stat-sub>雙北 "+td.filter(function(d){return d.region==="雙北";}).length+" · 桃竹 "+td.filter(function(d){return d.region==="桃竹";}).length+"</div></div>"
+    +"<div class=stat-icon style=background:#eff6ff>🔧</div></div></div>"
+    +"<div class=stat-card><div class=stat-top><div><div class=stat-num>"+active+"</div><div class=stat-label>進行中案件</div>"
+    +"<div class=stat-sub>施工中 "+CASES.filter(function(c){return c.status==="施工";}).length+" · 驗收 "+CASES.filter(function(c){return c.status==="驗收";}).length+"</div></div>"
+    +"<div class=stat-icon style=background:#f5f3ff>📁</div></div></div>"
+    +"<div class=stat-card><div class=stat-top><div><div class=stat-num style=font-size:17px>"+fmt(pendAmt)+"</div><div class=stat-label>待收款合計</div>"
+    +"<div class=stat-sub>"+pendPay.length+" 件未收尾款</div></div>"
+    +"<div class=stat-icon style=background:#fffbeb>💰</div></div></div>"
+    +"<div class=stat-card><div class=stat-top><div><div class=stat-num>"+closed+"</div><div class=stat-label>累計結案</div>"
+    +"<div class=stat-sub>台北 · 新北 · 桃竹</div></div>"
+    +"<div class=stat-icon style=background:#f0fdf4>✅</div></div></div>"
+    +"</div>";
+
+  var dr=td.map(function(d){
+    return "<tr><td><strong>"+d.client+"</strong><div style=font-size:11px;color:#94a3b8>"+d.address.substring(0,18)+"</div></td>"
+      +"<td><span class=badge style=background:#f1f5f9;color:#334155>"+d.region+"</span></td>"
+      +"<td>"+d.category+"</td><td><strong>"+d.engineer+"</strong></td><td>"+dbadge(d.status)+"</td></tr>";
+  }).join("");
+  if(!dr)dr="<tr><td colspan=5 style=text-align:center;color:#94a3b8;padding:24px>今日無派工記錄</td></tr>";
+
+  var tbl="<div class=card>"
+    +"<div class=section-hd style=padding:14px_18px_0><span class=section-title>今日派工</span>"
+    +"<button class=btn-sm data-nav=dispatch>查看全部 →</button></div>"
+    +"<div class=table-wrap><table><thead><tr><th>客戶</th><th>地區</th><th>類別</th><th>工程師</th><th>狀態</th></tr></thead>"
+    +"<tbody>"+dr+"</tbody></table></div></div>";
+
+  var todos=[
+    {dot:"#06b6d4",txt:"桃園中壢百貨商場 — 驗收",sub:"請聯絡李店長確認驗收日期"},
+    {dot:"#f59e0b",txt:"新北三重診所 — 尾款 NT$315,000",sub:"已驗收，待尾款入帳後結案"},
+    {dot:"#8b5cf6",txt:"新竹竹北廠辦 — 合約已簽",sub:"確認收訂金時間，安排材料採購"},
+    {dot:"#10b981",txt:"桃園八德物流 — 訂金入帳",sub:"11/15 開工，確認工程師到場時間"}
+  ];
+  var todoHtml=todos.map(function(t){
+    return "<div class=todo-item><div class=todo-dot style=background:"+t.dot+"></div>"
+      +"<div><div class=todo-txt>"+t.txt+"</div><div class=todo-sub>"+t.sub+"</div></div></div>";
+  }).join("");
+
+  var todoCard="<div class=card>"
+    +"<div class=section-hd style=padding:14px_18px_0><span class=section-title>待辦提醒</span></div>"
+    +todoHtml+"</div>";
+
+  var recent=CASES.filter(function(c){return c.status!=="結案";}).slice(0,5);
+  var ri=recent.map(function(c){
+    return "<div class=case-card data-case="+c.id+">"
+      +"<div class=case-info><div class=case-name>"+c.client+"</div><div class=case-sub>"+c.type+"</div>"+sbar(c.statusIdx)+"</div>"
+      +"<div class=case-right><div>"+badge(c.status)+"</div>"
+      +"<div class=case-amt style=margin-top:4px>"+(c.amount?"NT$"+(c.amount/10000).toFixed(0)+"萬":"—")+"</div></div></div>";
+  }).join("");
+
+  var caseCard="<div class=card>"
+    +"<div class=section-hd style=padding:14px_18px_0><span class=section-title>案件進度</span>"
+    +"<button class=btn-sm data-nav=cases>查看全部 →</button></div>"
+    +"<div class=case-list style=margin-top:8px>"+ri+"</div></div>";
+
+  document.getElementById("content").innerHTML=stats
+    +"<div class=dash-grid>"+tbl+todoCard+"</div>"
+    +caseCard;
+}
+
+// ── CASES ────────────────────────────────────────────────────────────
+function renderCases(){
+  var fl=["all","洽談","報價","簽約","收訂金","施工","驗收","收尾款","結案"];
+  var tabs=fl.map(function(f){
+    var cnt=f==="all"?CASES.length:CASES.filter(function(c){return c.status===f;}).length;
+    var lbl=f==="all"?"全部 ("+cnt+")":f+(cnt?" ("+cnt+")":"");
+    return "<div class='filter-tab"+(FILTER===f?" active":"")+"' data-filter="+f+">"+lbl+"</div>";
+  }).join("");
+
+  var filtered=FILTER==="all"?CASES:CASES.filter(function(c){return c.status===FILTER;});
+  var items=filtered.map(function(c){
+    return "<div class='case-card"+(SEL===c.id?" selected":"")+"' data-case="+c.id+">"
+      +"<div class=case-num>"+c.id+"</div>"
+      +"<div class=case-info><div class=case-name>"+c.client+"</div>"
+      +"<div class=case-sub>"+c.type+" · "+c.contact+"</div>"
+      +sbar(c.statusIdx)+"</div>"
+      +"<div class=case-right><div>"+badge(c.status)+"</div>"
+      +"<div class=case-amt style=margin-top:5px>"+fmt(c.amount)+"</div>"
+      +"<div class=case-date>"+fmtD(c.start)+"</div></div></div>";
+  }).join("");
+  if(!items)items="<div style=padding:40px;text-align:center;color:#94a3b8>此狀態無案件</div>";
+
+  var detail=SEL?renderDetail(CASES.find(function(c){return c.id===SEL;})):"";
+
+  document.getElementById("content").innerHTML=
+    "<div class=section-hd style=margin-bottom:12px><span class=section-title>業務案件</span>"
+    +"<button class=btn-primary>＋ 新增案件</button></div>"
+    +"<div class=filter-tabs>"+tabs+"</div>"
+    +"<div class=card style=overflow:visible><div class=case-list>"+items+"</div></div>"
+    +detail;
+
+  if(SEL){var el=document.querySelector(".detail-panel");if(el)setTimeout(function(){el.scrollIntoView({behavior:"smooth",block:"nearest"});},50);}
+}
+
+function renderDetail(c){
+  if(!c)return "";
+  var tl=STAGES.map(function(s,i){
+    var dc=i<c.statusIdx?"done":i===c.statusIdx?"current":"";
+    var ln=i<7?"<div class='stage-line"+(i<c.statusIdx?" done":"")+"'></div>":"";
+    return "<div class=stage-step><div class=stage-step-line>"
+      +"<div class='stage-circle "+dc+"'>"+(i<c.statusIdx?"✓":(i+1))+"</div>"
+      +ln+"</div><div class='stage-lbl "+dc+"'>"+s+"</div></div>";
+  }).join("");
+
+  return "<div class=detail-panel>"
+    +"<div class=detail-header>"
+    +"<div><div class=detail-title>"+c.client+"</div><div class=detail-id>"+c.id+" · "+c.type+"</div></div>"
+    +"<div style=display:flex;gap:8px;align-items:center>"+badge(c.status)
+    +"<button class=close-btn data-close-detail=1>✕</button></div></div>"
+    +"<div class=stage-timeline>"+tl+"</div>"
+    +"<div class=detail-grid>"
+    +"<div class=info-item><label>聯絡人</label><span>"+c.contact+"</span></div>"
+    +"<div class=info-item><label>電話</label><span>"+c.phone+"</span></div>"
+    +"<div class=info-item><label>地址</label><span>"+c.address+"</span></div>"
+    +"<div class=info-item><label>施工期間</label><span>"+fmtD(c.start)+" — "+fmtD(c.end)+"</span></div>"
+    +"</div>"
+    +"<div class=payment-row>"
+    +"<div class='pay-box "+(c.depositPaid?"paid":"pending")+"'><div class=pay-label>訂金 (30%)</div><div class=pay-amount>"+fmt(c.deposit)+"</div>"
+    +"<div class=pay-status style=color:"+(c.depositPaid?"#10b981":"#d97706")+">"+(c.depositPaid?"✓ 已入帳":"⏳ 待入帳")+"</div></div>"
+    +"<div class='pay-box "+(c.balancePaid?"paid":"pending")+"'><div class=pay-label>尾款 (70%)</div><div class=pay-amount>"+fmt(c.balance)+"</div>"
+    +"<div class=pay-status style=color:"+(c.balancePaid?"#10b981":"#d97706")+">"+(c.balancePaid?"✓ 已入帳":"⏳ 待入帳")+"</div></div>"
+    +"<div class=pay-box><div class=pay-label>合約總額</div><div class=pay-amount>"+fmt(c.amount)+"</div>"
+    +"<div class=pay-status style=color:#64748b>含工料全額</div></div>"
+    +"</div>"
+    +"<div class=pay-label style=margin-bottom:6px>備注</div>"
+    +"<div class=note-box>"+c.note+"</div>"
+    +"</div>";
+}
+
+// ── PLACEHOLDER ──────────────────────────────────────────────────────
+function ph(icon,name,desc){
+  document.getElementById("content").innerHTML=
+    "<div class=placeholder><div class=placeholder-icon>"+icon+"</div>"
+    +"<h3>"+name+" — 建置中</h3><p>"+desc+"</p></div>";
+}
+
+// ── RENDER ───────────────────────────────────────────────────────────
+function render(){
+  if(PAGE==="dashboard")renderDashboard();
+  else if(PAGE==="cases")renderCases();
+  else if(PAGE==="dispatch")ph("🔧","報修派工","工單列表、新增報修、自動指派工程師、再訪追蹤。第二階段完成。");
+  else if(PAGE==="calendar")ph("📅","行事曆","月/週排程、雙北/桃竹工程師行程、三日內可用空檔查詢。第二階段完成。");
+  else if(PAGE==="settings")ph("⚙️","管理資料","工程師資料庫、客戶資料庫、派工規則。第二階段完成。");
+}
+
+// ── INIT ─────────────────────────────────────────────────────────────
+document.getElementById("todayDate").textContent=
+  new Date().toLocaleDateString("zh-TW",{month:"numeric",day:"numeric",weekday:"short"});
+go("dashboard");
+})();
+</script>
+</body>
+</html>
