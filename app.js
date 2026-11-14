@@ -426,6 +426,16 @@ document.body.innerHTML = '\n<aside class="sidebar" id="sidebar">\n  <div class=
     candidate = String(candidate).trim().replace(/^(?:客戶|店名)\s*[:：]?\s*/, "").trim();
     return candidate.length >= 2 && !/^(我要|我想|需要|有問題|您好|你好|測試)$/.test(candidate) ? candidate : "";
   }
+  function lineReportContent(text, client) {
+    var raw = String(text || "").trim(), name = String(client || "").trim();
+    if (!name) return raw;
+    var prefix = raw.replace(/^(?:客戶(?:名稱)?|店名|診所名稱)\s*[:：]\s*/, "");
+    if (!prefix.toLowerCase().startsWith(name.toLowerCase())) return raw;
+    var rest = prefix.slice(name.length);
+    if (rest && !/^[\s，,。；;:：]|^(?:要|需要|來)?(?:報修|維修)/.test(rest)) return raw;
+    rest = rest.replace(/^[\s，,。；;:：]*/, "").replace(/^(?:要|需要|來)?(?:報修|維修)(?:內容|狀況|問題)?\s*[:：，,。；;]?\s*/, "").replace(/^(?:報修內容|報修狀況|狀況|問題)\s*[:：]\s*/, "").trim();
+    return rest;
+  }
   function regionFromText(t) {
     var n = normClient(t), north = /台北|新北|雙北|板橋|三重|汐止|信義|大安|松山|士林|北投|中和|永和|新莊|土城|淡水|蘆洲/.test(n), south = /桃園|新竹|桃竹|中壢|竹北|八德|龜山|蘆竹|竹東|平鎮|楊梅|湖口|新豐/.test(n);
     return north === south ? "" : north ? "\u96D9\u5317" : "\u6843\u7AF9";
@@ -768,7 +778,7 @@ document.body.innerHTML = '\n<aside class="sidebar" id="sidebar">\n  <div class=
     if (ev) lineNotify(ev);
   }
   window.leyanReviewRequest = function(record, onApprove) {
-    newDialog(null, { client: record.client, note: record.note, source: { manual: "\u624B\u52D5", voice: "\u8A9E\u97F3", line: "LINE" }[record.source] || record.source, received: record.created_at, onApprove });
+    newDialog(null, { client: record.client, note: record.source === "line" ? lineReportContent(record.note, record.client) : record.note, source: { manual: "\u624B\u52D5", voice: "\u8A9E\u97F3", line: "LINE" }[record.source] || record.source, received: record.created_at, onApprove });
   };
   var LINE = { inbox: [], contacts: [], stats: null, quota: null, codes: {}, error: "", loading: null, at: 0 };
   function lineApi() {
@@ -944,7 +954,8 @@ document.body.innerHTML = '\n<aside class="sidebar" id="sidebar">\n  <div class=
       var cus = LINE.contacts.find(function(x) {
         return x.line_user_id === m.line_user_id && x.role === "customer";
       });
-      newDialog(null, { client: cus ? cus.ref_name : inferLineClient(m.text), note: String(m.text || "").slice(0, 1e3), received: m.received_at, source: "LINE \u5831\u4FEE\uFF08" + (m.display_name || "LINE \u4F7F\u7528\u8005") + "\uFF09", onCreated: function(j, ev) {
+      var clientName = cus ? cus.ref_name : inferLineClient(m.text);
+      newDialog(null, { client: clientName, note: lineReportContent(m.text, clientName).slice(0, 1e3), received: m.received_at, source: "LINE \u5831\u4FEE\uFF08" + (m.display_name || "LINE \u4F7F\u7528\u8005") + "\uFF09", onCreated: function(j, ev) {
         api.convertInbox(m.id, j.id, j.client).then(function() {
           LINE.inbox = LINE.inbox.filter(function(x) {
             return x.id !== m.id;
