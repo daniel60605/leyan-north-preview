@@ -1,9 +1,9 @@
 // app-entry.generated.mjs
 var css = document.createElement("link");
 css.rel = "stylesheet";
-css.href = "app.css?v=a54371349c";
+css.href = "app.css?v=396f5a55de";
 document.head.appendChild(css);
-document.body.innerHTML = '\n<aside class="sidebar" id="sidebar">\n  <div class="sb-logo">\n    <div class="sb-dots"><div class="sb-dot" style="background:#f59e0b"></div><div class="sb-dot" style="background:#3b82f6"></div></div>\n    <div class="sb-brand">\u6A02\u884D <small>\u5317\u5340\u5DE5\u4F5C\u7BA1\u7406</small></div>\n  </div>\n  <nav>\n    <div class="nav-item" data-page="dashboard"><span class="nav-icon">\u{1F4CA}</span> \u5100\u8868\u677F</div>\n    <div class="nav-item" data-page="cases"><span class="nav-icon">\u{1F4C1}</span> \u696D\u52D9\u6848\u4EF6</div>\n    <div class="nav-item" data-page="dispatch"><span class="nav-icon">\u{1F527}</span> \u5831\u4FEE\u6D3E\u5DE5</div>\n    <div class="nav-item" data-page="calendar"><span class="nav-icon">\u{1F4C5}</span> \u884C\u4E8B\u66C6</div>\n    <div class="nav-item" data-page="settings"><span class="nav-icon">\u2699\uFE0F</span> \u7BA1\u7406\u8CC7\u6599</div>\n  </nav>\n  <div class="sb-footer"><div>\u4E92\u52D5\u539F\u578B \xB7 \u7B2C\u4E8C\u968E\u6BB5</div><div style="color:#3b82f6;margin-top:2px">v2.0 \xB7 \u672C\u6A5F\u793A\u7BC4</div></div>\n</aside>\n<div class="overlay" id="overlay"></div>\n<div class="app">\n  <header class="topbar">\n    <button class="menu-btn" id="menuBtn">\u2630</button>\n    <div class="page-title" id="pageTitle">\u5100\u8868\u677F</div>\n    <div style="display:flex;align-items:center;gap:10px;margin-left:auto">\n      <span class="date-chip" id="todayDate"></span>\n      <span class="user-pill">\u5317\u5340\u7D93\u7406</span>\n    </div>\n  </header>\n  <div style="padding:10px 24px;background:#fff7ed;color:#9a3412;font-size:13px">\u5DE5\u4F5C\u7BA1\u7406\uFF5C\u8CC7\u6599\u4F9D\u767B\u5165\u5E33\u865F\u4FDD\u5B58\u5728\u96F2\u7AEF\uFF1B\u672A\u4E32\u63A5Google\u884C\u4E8B\u66C6\u6216\u901A\u77E5\u670D\u52D9\u3002</div><div class="content" id="content"></div>\n</div>\n';
+document.body.innerHTML = '\n<aside class="sidebar" id="sidebar">\n  <div class="sb-logo">\n    <div class="sb-dots"><div class="sb-dot" style="background:#f59e0b"></div><div class="sb-dot" style="background:#3b82f6"></div></div>\n    <div class="sb-brand">\u6A02\u884D <small>\u5317\u5340\u5DE5\u4F5C\u7BA1\u7406</small></div>\n  </div>\n  <nav>\n    <div class="nav-item" data-page="dashboard"><span class="nav-icon">\u{1F4CA}</span> \u5100\u8868\u677F</div>\n    <div class="nav-item" data-page="cases"><span class="nav-icon">\u{1F4C1}</span> \u696D\u52D9\u6848\u4EF6</div>\n    <div class="nav-item" data-page="dispatch"><span class="nav-icon">\u{1F527}</span> \u5831\u4FEE\u6D3E\u5DE5</div>\n    <div class="nav-item" data-page="calendar"><span class="nav-icon">\u{1F4C5}</span> \u884C\u4E8B\u66C6</div>\n    <div class="nav-item" data-page="line"><span class="nav-icon">\u{1F4AC}</span> LINE \u8A2D\u5B9A<span class="line-badge" id="line-nav-badge" hidden></span></div>\n    <div class="nav-item" data-page="settings"><span class="nav-icon">\u2699\uFE0F</span> \u7BA1\u7406\u8CC7\u6599</div>\n  </nav>\n  <div class="sb-footer"><div>\u4E92\u52D5\u539F\u578B \xB7 \u7B2C\u4E8C\u968E\u6BB5</div><div style="color:#3b82f6;margin-top:2px">v2.0 \xB7 \u672C\u6A5F\u793A\u7BC4</div></div>\n</aside>\n<div class="overlay" id="overlay"></div>\n<div class="app">\n  <header class="topbar">\n    <button class="menu-btn" id="menuBtn">\u2630</button>\n    <div class="page-title" id="pageTitle">\u5100\u8868\u677F</div>\n    <div style="display:flex;align-items:center;gap:10px;margin-left:auto">\n      <span class="date-chip" id="todayDate"></span>\n      <span class="user-pill">\u5317\u5340\u7D93\u7406</span>\n    </div>\n  </header>\n  <div style="padding:10px 24px;background:#fff7ed;color:#9a3412;font-size:13px">\u5DE5\u4F5C\u7BA1\u7406\uFF5C\u8CC7\u6599\u4F9D\u767B\u5165\u5E33\u865F\u4FDD\u5B58\u5728\u96F2\u7AEF\uFF1B\u672A\u4E32\u63A5Google\u884C\u4E8B\u66C6\u3002LINE\u901A\u77E5\u8ACB\u65BC\u300CLINE \u8A2D\u5B9A\u300D\u7D81\u5B9A\u3002</div><div class="content" id="content"></div>\n</div>\n';
 (function() {
   var CASES = [];
   var DISPATCH = [];
@@ -88,7 +88,7 @@ document.body.innerHTML = '\n<aside class="sidebar" id="sidebar">\n  <div class=
     document.querySelectorAll(".nav-item").forEach(function(el) {
       el.classList.toggle("active", el.dataset.page === page);
     });
-    var t = { dashboard: "\u5100\u8868\u677F", cases: "\u696D\u52D9\u6848\u4EF6", dispatch: "\u5831\u4FEE\u6D3E\u5DE5", calendar: "\u884C\u4E8B\u66C6", settings: "\u7BA1\u7406\u8CC7\u6599" };
+    var t = { dashboard: "\u5100\u8868\u677F", cases: "\u696D\u52D9\u6848\u4EF6", dispatch: "\u5831\u4FEE\u6D3E\u5DE5", calendar: "\u884C\u4E8B\u66C6", line: "LINE \u8A2D\u5B9A", settings: "\u7BA1\u7406\u8CC7\u6599" };
     document.getElementById("pageTitle").textContent = t[page] || page;
     document.getElementById("sidebar").classList.remove("open");
     document.getElementById("overlay").classList.remove("show");
@@ -188,6 +188,7 @@ document.body.innerHTML = '\n<aside class="sidebar" id="sidebar">\n  <div class=
     else if (PAGE === "cases") renderCases();
     else if (PAGE === "dispatch") renderDispatch();
     else if (PAGE === "calendar") renderSchedule();
+    else if (PAGE === "line") renderLine();
     else if (PAGE === "settings") ph("\u2699\uFE0F", "\u7BA1\u7406\u8CC7\u6599", "\u5DE5\u7A0B\u5E2B\u8207\u5BA2\u6236\u8CC7\u6599\u7DAD\u8B77\u4ECB\u9762\u5C1A\u672A\u5EFA\u7F6E\uFF1B\u76EE\u524D\u63A1\u7528\u793A\u7BC4\u5C0D\u61C9\u8868\u3002");
   }
   var P2KEY = "leyan-dispatch-demo-v2", JOBS = [], DSEL = null, SEARCH = "", RF = "\u5168\u90E8", SF = "\u5168\u90E8", CALREG = "\u5168\u90E8";
@@ -268,7 +269,7 @@ document.body.innerHTML = '\n<aside class="sidebar" id="sidebar">\n  <div class=
     var shown = JOBS.filter(function(j) {
       return (RF === "\u5168\u90E8" || j.region === RF) && (SF === "\u5168\u90E8" || j.status === SF) && (!SEARCH || (j.id + j.client + j.note + j.engineer).toLowerCase().includes(SEARCH.toLowerCase()));
     });
-    document.getElementById("content").innerHTML = '<div class="p2-head"><div><h2>\u5831\u4FEE\u6D3E\u5DE5</h2><div class="p2-sub">\u63A5\u55AE\u3001\u6392\u7A0B\u3001\u5230\u5834\u8207\u518D\u8A2A\uFF0C\u96C6\u4E2D\u8FFD\u8E64\u3002</div></div><button class="p2-btn" data-p2="new">\uFF0B \u65B0\u589E\u6D3E\u5DE5</button></div><div class="p2-grid">' + ["\u5F85\u6D3E\u5DE5", "\u5DF2\u6D3E\u5DE5", "\u9032\u884C\u4E2D", "\u5F85\u6599"].map(function(st) {
+    document.getElementById("content").innerHTML = '<div class="p2-head"><div><h2>\u5831\u4FEE\u6D3E\u5DE5</h2><div class="p2-sub">\u63A5\u55AE\u3001\u6392\u7A0B\u3001\u5230\u5834\u8207\u518D\u8A2A\uFF0C\u96C6\u4E2D\u8FFD\u8E64\u3002</div></div><button class="p2-btn" data-p2="new">\uFF0B \u65B0\u589E\u6D3E\u5DE5</button></div><div id="line-inbox-banner"></div><div class="p2-grid">' + ["\u5F85\u6D3E\u5DE5", "\u5DF2\u6D3E\u5DE5", "\u9032\u884C\u4E2D", "\u5F85\u6599"].map(function(st) {
       return '<div class="p2-stat"><b>' + JOBS.filter(function(j) {
         return j.status === st;
       }).length + "</b><span>" + st + "</span></div>";
@@ -293,13 +294,15 @@ document.body.innerHTML = '\n<aside class="sidebar" id="sidebar">\n  <div class=
       SF = e.target.value;
       renderDispatch();
     };
+    lineBanner();
+    loadLine(false);
   }
   function jobPanel(j) {
     if (!j) return "";
     var terminal = ["\u5DF2\u5B8C\u6210", "\u5DF2\u53D6\u6D88"].includes(j.status);
-    return '<section class="card p2-panel" id="p2-detail"><div class="p2-head"><h3>' + esc(j.id) + " \xB7 " + esc(j.client) + '</h3><button data-p2="close">\u95DC\u9589\u8A73\u60C5 \u2715</button></div><p>' + esc(j.note) + '</p><p style="margin-top:12px">\u5831\u4FEE\uFF1A' + stamp(j.received) + "\u3000\u671F\u9650\uFF1A" + stamp(new Date(new Date(j.received).getTime() + 72 * 36e5)) + '</p><p class="p2-sub">\u5DE5\u6642 ' + j.hours + " \u5C0F\u6642\uFF0F\u4EA4\u901A\u7DE9\u885D " + j.buffer + " \u5206\u9418\uFF5C" + esc(j.engineer) + '</p><div class="p2-actions">' + (!terminal ? '<button class="p2-btn" data-action="slots">' + (j.start ? "\u91CD\u65B0\u6392\u7A0B" : "\u67E5\u8A62\u7A7A\u6A94\uFF0F\u6D3E\u5DE5") + "</button>" : "") + (j.status === "\u5DF2\u6D3E\u5DE5" ? '<button class="p2-btn secondary" data-action="start">\u958B\u59CB\u8655\u7406</button>' : "") + (j.status === "\u9032\u884C\u4E2D" ? '<button class="p2-btn secondary" data-action="wait">\u6A19\u8A18\u5F85\u6599</button><button class="p2-btn" data-action="complete">\u78BA\u8A8D\u5B8C\u6210</button>' : "") + (["\u9032\u884C\u4E2D", "\u5F85\u6599"].includes(j.status) ? '<button class="p2-btn secondary" data-action="revisit">\u5EFA\u7ACB\u518D\u8A2A\u55AE</button>' : "") + (!terminal ? '<button class="p2-btn secondary" data-action="cancel">\u53D6\u6D88\u5DE5\u55AE</button>' : "") + (j.start && j.status !== "\u5DF2\u53D6\u6D88" ? '<button class="p2-btn secondary" data-job-calendar="' + esc(j.id) + '">\u5728\u6708\u66C6\u67E5\u770B</button>' : "") + '</div><div id="p2-slotbox"></div><h4 style="margin-top:20px">\u8655\u7406\u7D00\u9304</h4>' + (j.history || []).map(function(h) {
+    return '<section class="card p2-panel" id="p2-detail"><div class="p2-head"><h3>' + esc(j.id) + " \xB7 " + esc(j.client) + '</h3><button data-p2="close">\u95DC\u9589\u8A73\u60C5 \u2715</button></div><p>' + esc(j.note) + '</p><p style="margin-top:12px">\u5831\u4FEE\uFF1A' + stamp(j.received) + "\u3000\u671F\u9650\uFF1A" + stamp(new Date(new Date(j.received).getTime() + 72 * 36e5)) + '</p><p class="p2-sub">\u5DE5\u6642 ' + j.hours + " \u5C0F\u6642\uFF0F\u4EA4\u901A\u7DE9\u885D " + j.buffer + " \u5206\u9418\uFF5C" + esc(j.engineer) + '</p><div class="p2-actions">' + (!terminal ? '<button class="p2-btn" data-action="slots">' + (j.start ? "\u91CD\u65B0\u6392\u7A0B" : "\u67E5\u8A62\u7A7A\u6A94\uFF0F\u6D3E\u5DE5") + "</button>" : "") + (j.status === "\u5DF2\u6D3E\u5DE5" && j.start && !j.departedAt ? '<button class="p2-btn" data-action="depart">\u5DE5\u7A0B\u5E2B\u51FA\u767C</button>' : "") + (j.status === "\u5DF2\u6D3E\u5DE5" ? '<button class="p2-btn secondary" data-action="start">\u958B\u59CB\u8655\u7406</button>' : "") + (j.status === "\u9032\u884C\u4E2D" ? '<button class="p2-btn secondary" data-action="wait">\u6A19\u8A18\u5F85\u6599</button><button class="p2-btn" data-action="complete">\u78BA\u8A8D\u5B8C\u6210</button>' : "") + (["\u9032\u884C\u4E2D", "\u5F85\u6599"].includes(j.status) ? '<button class="p2-btn secondary" data-action="revisit">\u5EFA\u7ACB\u518D\u8A2A\u55AE</button>' : "") + (!terminal ? '<button class="p2-btn secondary" data-action="cancel">\u53D6\u6D88\u5DE5\u55AE</button>' : "") + (j.start && j.status !== "\u5DF2\u53D6\u6D88" ? '<button class="p2-btn secondary" data-job-calendar="' + esc(j.id) + '">\u5728\u6708\u66C6\u67E5\u770B</button>' : "") + '</div><div id="p2-slotbox"></div><h4 style="margin-top:20px">\u8655\u7406\u7D00\u9304</h4>' + (j.history || []).map(function(h) {
       return '<div class="p2-history">' + stamp(h.at) + "\u3000" + esc(h.text) + "</div>";
-    }).join("") + '<p class="p2-sub">\u6D3E\u5DE5\u53EA\u66F4\u65B0\u672C\u6A5F\u793A\u7BC4\u8CC7\u6599\uFF0C\u4E0D\u6703\u901A\u77E5\u5BA2\u6236\u6216\u5DE5\u7A0B\u5E2B\u3002</p></section>';
+    }).join("") + '<p class="p2-sub">\u78BA\u8A8D\u3001\u6539\u671F\u3001\u53D6\u6D88\u3001\u51FA\u767C\u8207\u5B8C\u5DE5\u5728\u96F2\u7AEF\u5132\u5B58\u6210\u529F\u5F8C\uFF0C\u6703\u4EE5 LINE \u901A\u77E5\u5DF2\u7D81\u5B9A\u7684\u5DE5\u7A0B\u5E2B\uFF0F\u5BA2\u6236\uFF1B\u901A\u77E5\u5931\u6557\u4E0D\u5F71\u97FF\u5DE5\u55AE\u3002</p></section>';
   }
   function slots(j) {
     var received = new Date(j.received), deadline = new Date(received.getTime() + 72 * 36e5), now = /* @__PURE__ */ new Date();
@@ -377,7 +380,8 @@ document.body.innerHTML = '\n<aside class="sidebar" id="sidebar">\n  <div class=
     }
     return { region, category, regionReason: why, categoryReason: catWhy };
   }
-  function newDialog(parent) {
+  function newDialog(parent, prefill) {
+    prefill = prefill || null;
     var old = document.getElementById("p2-dialog");
     if (old) old.remove();
     var dialog = document.createElement("dialog");
@@ -387,7 +391,7 @@ document.body.innerHTML = '\n<aside class="sidebar" id="sidebar">\n  <div class=
     document.body.appendChild(dialog);
     var draft = null;
     function inputStep(client, note) {
-      dialog.innerHTML = "<h2>" + (parent ? "\u5EFA\u7ACB\u518D\u8A2A\u55AE" : "\u65B0\u589E\u6D3E\u5DE5") + '</h2><p class="p2-sub" style="margin:10px 0 20px">\u53EA\u9700\u586B\u5BEB\u5BA2\u6236\u8207\u554F\u984C\uFF0C\u7CFB\u7D71\u6703\u5EFA\u8B70\u5730\u5340\u3001\u985E\u5225\u3001\u5DE5\u7A0B\u5E2B\u8207\u53EF\u7528\u6642\u6BB5\u3002\u78BA\u8A8D\u524D\u4E0D\u6703\u5EFA\u7ACB\u6D3E\u5DE5\u3002</p><form id="auto-input"><div class="p2-form"><label class="p2-wide">\u5BA2\u6236 *<input name="client" required maxlength="80" list="auto-customers" autocomplete="off" placeholder="\u4F8B\u5982\uFF1A\u53F0\u5317\u4FE1\u7FA9\u7259\u91AB\u8A3A\u6240" value="' + esc(client || "") + '"><datalist id="auto-customers">' + Array.from(new Set(CUSTOMER_SEEDS.concat(CASES, JOBS).map(function(j) {
+      dialog.innerHTML = "<h2>" + (parent ? "\u5EFA\u7ACB\u518D\u8A2A\u55AE" : "\u65B0\u589E\u6D3E\u5DE5") + "</h2>" + (prefill && prefill.source ? '<div class="p2-note" style="margin-top:12px">\u4F86\u6E90\uFF1A' + esc(prefill.source) + "\u3002\u8ACB\u78BA\u8A8D\u6216\u586B\u5165\u5BA2\u6236\u540D\u7A31\uFF1B\u5EFA\u7ACB\u5F8C\u6B64 LINE \u5E33\u865F\u6703\u7D81\u5B9A\u5230\u8A72\u5BA2\u6236\u3002</div>" : "") + '<p class="p2-sub" style="margin:10px 0 20px">\u53EA\u9700\u586B\u5BEB\u5BA2\u6236\u8207\u554F\u984C\uFF0C\u7CFB\u7D71\u6703\u5EFA\u8B70\u5730\u5340\u3001\u985E\u5225\u3001\u5DE5\u7A0B\u5E2B\u8207\u53EF\u7528\u6642\u6BB5\u3002\u78BA\u8A8D\u524D\u4E0D\u6703\u5EFA\u7ACB\u6D3E\u5DE5\u3002</p><form id="auto-input"><div class="p2-form"><label class="p2-wide">\u5BA2\u6236 *<input name="client" required maxlength="80" list="auto-customers" autocomplete="off" placeholder="\u4F8B\u5982\uFF1A\u53F0\u5317\u4FE1\u7FA9\u7259\u91AB\u8A3A\u6240" value="' + esc(client || "") + '"><datalist id="auto-customers">' + Array.from(new Set(CUSTOMER_SEEDS.concat(CASES, JOBS).map(function(j) {
         return j.client;
       }))).map(function(c) {
         return '<option value="' + esc(c) + '"></option>';
@@ -405,7 +409,7 @@ document.body.innerHTML = '\n<aside class="sidebar" id="sidebar">\n  <div class=
       };
     }
     function review(inference) {
-      dialog.innerHTML = '<h2>\u78BA\u8A8D\u6D3E\u5DE5\u5EFA\u8B70</h2><p class="p2-sub" style="margin:10px 0 18px">\u78BA\u8A8D\u5F8C\u624D\u6703\u5EFA\u7ACB\u5DE5\u55AE\uFF0C\u4E26\u653E\u5230\u884C\u4E8B\u66C6\u3002</p><div class="p2-note"><b>' + esc(draft.client) + "</b><br>" + esc(draft.note) + '</div><form id="auto-review"><div class="p2-form"><label>\u5730\u5340' + (!draft.region ? " \xB7 \u9700\u4F60\u78BA\u8A8D" : " \xB7 \u5DF2\u5224\u5B9A") + '<select name="region" id="auto-region" required><option value="">\u8ACB\u78BA\u8A8D\u5730\u5340</option>' + opts(["\u96D9\u5317", "\u6843\u7AF9"], draft.region) + '</select><span class="p2-sub">' + esc(inference.regionReason) + "</span></label><label>\u985E\u5225" + (!draft.category ? " \xB7 \u9700\u4F60\u78BA\u8A8D" : " \xB7 \u5DF2\u5224\u5B9A") + '<select name="category" id="auto-category" required><option value="">\u8ACB\u78BA\u8A8D\u985E\u5225</option>' + opts(["\u5F31\u96FB\u7DAD\u8B77", "\u786C\u9AD4\u7DAD\u8B77"], draft.category) + '</select><span class="p2-sub">' + esc(inference.categoryReason) + '</span></label></div><div id="auto-proposal" style="margin-top:16px"></div><div class="p2-actions"><button id="auto-confirm" class="p2-btn" type="submit">\u78BA\u8A8D\u6D3E\u5DE5\u4E26\u52A0\u5165\u6708\u66C6</button><button type="button" class="p2-btn secondary" id="auto-back">\u8FD4\u56DE\u4FEE\u6539</button><button class="p2-btn secondary" type="button" data-p2="dialog-close">\u53D6\u6D88</button></div><p class="p2-sub" style="margin-top:14px">\u6CBF\u7528\u898F\u5247\uFF1A72 \u5C0F\u6642\u5167\u3001\u9031\u516D\u4E0D\u6392\u3002\u9810\u4F30\u5DE5\u6642 ' + draft.hours + " \u5C0F\u6642\uFF0C\u4EA4\u901A\u7DE9\u885D " + draft.buffer + " \u5206\u9418\uFF1B\u50C5\u6AA2\u67E5\u672C\u9801\u5DF2\u5B89\u6392\u5DE5\u55AE\uFF0C\u4E0D\u8B80\u5BEB Google \u884C\u4E8B\u66C6\u3001\u4E0D\u767C\u9001\u901A\u77E5\u3002</p></form>";
+      dialog.innerHTML = '<h2>\u78BA\u8A8D\u6D3E\u5DE5\u5EFA\u8B70</h2><p class="p2-sub" style="margin:10px 0 18px">\u78BA\u8A8D\u5F8C\u624D\u6703\u5EFA\u7ACB\u5DE5\u55AE\uFF0C\u4E26\u653E\u5230\u884C\u4E8B\u66C6\u3002</p><div class="p2-note"><b>' + esc(draft.client) + "</b><br>" + esc(draft.note) + '</div><form id="auto-review"><div class="p2-form"><label>\u5730\u5340' + (!draft.region ? " \xB7 \u9700\u4F60\u78BA\u8A8D" : " \xB7 \u5DF2\u5224\u5B9A") + '<select name="region" id="auto-region" required><option value="">\u8ACB\u78BA\u8A8D\u5730\u5340</option>' + opts(["\u96D9\u5317", "\u6843\u7AF9"], draft.region) + '</select><span class="p2-sub">' + esc(inference.regionReason) + "</span></label><label>\u985E\u5225" + (!draft.category ? " \xB7 \u9700\u4F60\u78BA\u8A8D" : " \xB7 \u5DF2\u5224\u5B9A") + '<select name="category" id="auto-category" required><option value="">\u8ACB\u78BA\u8A8D\u985E\u5225</option>' + opts(["\u5F31\u96FB\u7DAD\u8B77", "\u786C\u9AD4\u7DAD\u8B77"], draft.category) + '</select><span class="p2-sub">' + esc(inference.categoryReason) + '</span></label></div><div id="auto-proposal" style="margin-top:16px"></div><div class="p2-actions"><button id="auto-confirm" class="p2-btn" type="submit">\u78BA\u8A8D\u6D3E\u5DE5\u4E26\u52A0\u5165\u6708\u66C6</button><button type="button" class="p2-btn secondary" id="auto-back">\u8FD4\u56DE\u4FEE\u6539</button><button class="p2-btn secondary" type="button" data-p2="dialog-close">\u53D6\u6D88</button></div><p class="p2-sub" style="margin-top:14px">\u6CBF\u7528\u898F\u5247\uFF1A72 \u5C0F\u6642\u5167\u3001\u9031\u516D\u4E0D\u6392\u3002\u9810\u4F30\u5DE5\u6642 ' + draft.hours + " \u5C0F\u6642\uFF0C\u4EA4\u901A\u7DE9\u885D " + draft.buffer + " \u5206\u9418\uFF1B\u50C5\u6AA2\u67E5\u672C\u9801\u5DF2\u5B89\u6392\u5DE5\u55AE\uFF0C\u4E0D\u8B80\u5BEB Google \u884C\u4E8B\u66C6\uFF1B\u78BA\u8A8D\u5F8C\u4EE5 LINE \u901A\u77E5\u5DF2\u7D81\u5B9A\u7684\u5DE5\u7A0B\u5E2B\u8207\u5BA2\u6236\u3002</p></form>";
       var f = dialog.querySelector("form");
       f.elements.region.value = draft.region;
       f.elements.category.value = draft.category;
@@ -446,8 +450,9 @@ document.body.innerHTML = '\n<aside class="sidebar" id="sidebar">\n  <div class=
         }
         history(j, "\u5BA2\u6236\u8207\u554F\u984C\u81EA\u52D5\u5224\u5B9A\u5F8C\u7531\u4F7F\u7528\u8005\u78BA\u8A8D\uFF1A" + j.region + "\uFF0F" + j.category + "\uFF0F" + j.engineer);
         if (parent) history(j, "\u7531 " + parent.id + " \u5EFA\u7ACB\u518D\u8A2A\u5831\u4FEE");
-        if (slot) history(j, "\u78BA\u8A8D\u6D3E\u5DE5 " + stamp(j.start) + "\uFF0C" + j.engineer + "\uFF08\u672A\u767C\u9001\u901A\u77E5\uFF09");
+        if (slot) history(j, "\u78BA\u8A8D\u6D3E\u5DE5 " + stamp(j.start) + "\uFF0C" + j.engineer);
         else history(j, "\u4E09\u65E5\u5167\u7121\u5408\u9069\u7A7A\u6A94\uFF0C\u5F85\u8207\u5BA2\u6236\u5354\u8ABF");
+        if (prefill && prefill.source) history(j, "\u7531 " + prefill.source + " \u8F49\u5165");
         JOBS.unshift(j);
         persist();
         dialog.close();
@@ -456,6 +461,9 @@ document.body.innerHTML = '\n<aside class="sidebar" id="sidebar">\n  <div class=
         renderDispatch();
         document.getElementById("p2-detail").scrollIntoView({ block: "start" });
         notify(slot ? "\u5DF2\u78BA\u8A8D\u6D3E\u5DE5\u4E26\u52A0\u5165\u6708\u66C6\uFF08\u8B8A\u66F4\u5F85\u540C\u6B65\uFF09\u3002" : "\u5DF2\u5EFA\u7ACB\u5F85\u5354\u8ABF\u5DE5\u55AE\uFF0C\u5C1A\u672A\u52A0\u5165\u6708\u66C6\u3002");
+        var ev = slot ? { event: "dispatch_confirmed", dispatchId: j.id } : null;
+        if (prefill && prefill.onCreated) prefill.onCreated(j, ev);
+        else if (ev) lineNotify(ev);
       };
       proposal();
     }
@@ -474,7 +482,7 @@ document.body.innerHTML = '\n<aside class="sidebar" id="sidebar">\n  <div class=
       button.disabled = false;
       button.textContent = list.length ? "\u78BA\u8A8D\u6D3E\u5DE5\u4E26\u52A0\u5165\u6708\u66C6" : "\u78BA\u8A8D\u5EFA\u7ACB\u5F85\u5354\u8ABF\u5DE5\u55AE";
     }
-    inputStep(parent ? parent.client : "", "");
+    inputStep(parent ? parent.client : prefill && prefill.client || "", prefill && prefill.note || "");
     dialog.showModal();
   }
   function action(type) {
@@ -482,6 +490,7 @@ document.body.innerHTML = '\n<aside class="sidebar" id="sidebar">\n  <div class=
       return x.id === DSEL;
     });
     if (!j) return;
+    var ev = null;
     if (type === "slots") {
       showSlots();
       return;
@@ -500,11 +509,19 @@ document.body.innerHTML = '\n<aside class="sidebar" id="sidebar">\n  <div class=
         showSlots();
         return;
       }
+      var prev = j.start;
       j.start = valid.start;
       j.end = valid.end;
       j.date = localDate(new Date(valid.start));
       j.status = "\u5DF2\u6D3E\u5DE5";
-      history(j, "\u78BA\u8A8D\u6D3E\u5DE5 " + stamp(j.start) + "\uFF0C" + j.engineer + "\uFF08\u672A\u767C\u9001\u901A\u77E5\uFF09");
+      if (prev) {
+        delete j.departedAt;
+        history(j, "\u6539\u671F " + stamp(prev) + " \u2192 " + stamp(j.start) + "\uFF0C" + j.engineer);
+        ev = { event: "dispatch_rescheduled", dispatchId: j.id, prevStart: prev };
+      } else {
+        history(j, "\u78BA\u8A8D\u6D3E\u5DE5 " + stamp(j.start) + "\uFF0C" + j.engineer);
+        ev = { event: "dispatch_confirmed", dispatchId: j.id };
+      }
     } else if (type === "revisit") {
       newDialog(j);
       return;
@@ -517,11 +534,13 @@ document.body.innerHTML = '\n<aside class="sidebar" id="sidebar">\n  <div class=
       if (!reason || !reason.trim()) return;
       j.status = "\u5DF2\u53D6\u6D88";
       history(j, "\u53D6\u6D88\uFF1A" + reason.trim());
+      if (j.start) ev = { event: "dispatch_cancelled", dispatchId: j.id };
     } else if (type === "complete") {
       var result = prompt("\u8ACB\u8F38\u5165\u5B8C\u5DE5\uFF0F\u5BA2\u6236\u78BA\u8A8D\u7D00\u9304");
       if (!result || !result.trim()) return;
       j.status = "\u5DF2\u5B8C\u6210";
       history(j, "\u5B8C\u5DE5\u78BA\u8A8D\uFF1A" + result.trim());
+      ev = { event: "job_completed", dispatchId: j.id };
       var parent = JOBS.find(function(k) {
         return k.id === j.parent;
       });
@@ -529,6 +548,11 @@ document.body.innerHTML = '\n<aside class="sidebar" id="sidebar">\n  <div class=
         parent.status = "\u5DF2\u5B8C\u6210";
         history(parent, "\u518D\u8A2A\u55AE " + j.id + " \u5B8C\u6210\uFF0C\u539F\u5DE5\u55AE\u540C\u6B65\u5B8C\u6210");
       }
+    } else if (type === "depart") {
+      if (j.status !== "\u5DF2\u6D3E\u5DE5" || !j.start || j.departedAt) return;
+      j.departedAt = (/* @__PURE__ */ new Date()).toISOString();
+      history(j, "\u5DE5\u7A0B\u5E2B\u51FA\u767C");
+      ev = { event: "engineer_departed", dispatchId: j.id };
     } else if (type === "start") {
       j.status = "\u9032\u884C\u4E2D";
       history(j, "\u5DE5\u7A0B\u5E2B\u958B\u59CB\u8655\u7406");
@@ -539,7 +563,198 @@ document.body.innerHTML = '\n<aside class="sidebar" id="sidebar">\n  <div class=
     persist();
     renderDispatch();
     notify("\u5DE5\u55AE\u5DF2\u66F4\u65B0\uFF08\u8B8A\u66F4\u5F85\u540C\u6B65\uFF09\u3002");
+    if (ev) lineNotify(ev);
   }
+  var LINE = { inbox: [], contacts: [], stats: null, quota: null, codes: {}, error: "", loading: null, at: 0 };
+  function lineApi() {
+    return window.leyanLine && window.leyanLine.available ? window.leyanLine : null;
+  }
+  function lineToast(msg) {
+    var api = lineApi();
+    if (api) api.toast(msg, "warn");
+    else notify(msg);
+  }
+  function lineNotify(ev) {
+    var api = lineApi();
+    if (api) api.notify(ev);
+  }
+  function lineTime(t) {
+    return t ? stamp(t) : "\u2014";
+  }
+  function lineRole(r) {
+    return { engineer: "\u5DE5\u7A0B\u5E2B", manager: "\u7BA1\u7406\u8005", customer: "\u5BA2\u6236" }[r] || r;
+  }
+  function lineTargets() {
+    return Object.keys(ENGINEERS).map(function(k) {
+      var p = k.split("|");
+      return { role: "engineer", ref: ENGINEERS[k], label: p[0] + p[1].replace("\u7DAD\u8B77", "") + " " + ENGINEERS[k] };
+    }).concat([{ role: "manager", ref: "\u5317\u5340\u7D93\u7406", label: "\u7BA1\u7406\u8005\uFF08\u6211\uFF09\u30FB\u6BCF\u65E5\u63D0\u9192" }]);
+  }
+  function lineBadge() {
+    var b = document.getElementById("line-nav-badge");
+    if (!b) return;
+    b.textContent = String(LINE.inbox.length);
+    b.hidden = !LINE.inbox.length;
+  }
+  function lineBanner() {
+    var el = document.getElementById("line-inbox-banner");
+    if (!el) return;
+    var n = LINE.inbox.length;
+    el.innerHTML = n ? '<div class="line-banner" role="status"><span>\u{1F4AC} LINE \u5831\u4FEE\u5F85\u78BA\u8A8D <b>' + n + '</b> \u5247</span><button class="p2-btn" data-nav="line">\u524D\u5F80\u8655\u7406</button></div>' : "";
+  }
+  function loadLine(force) {
+    var api = lineApi();
+    if (!api) return Promise.resolve();
+    if (LINE.loading) return LINE.loading;
+    if (!force && LINE.at && Date.now() - LINE.at < 3e4) return Promise.resolve();
+    LINE.at = Date.now();
+    LINE.loading = Promise.all([api.listInbox(), api.listContacts(), api.stats().catch(function() {
+      return null;
+    })]).then(function(r) {
+      LINE.inbox = r[0] || [];
+      LINE.contacts = r[1] || [];
+      LINE.stats = r[2];
+      LINE.error = "";
+    }).catch(function(e) {
+      LINE.error = e && e.message || "\u7121\u6CD5\u8B80\u53D6 LINE \u8CC7\u6599\u3002";
+    }).then(function() {
+      LINE.at = Date.now();
+      LINE.loading = null;
+      lineBadge();
+      if (PAGE === "line") renderLine();
+      else if (PAGE === "dispatch") lineBanner();
+    });
+    return LINE.loading;
+  }
+  function renderLine() {
+    var api = lineApi(), c = document.getElementById("content");
+    var head = '<div class="p2-head"><div><h2>LINE \u5B98\u65B9\u5E33\u865F</h2><div class="p2-sub">\u7D81\u5B9A\u5DE5\u7A0B\u5E2B\u8207\u81EA\u5DF1\u7684 LINE\u3001\u8655\u7406\u5BA2\u6236 LINE \u5831\u4FEE\u3001\u67E5\u770B\u672C\u6708\u63A8\u64AD\u7528\u91CF\u3002</div></div>' + (api ? '<button class="p2-btn secondary" data-line="refresh">\u91CD\u65B0\u6574\u7406</button>' : "") + "</div>";
+    if (!api) {
+      c.innerHTML = head + '<div class="p2-note">LINE \u529F\u80FD\u9700\u5728\u96F2\u7AEF\u767B\u5165\u7248\u4F7F\u7528\u3002</div>';
+      return;
+    }
+    function bound(role, ref) {
+      return LINE.contacts.filter(function(x) {
+        return x.role === role && x.ref_name === ref;
+      });
+    }
+    var engBound = lineTargets().filter(function(t) {
+      return t.role === "engineer" && bound(t.role, t.ref).length;
+    }).length, s = LINE.stats, q = LINE.quota;
+    var quota = q ? q.type === "none" ? "\u7121\u4E0A\u9650" : (q.used == null ? "\u2014" : esc(q.used)) + (q.limit == null ? "" : "/" + esc(q.limit)) : "\u2014";
+    c.innerHTML = head + (LINE.error ? '<div class="p2-note line-err" role="alert">' + esc(LINE.error) + "</div>" : "") + (LINE.loading && !LINE.contacts.length ? '<div class="p2-note">\u8B80\u53D6 LINE \u8CC7\u6599\u4E2D\u2026</div>' : "") + '<div class="p2-grid"><div class="p2-stat"><b id="line-stat-inbox">' + LINE.inbox.length + '</b><span>LINE \u5831\u4FEE\u5F85\u78BA\u8A8D</span></div><div class="p2-stat"><b>' + engBound + '/4</b><span>\u5DE5\u7A0B\u5E2B\u5DF2\u7D81\u5B9A</span></div><div class="p2-stat"><b id="line-push-count">' + (s ? Number(s.push_ok) || 0 : "\u2014") + "</b><span>\u672C\u6708\u63A8\u64AD\uFF08\u7CFB\u7D71\u7D00\u9304\uFF09" + (s && Number(s.push_error) ? "\u30FB\u5931\u6557 " + Number(s.push_error) : "") + '</span></div><div class="p2-stat"><b id="line-quota">' + quota + '</b><span>LINE \u5B98\u65B9\u672C\u6708\u7528\u91CF <button class="btn-sm" data-line="quota">\u67E5\u8A62</button></span></div></div><div class="p2-note">LINE \u5B98\u65B9\u5E33\u865F\u514D\u8CBB\u65B9\u6848\u6BCF\u6708\u63A8\u64AD\u5247\u6578\u6709\u9650\uFF08\u5BE6\u969B\u984D\u5EA6\u4EE5 LINE \u5B98\u65B9\u5E33\u865F\u5F8C\u53F0\u70BA\u6E96\uFF09\u3002\u6D3E\u5DE5\u901A\u77E5\u3001\u5BA2\u6236\u9032\u5EA6\u3001\u6BCF\u65E5\u63D0\u9192\u8207\u6E2C\u8A66\u8A0A\u606F\uFF0C\u6BCF\u4F4D\u6536\u4EF6\u4EBA\u5404\u7B97 1 \u5247\uFF1B\u81EA\u52D5\u56DE\u8986\u5BA2\u6236\u4F7F\u7528\u514D\u8CBB\u7684\u56DE\u8986\u8A0A\u606F\uFF0C\u4E0D\u4F54\u63A8\u64AD\u984D\u5EA6\u3002\u7BA1\u7406\u8005\u7D81\u5B9A\u5F8C\u4E5F\u53EF\u5728 LINE \u50B3\u300C\u63D0\u9192\u300D\u4EE5\u56DE\u8986\u65B9\u5F0F\u53D6\u5F97\u4ECA\u65E5\u63D0\u9192\u3002</div><section class="card p2-panel" id="line-inbox"><h3>\u5BA2\u6236 LINE \u5831\u4FEE\uFF08\u5F85\u78BA\u8A8D\uFF09</h3>' + (LINE.inbox.length ? LINE.inbox.map(function(m) {
+      var cus = LINE.contacts.find(function(x) {
+        return x.line_user_id === m.line_user_id && x.role === "customer";
+      });
+      return '<div class="line-item" data-inbox="' + esc(m.id) + '"><div><b>' + esc(m.display_name || "LINE \u4F7F\u7528\u8005") + "</b>" + (cus ? ' <span class="case-tag">\u5BA2\u6236\uFF1A' + esc(cus.ref_name) + "</span>" : "") + ' <span class="p2-sub">' + lineTime(m.received_at) + '</span><div class="line-text">' + esc(m.text) + '</div></div><div class="p2-actions" style="margin-top:0"><button class="p2-btn" data-line="convert" data-id="' + esc(m.id) + '">\u8F49\u6210\u5DE5\u55AE</button><button class="p2-btn secondary" data-line="ignore" data-id="' + esc(m.id) + '">\u5FFD\u7565</button></div></div>';
+    }).join("") : '<p class="p2-empty">\u76EE\u524D\u6C92\u6709\u5F85\u78BA\u8A8D\u7684 LINE \u5831\u4FEE</p>') + '</section><section class="card p2-panel" id="line-bind"><h3>\u7D81\u5B9A LINE</h3><p class="p2-sub">\u7522\u751F\u4E00\u6B21\u6027\u7D81\u5B9A\u78BC\uFF0824 \u5C0F\u6642\u5167\u6709\u6548\u3001\u50C5\u80FD\u4F7F\u7528\u4E00\u6B21\uFF09\u3002\u8ACB\u5C0D\u65B9\u52A0\u5165\u5B98\u65B9\u5E33\u865F\u597D\u53CB\u5F8C\u50B3\u9001\u300C\u7D81\u5B9A \u4EE3\u78BC\u300D\u3002\u91CD\u65B0\u7522\u751F\u6703\u4F5C\u5EE2\u820A\u78BC\uFF1B\u91CD\u65B0\u7D81\u5B9A\u6703\u53D6\u4EE3\u539F\u672C\u7684 LINE \u5E33\u865F\u3002</p>' + lineTargets().map(function(t) {
+      var b = bound(t.role, t.ref), code = LINE.codes[t.role + "|" + t.ref];
+      if (code && b.some(function(x) {
+        return Date.parse(x.bound_at) >= code.created;
+      })) code = null;
+      return '<div class="line-row" data-bind-target="' + esc(t.ref) + '"><div><b>' + esc(t.label) + '</b><div class="p2-sub">' + (b.length ? '<span class="line-ok">\u5DF2\u7D81\u5B9A</span> ' + esc(b.map(function(x) {
+        return x.display_name || "LINE \u4F7F\u7528\u8005";
+      }).join("\u3001")) : '<span class="line-no">\u672A\u7D81\u5B9A</span>') + "</div>" + (code ? '<div style="margin-top:8px">\u8ACB\u50B3\u9001\uFF1A<span class="line-code">\u7D81\u5B9A ' + esc(code.code) + '</span><div class="p2-sub">\u6709\u6548\u81F3 ' + lineTime(code.expires_at) + "</div></div>" : "") + '</div><button class="p2-btn secondary" data-line="code" data-role="' + esc(t.role) + '" data-ref="' + esc(t.ref) + '">' + (b.length ? "\u91CD\u65B0\u7D81\u5B9A" : "\u7522\u751F\u7D81\u5B9A\u78BC") + "</button></div>";
+    }).join("") + '</section><section class="card p2-panel" id="line-contacts"><h3>\u5DF2\u7D81\u5B9A\u806F\u7D61\u4EBA</h3>' + (LINE.contacts.length ? LINE.contacts.map(function(x) {
+      return '<div class="line-row" data-contact="' + esc(x.id) + '"><div><span class="case-tag">' + esc(lineRole(x.role)) + "</span> <b>" + esc(x.ref_name) + '</b><div class="p2-sub">LINE\uFF1A' + esc(x.display_name || "\uFF08\u672A\u53D6\u5F97\u540D\u7A31\uFF09") + "\u30FB\u7D81\u5B9A\u65BC " + lineTime(x.bound_at) + '</div></div><div class="p2-actions" style="margin-top:0"><button class="btn-sm" data-line="test" data-id="' + esc(x.id) + '" title="\u6703\u4F7F\u7528 1 \u5247\u63A8\u64AD\u984D\u5EA6">\u50B3\u9001\u6E2C\u8A66</button><button class="btn-sm" data-line="unbind" data-id="' + esc(x.id) + '">\u89E3\u9664\u7D81\u5B9A</button></div></div>';
+    }).join("") : '<p class="p2-empty">\u5C1A\u672A\u7D81\u5B9A\u4EFB\u4F55 LINE \u5E33\u865F</p>') + '</section><p class="p2-sub" style="margin-top:12px">\u5BA2\u6236\u7684 LINE \u5831\u4FEE\u8F49\u6210\u5DE5\u55AE\u5F8C\u6703\u81EA\u52D5\u7D81\u5B9A\u8A72\u5BA2\u6236\uFF1B\u4E4B\u5F8C\u78BA\u8A8D\u6642\u9593\u3001\u6539\u671F\u3001\u5DE5\u7A0B\u5E2B\u51FA\u767C\u8207\u5B8C\u5DE5\u6703\u901A\u77E5\u5BA2\u6236\u3002</p>';
+    loadLine(false);
+  }
+  document.addEventListener("click", function(e) {
+    var b = e.target.closest("[data-line]");
+    if (!b) return;
+    var api = lineApi();
+    if (!api) return;
+    var type = b.dataset.line, id = b.dataset.id;
+    function again() {
+      if (PAGE === "line") renderLine();
+    }
+    if (type === "refresh") {
+      loadLine(true);
+      again();
+      return;
+    }
+    if (type === "quota") {
+      b.disabled = true;
+      api.quota().then(function(q) {
+        if (q && q.ok) LINE.quota = q;
+        else lineToast("\u7121\u6CD5\u53D6\u5F97 LINE \u7528\u91CF\uFF1A" + (q && q.error || "\u8ACB\u78BA\u8A8D Edge Function \u5DF2\u90E8\u7F72"));
+      }).catch(function(err) {
+        lineToast("\u7121\u6CD5\u53D6\u5F97 LINE \u7528\u91CF\uFF1A" + err.message);
+      }).then(again);
+      return;
+    }
+    if (type === "code") {
+      var role = b.dataset.role, ref = b.dataset.ref;
+      b.disabled = true;
+      api.createCode(role, ref).then(function(r) {
+        r.created = Date.now();
+        LINE.codes[role + "|" + ref] = r;
+      }).catch(function(err) {
+        lineToast(err.message);
+      }).then(again);
+      return;
+    }
+    if (type === "ignore") {
+      b.disabled = true;
+      api.ignoreInbox(id).then(function() {
+        LINE.inbox = LINE.inbox.filter(function(m2) {
+          return m2.id !== id;
+        });
+        lineBadge();
+        api.toast("\u5DF2\u5FFD\u7565\u6B64 LINE \u8A0A\u606F\u3002");
+      }).catch(function(err) {
+        lineToast(err.message);
+      }).then(again);
+      return;
+    }
+    if (type === "test") {
+      b.disabled = true;
+      api.test(id).then(function() {
+        b.disabled = false;
+      });
+      return;
+    }
+    if (type === "unbind") {
+      var ct = LINE.contacts.find(function(x) {
+        return x.id === id;
+      });
+      if (!ct || !confirm("\u78BA\u5B9A\u89E3\u9664\u300C" + ct.ref_name + "\u300D\u7684 LINE \u7D81\u5B9A\uFF1F\u4E4B\u5F8C\u4E0D\u6703\u518D\u901A\u77E5\u6B64\u5E33\u865F\u3002")) return;
+      b.disabled = true;
+      api.unbind(id).then(function() {
+        LINE.contacts = LINE.contacts.filter(function(x) {
+          return x.id !== id;
+        });
+        api.toast("\u5DF2\u89E3\u9664\u7D81\u5B9A\u3002");
+      }).catch(function(err) {
+        lineToast(err.message);
+      }).then(again);
+      return;
+    }
+    if (type === "convert") {
+      var m = LINE.inbox.find(function(x) {
+        return x.id === id;
+      });
+      if (!m) return;
+      var cus = LINE.contacts.find(function(x) {
+        return x.line_user_id === m.line_user_id && x.role === "customer";
+      });
+      newDialog(null, { client: cus ? cus.ref_name : "", note: String(m.text || "").slice(0, 1e3), source: "LINE \u5831\u4FEE\uFF08" + (m.display_name || "LINE \u4F7F\u7528\u8005") + "\uFF09", onCreated: function(j, ev) {
+        api.convertInbox(m.id, j.id, j.client).then(function() {
+          LINE.inbox = LINE.inbox.filter(function(x) {
+            return x.id !== m.id;
+          });
+          lineBadge();
+          lineBanner();
+        }).catch(function(err) {
+          api.toast("\u5DE5\u55AE\u5DF2\u5EFA\u7ACB\uFF0C\u4F46 LINE \u5831\u4FEE\u72C0\u614B\u672A\u66F4\u65B0\uFF1A" + err.message, "warn");
+        }).then(function() {
+          if (ev) lineNotify(ev);
+          loadLine(true);
+        });
+      } });
+    }
+  });
   var CALMONTH = new Date((/* @__PURE__ */ new Date()).getFullYear(), (/* @__PURE__ */ new Date()).getMonth(), 1), CALDAY = localDate(/* @__PURE__ */ new Date()), CALENGINEER = "\u5168\u90E8";
   function hm(t) {
     return new Date(t).toLocaleTimeString("zh-TW", { hour: "2-digit", minute: "2-digit", hour12: false });
@@ -798,6 +1013,7 @@ document.body.innerHTML = '\n<aside class="sidebar" id="sidebar">\n  <div class=
   });
   initCases();
   initJobs();
+  loadLine(true);
   document.getElementById("todayDate").textContent = (/* @__PURE__ */ new Date()).toLocaleDateString("zh-TW", { month: "numeric", day: "numeric", weekday: "short" });
   go("dashboard");
 })();
