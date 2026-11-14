@@ -273,7 +273,7 @@ document.body.innerHTML = '\n<aside class="sidebar" id="sidebar">\n  <div class=
       return '<div class="p2-stat"><b>' + JOBS.filter(function(j) {
         return j.status === st;
       }).length + "</b><span>" + st + "</span></div>";
-    }).join("") + '</div><div class="p2-note">\u4E00\u822C\u6D3E\u5DE5\u907F\u958B\u9031\u516D\u3001\u9031\u65E5\u53CA\u570B\u5B9A\u5047\u65E5\uFF1B\u7DCA\u6025\u6D3E\u5DE5\u4E0D\u9650\u5047\u65E5\uFF0C\u512A\u5148\u5EFA\u8B70\u6700\u65E9\u7A7A\u6A94\u3002\u5831\u4FEE\u8D77\u7B97 72 \u5C0F\u6642\u5167\u5B8C\u6210\uFF1B\u4EA4\u901A\u7DE9\u885D\u9810\u8A2D 30 \u5206\u9418\u3002\u672A\u8B80\u53D6 Google \u884C\u4E8B\u66C6\u3002</div><div class="p2-filters"><input aria-label="\u641C\u5C0B\u5DE5\u55AE" id="p2-search" placeholder="\u641C\u5C0B\u5BA2\u6236\u3001\u5DE5\u55AE\u6216\u554F\u984C" value="' + esc(SEARCH) + '"><select id="p2-region" aria-label="\u5730\u5340">' + opts(["\u5168\u90E8", "\u96D9\u5317", "\u6843\u7AF9"], RF) + '</select><select id="p2-status" aria-label="\u5DE5\u55AE\u72C0\u614B">' + opts(["\u5168\u90E8", "\u5F85\u6D3E\u5DE5", "\u5DF2\u6D3E\u5DE5", "\u9032\u884C\u4E2D", "\u5F85\u6599", "\u5F85\u518D\u8A2A", "\u5DF2\u5B8C\u6210", "\u5DF2\u53D6\u6D88"], SF) + '</select><button class="p2-btn secondary" data-p2="calendar">\u67E5\u770B\u6392\u7A0B</button></div><div class="card p2-table"><table><thead><tr><th>\u5DE5\u55AE\uFF0F\u5BA2\u6236</th><th>\u5340\u57DF\uFF0F\u985E\u5225</th><th>\u5DE5\u7A0B\u5E2B</th><th>\u9810\u5B9A\u5230\u5834</th><th>\u72C0\u614B</th></tr></thead><tbody>' + shown.map(function(j) {
+    }).join("") + '</div><div class="p2-note">\u4E00\u822C\u6D3E\u5DE5\u907F\u958B\u9031\u516D\u3001\u9031\u65E5\u53CA\u570B\u5B9A\u5047\u65E5\uFF1B\u7DCA\u6025\u6D3E\u5DE5\u4E0D\u9650\u5047\u65E5\uFF0C\u512A\u5148\u5EFA\u8B70\u6700\u65E9\u7A7A\u6A94\u3002\u4E00\u822C\u6642\u6BB5 09:30\u300111:30\u300113:30\u300115:30\uFF0C\u6BCF\u4F4D\u5DE5\u7A0B\u5E2B\u6BCF\u65E5\u4E00\u822C\u6848\u4EF6\u6700\u591A 4 \u4EF6\uFF1B\u9810\u8A2D\u5DE5\u6642 1 \u5C0F\u6642\u3001\u4EA4\u901A\u7DE9\u885D 30 \u5206\u9418\u3002\u672A\u8B80\u53D6 Google \u884C\u4E8B\u66C6\u3002</div><div class="p2-filters"><input aria-label="\u641C\u5C0B\u5DE5\u55AE" id="p2-search" placeholder="\u641C\u5C0B\u5BA2\u6236\u3001\u5DE5\u55AE\u6216\u554F\u984C" value="' + esc(SEARCH) + '"><select id="p2-region" aria-label="\u5730\u5340">' + opts(["\u5168\u90E8", "\u96D9\u5317", "\u6843\u7AF9"], RF) + '</select><select id="p2-status" aria-label="\u5DE5\u55AE\u72C0\u614B">' + opts(["\u5168\u90E8", "\u5F85\u6D3E\u5DE5", "\u5DF2\u6D3E\u5DE5", "\u9032\u884C\u4E2D", "\u5F85\u6599", "\u5F85\u518D\u8A2A", "\u5DF2\u5B8C\u6210", "\u5DF2\u53D6\u6D88"], SF) + '</select><button class="p2-btn secondary" data-p2="calendar">\u67E5\u770B\u6392\u7A0B</button></div><div class="card p2-table"><table><thead><tr><th>\u5DE5\u55AE\uFF0F\u5BA2\u6236</th><th>\u5340\u57DF\uFF0F\u985E\u5225</th><th>\u5DE5\u7A0B\u5E2B</th><th>\u9810\u5B9A\u5230\u5834</th><th>\u72C0\u614B</th></tr></thead><tbody>' + shown.map(function(j) {
       return '<tr class="p2-row"><td><button style="text-align:left;padding:10px 0" data-job="' + esc(j.id) + '"><b>' + esc(j.client) + '</b><div class="p2-sub">' + esc(j.id) + (j.parent ? " \xB7 \u518D\u8A2A " + esc(j.parent) : "") + (j.urgent ? " \xB7 \u6025\u4EF6" : "") + "</div></button></td><td>" + esc(j.region) + "<br>" + esc(j.category) + "</td><td>" + esc(j.engineer) + "</td><td>" + (j.start ? stamp(j.start) : "\u5C1A\u672A\u5B89\u6392") + "</td><td>" + statusLabel(j) + "</td></tr>";
     }).join("") + "</tbody></table>" + (shown.length ? "" : '<div class="p2-empty">\u6C92\u6709\u7B26\u5408\u7684\u5DE5\u55AE</div>') + "</div>" + (DSEL ? jobPanel(JOBS.find(function(j) {
       return j.id === DSEL;
@@ -300,31 +300,92 @@ document.body.innerHTML = '\n<aside class="sidebar" id="sidebar">\n  <div class=
   function jobPanel(j) {
     if (!j) return "";
     var terminal = ["\u5DF2\u5B8C\u6210", "\u5DF2\u53D6\u6D88"].includes(j.status);
-    return '<section class="card p2-panel" id="p2-detail"><div class="p2-head"><h3>' + esc(j.id) + " \xB7 " + esc(j.client) + '</h3><button data-p2="close">\u95DC\u9589\u8A73\u60C5 \u2715</button></div><p>' + esc(j.note) + '</p><p style="margin-top:12px">\u5831\u4FEE\uFF1A' + stamp(j.received) + "\u3000\u671F\u9650\uFF1A" + stamp(new Date(new Date(j.received).getTime() + 72 * 36e5)) + '</p><p class="p2-sub">\u5DE5\u6642 ' + j.hours + " \u5C0F\u6642\uFF0F\u4EA4\u901A\u7DE9\u885D " + j.buffer + " \u5206\u9418\uFF5C" + esc(j.engineer) + '</p><div class="p2-actions">' + (!terminal ? '<button class="p2-btn" data-action="slots">' + (j.start ? "\u91CD\u65B0\u6392\u7A0B" : "\u67E5\u8A62\u7A7A\u6A94\uFF0F\u6D3E\u5DE5") + "</button>" : "") + (j.status === "\u5DF2\u6D3E\u5DE5" && j.start && !j.departedAt ? '<button class="p2-btn" data-action="depart">\u5DE5\u7A0B\u5E2B\u51FA\u767C</button>' : "") + (j.status === "\u5DF2\u6D3E\u5DE5" ? '<button class="p2-btn secondary" data-action="start">\u958B\u59CB\u8655\u7406</button>' : "") + (j.status === "\u9032\u884C\u4E2D" ? '<button class="p2-btn secondary" data-action="wait">\u6A19\u8A18\u5F85\u6599</button><button class="p2-btn" data-action="complete">\u78BA\u8A8D\u5B8C\u6210</button>' : "") + (["\u9032\u884C\u4E2D", "\u5F85\u6599"].includes(j.status) ? '<button class="p2-btn secondary" data-action="revisit">\u5EFA\u7ACB\u518D\u8A2A\u55AE</button>' : "") + (!terminal ? '<button class="p2-btn secondary" data-action="cancel">\u53D6\u6D88\u5DE5\u55AE</button>' : "") + (j.start && j.status !== "\u5DF2\u53D6\u6D88" ? '<button class="p2-btn secondary" data-job-calendar="' + esc(j.id) + '">\u5728\u6708\u66C6\u67E5\u770B</button>' : "") + '</div><div id="p2-slotbox"></div><h4 style="margin-top:20px">\u8655\u7406\u7D00\u9304</h4>' + (j.history || []).map(function(h) {
+    return '<section class="card p2-panel" id="p2-detail"><div class="p2-head"><h3>' + esc(j.id) + " \xB7 " + esc(j.client) + '</h3><button data-p2="close">\u95DC\u9589\u8A73\u60C5 \u2715</button></div><p>' + esc(j.note) + '</p><p style="margin-top:12px">\u5831\u4FEE\uFF1A' + stamp(j.received) + "\u3000\u671F\u9650\uFF1A" + stamp(new Date(new Date(j.received).getTime() + 72 * 36e5)) + "</p>" + (j.requestedStart ? '<p class="p2-sub">\u6307\u5B9A\u5230\u5834\uFF1A' + stamp(j.requestedStart) + "</p>" : "") + '<p class="p2-sub">\u5DE5\u6642 ' + j.hours + " \u5C0F\u6642\uFF0F\u4EA4\u901A\u7DE9\u885D " + j.buffer + " \u5206\u9418\uFF5C" + esc(j.engineer) + '</p><div class="p2-actions">' + (!terminal ? '<button class="p2-btn" data-action="slots">' + (j.start ? "\u91CD\u65B0\u6392\u7A0B" : "\u67E5\u8A62\u7A7A\u6A94\uFF0F\u6D3E\u5DE5") + "</button>" + (!j.start && j.requestedStart ? '<button class="p2-btn secondary" data-action="clear-requested">\u6E05\u9664\u6307\u5B9A\u6642\u9593\uFF0C\u67E5\u8A62\u5176\u4ED6\u6642\u6BB5</button>' : "") : "") + (j.status === "\u5DF2\u6D3E\u5DE5" && j.start && !j.departedAt ? '<button class="p2-btn" data-action="depart">\u5DE5\u7A0B\u5E2B\u51FA\u767C</button>' : "") + (j.status === "\u5DF2\u6D3E\u5DE5" ? '<button class="p2-btn secondary" data-action="start">\u958B\u59CB\u8655\u7406</button>' : "") + (j.status === "\u9032\u884C\u4E2D" ? '<button class="p2-btn secondary" data-action="wait">\u6A19\u8A18\u5F85\u6599</button><button class="p2-btn" data-action="complete">\u78BA\u8A8D\u5B8C\u6210</button>' : "") + (["\u9032\u884C\u4E2D", "\u5F85\u6599"].includes(j.status) ? '<button class="p2-btn secondary" data-action="revisit">\u5EFA\u7ACB\u518D\u8A2A\u55AE</button>' : "") + (!terminal ? '<button class="p2-btn secondary" data-action="cancel">\u53D6\u6D88\u5DE5\u55AE</button>' : "") + (j.start && j.status !== "\u5DF2\u53D6\u6D88" ? '<button class="p2-btn secondary" data-job-calendar="' + esc(j.id) + '">\u5728\u6708\u66C6\u67E5\u770B</button>' : "") + '</div><div id="p2-slotbox"></div><h4 style="margin-top:20px">\u8655\u7406\u7D00\u9304</h4>' + (j.history || []).map(function(h) {
       return '<div class="p2-history">' + stamp(h.at) + "\u3000" + esc(h.text) + "</div>";
     }).join("") + '<p class="p2-sub">\u78BA\u8A8D\u3001\u6539\u671F\u3001\u53D6\u6D88\u3001\u51FA\u767C\u8207\u5B8C\u5DE5\u5728\u96F2\u7AEF\u5132\u5B58\u6210\u529F\u5F8C\uFF0C\u6703\u4EE5 LINE \u901A\u77E5\u5DF2\u7D81\u5B9A\u7684\u5DE5\u7A0B\u5E2B\uFF0F\u5BA2\u6236\uFF1B\u901A\u77E5\u5931\u6557\u4E0D\u5F71\u97FF\u5DE5\u55AE\u3002</p></section>';
   }
   var LEYAN_HOLIDAY_YEARS = [2026, 2027], LEYAN_HOLIDAYS = /* @__PURE__ */ new Set(["20260101", "20260216", "20260217", "20260218", "20260219", "20260220", "20260227", "20260403", "20260406", "20260501", "20260619", "20260925", "20260928", "20261009", "20261026", "20261225", "20270101", "20270204", "20270205", "20270208", "20270209", "20270210", "20270301", "20270405", "20270406", "20270430", "20270609", "20270915", "20270928", "20271011", "20271025", "20271224", "20271231"]);
+  function extractRequestedTime(text, reference = /* @__PURE__ */ new Date()) {
+    const s = String(text || "").replace(/[０-９]/g, (c) => String.fromCharCode(c.charCodeAt(0) - 65248));
+    const explicit = /(指定|預約|約定|希望|請於|請在|到場|[今明後]天|下週|下周|星期|週[一二三四五六日天]|周[一二三四五六日天]|\d{1,2}\s*月\s*\d{1,2}\s*[日號]|\d{1,2}[\/-]\d{1,2})/.test(s);
+    const clock = s.match(/(凌晨|早上|早晨|上午|中午|下午|晚上|傍晚)?\s*(\d{1,2}|[零〇一二兩三四五六七八九十]{1,3})\s*(?:點|时|時|:|：)(?:\s*(半|\d{1,2}|[零〇一二兩三四五六七八九十]{1,3})\s*(?:分)?)?/);
+    if (!clock) return { status: explicit && /(指定|預約|約定|希望|請於|請在|到場|安排.{0,6}[今明後]天|[今明後]天.{0,6}(安排|到場|報修))/.test(s) ? "unclear" : "none" };
+    const number = (x) => {
+      if (/^\d+$/.test(x || "")) return Number(x);
+      const ds = { "\u96F6": 0, "\u3007": 0, "\u4E00": 1, "\u4E8C": 2, "\u5169": 2, "\u4E09": 3, "\u56DB": 4, "\u4E94": 5, "\u516D": 6, "\u4E03": 7, "\u516B": 8, "\u4E5D": 9 };
+      if (!x) return 0;
+      if (x.includes("\u5341")) {
+        const [a, b] = x.split("\u5341");
+        return (a ? ds[a] : 1) * 10 + (b ? ds[b] : 0);
+      }
+      return ds[x] ?? NaN;
+    };
+    let h = number(clock[2]), m = clock[3] === "\u534A" ? 30 : number(clock[3]);
+    if (h > 23 || m > 59 || !Number.isFinite(h) || !Number.isFinite(m)) return { status: "unclear" };
+    const period = clock[1];
+    if (period === "\u4E0B\u5348" || period === "\u665A\u4E0A" || period === "\u508D\u665A") {
+      if (h < 12) h += 12;
+    } else if (period === "\u4E2D\u5348") {
+      if (h < 11) h += 12;
+    } else if (period === "\u51CC\u6668" && h === 12) h = 0;
+    else if (!period && h >= 1 && h <= 12 && !/[：:]/.test(clock[0])) return { status: "unclear" };
+    let d = new Date(reference);
+    d.setHours(0, 0, 0, 0);
+    let match = s.match(/(?:(\d{4})\s*[年\/-]\s*)?(\d{1,2})\s*(?:月|[\/-])\s*(\d{1,2})\s*[日號]?/);
+    if (match) {
+      const y = match[1] ? Number(match[1]) : d.getFullYear(), mo = Number(match[2]), day = Number(match[3]);
+      d = new Date(y, mo - 1, day);
+      if (d.getMonth() !== mo - 1 || d.getDate() !== day) return { status: "unclear" };
+    } else if (/大後天/.test(s)) d.setDate(d.getDate() + 3);
+    else if (/後天/.test(s)) d.setDate(d.getDate() + 2);
+    else if (/明天/.test(s)) d.setDate(d.getDate() + 1);
+    else if (/今天|今日/.test(s)) {
+    } else {
+      let w = s.match(/(下(?:週|周|星期)|本(?:週|周|星期)|這(?:週|周|星期)|星期|週|周)([一二三四五六日天])/);
+      if (!w) return { status: "unclear" };
+      let target = { "\u65E5": 0, "\u5929": 0, "\u4E00": 1, "\u4E8C": 2, "\u4E09": 3, "\u56DB": 4, "\u4E94": 5, "\u516D": 6 }[w[2]], dow = d.getDay(), offset = (target - dow + 7) % 7;
+      if (w[1].startsWith("\u4E0B")) offset = 8 - (dow || 7) + (target === 0 ? 6 : target - 1);
+      d.setDate(d.getDate() + offset);
+    }
+    d.setHours(h, m, 0, 0);
+    return { status: "parsed", iso: d.toISOString() };
+  }
   function slots(j) {
-    var received = new Date(j.received), deadline = new Date(received.getTime() + 72 * 36e5), now = /* @__PURE__ */ new Date(), result = [];
-    var urgent = !!j.urgent;
+    var received = new Date(j.received), deadline = new Date(received.getTime() + 72 * 36e5), now = /* @__PURE__ */ new Date(), result = [], urgent = !!j.urgent;
+    function eligible(a2, explicit) {
+      var end = new Date(a2.getTime() + Number(j.hours) * 36e5), key = String(a2.getFullYear()) + String(a2.getMonth() + 1).padStart(2, "0") + String(a2.getDate()).padStart(2, "0");
+      if (isNaN(a2) || a2 < now || a2 < received) return null;
+      if (!urgent) {
+        if (!LEYAN_HOLIDAY_YEARS.includes(a2.getFullYear()) || a2.getDay() === 0 || a2.getDay() === 6 || LEYAN_HOLIDAYS.has(key)) return null;
+        if (a2.getHours() * 60 + a2.getMinutes() < 570 || end.getDate() !== a2.getDate() || end.getHours() * 60 + end.getMinutes() > 1080 || !explicit && end > deadline) return null;
+        var count = JOBS.filter(function(k) {
+          if (k.id === j.id || k.engineer !== j.engineer || !k.start || k.urgent || k.status === "\u5DF2\u53D6\u6D88") return false;
+          return localDate(new Date(k.start)) === localDate(a2);
+        }).length;
+        if (count >= 4) return null;
+      }
+      var conflict = JOBS.some(function(k) {
+        if (k.id === j.id || k.engineer !== j.engineer || !k.start || ["\u5DF2\u53D6\u6D88", "\u5DF2\u5B8C\u6210", "\u5F85\u518D\u8A2A"].includes(k.status)) return false;
+        var pad = Math.max(Number(j.buffer), Number(k.buffer) || 0) * 6e4;
+        return a2.getTime() < new Date(k.end).getTime() + pad && end.getTime() + pad > new Date(k.start).getTime();
+      });
+      return conflict ? null : { start: a2.toISOString(), end: end.toISOString() };
+    }
+    if (j.requestedStart && !j.start) {
+      var only = eligible(new Date(j.requestedStart), true);
+      return only ? [only] : [];
+    }
     for (var day = 0; day < 5; day++) {
       var base = new Date(now);
       base.setHours(0, 0, 0, 0);
       base.setDate(base.getDate() + day);
-      var key = String(base.getFullYear()) + String(base.getMonth() + 1).padStart(2, "0") + String(base.getDate()).padStart(2, "0");
-      if (!urgent && (!LEYAN_HOLIDAY_YEARS.includes(base.getFullYear()) || base.getDay() === 0 || base.getDay() === 6 || LEYAN_HOLIDAYS.has(key))) continue;
-      for (var minute = urgent ? day === 0 ? Math.ceil((now - base) / 6e4) : 0 : 540; minute < (urgent ? 1440 : 1080); minute += urgent ? 15 : 60) {
+      var starts = urgent ? [] : [570, 690, 810, 930];
+      if (urgent) for (var m = day === 0 ? Math.ceil((now - base) / 6e4) : 0; m < 1440; m += 15) starts.push(m);
+      for (var minute of starts) {
         var a = new Date(base);
         a.setMinutes(minute);
-        var end = new Date(a.getTime() + j.hours * 36e5);
-        if (a < now || a < received || !urgent && end > deadline || !urgent && (end.getDate() !== a.getDate() || end.getHours() > 18 || end.getHours() === 18 && end.getMinutes() > 0)) continue;
-        var conflict = JOBS.some(function(k) {
-          if (k.id === j.id || k.engineer !== j.engineer || !k.start || ["\u5DF2\u53D6\u6D88", "\u5DF2\u5B8C\u6210", "\u5F85\u518D\u8A2A"].includes(k.status)) return false;
-          var pad = Math.max(Number(j.buffer), Number(k.buffer) || 0) * 6e4;
-          return a.getTime() < new Date(k.end).getTime() + pad && end.getTime() + pad > new Date(k.start).getTime();
-        });
-        if (!conflict) result.push({ start: a.toISOString(), end: end.toISOString() });
+        var slot = eligible(a, false);
+        if (slot) result.push(slot);
       }
     }
     return result;
@@ -336,7 +397,7 @@ document.body.innerHTML = '\n<aside class="sidebar" id="sidebar">\n  <div class=
     var box = document.getElementById("p2-slotbox");
     box.innerHTML = list.length ? '<div class="p2-slots">' + list.map(function(k) {
       return '<label class="p2-slot"><input type="radio" name="p2-slot" value="' + k.start + '"> ' + stamp(k.start) + "\u2013" + new Date(k.end).toLocaleTimeString("zh-TW", { hour: "2-digit", minute: "2-digit", hour12: false }) + "</label>";
-    }).join("") + '</div><button class="p2-btn" style="margin-top:12px" data-action="assign">\u78BA\u8A8D\u6D3E\u5DE5\uFF08\u8B8A\u66F4\u5F85\u540C\u6B65\uFF09</button>' : '<div class="p2-note" style="margin-top:12px">\u4E09\u65E5\u5167\u6C92\u6709\u7B26\u5408\u689D\u4EF6\u7684\u7A7A\u6A94\u3002\u8ACB\u8207\u5BA2\u6236\u5354\u8ABF\u4E26\u8A18\u9304\uFF0C\u4E0D\u6703\u81EA\u52D5\u8D85\u671F\u6D3E\u5DE5\u3002</div><button class="p2-btn secondary" data-action="coordinate">\u8A18\u9304\u5354\u8ABF\u7D50\u679C</button>';
+    }).join("") + '</div><button class="p2-btn" style="margin-top:12px" data-action="assign">\u78BA\u8A8D\u6D3E\u5DE5\uFF08\u8B8A\u66F4\u5F85\u540C\u6B65\uFF09</button>' : '<div class="p2-note" style="margin-top:12px">' + (j.requestedStart && !j.start ? "\u6307\u5B9A\u6642\u9593\u76EE\u524D\u7121\u6CD5\u5B89\u6392\uFF0C\u8ACB\u8207\u5BA2\u6236\u5354\u8ABF\u6216\u6E05\u9664\u6307\u5B9A\u6642\u9593\u5F8C\u67E5\u8A62\u5176\u4ED6\u6642\u6BB5\u3002" : "\u4E09\u65E5\u5167\u6C92\u6709\u7B26\u5408\u689D\u4EF6\u7684\u7A7A\u6A94\u3002\u8ACB\u8207\u5BA2\u6236\u5354\u8ABF\u4E26\u8A18\u9304\u3002") + '</div><button class="p2-btn secondary" data-action="coordinate">\u8A18\u9304\u5354\u8ABF\u7D50\u679C</button>';
   }
   var CUSTOMER_SEEDS = DISPATCH.map(function(j) {
     return { client: j.client, region: j.region };
@@ -433,8 +494,30 @@ document.body.innerHTML = '\n<aside class="sidebar" id="sidebar">\n  <div class=
         return j.client;
       }))).map(function(c) {
         return '<option value="' + esc(c) + '"></option>';
-      }).join("") + '</datalist></label><label class="p2-wide"><input type="checkbox" name="urgent"> \u7DCA\u6025\u6D3E\u5DE5\uFF08\u5047\u65E5\u53CA\u591C\u9593\u4EA6\u53EF\u5B89\u6392\uFF09</label><label class="p2-wide">\u554F\u984C *<textarea name="note" required rows="4" maxlength="1000" placeholder="\u4F8B\u5982\uFF1A\u76E3\u8996\u5668\u6C92\u6709\u756B\u9762">' + esc(note || "") + '</textarea></label></div><div class="p2-actions"><button type="button" id="voice-input" class="p2-btn secondary">\u8A9E\u97F3\u8F38\u5165</button><button type="button" id="voice-ai" class="p2-btn secondary">AI \u6574\u7406\u6587\u5B57</button><button class="p2-btn" type="submit">\u81EA\u52D5\u5224\u5B9A\u8207\u5B89\u6392 \u2192</button><button class="p2-btn secondary" type="button" data-p2="dialog-close">\u53D6\u6D88</button></div><p class="p2-sub" style="margin-top:15px">\u76EE\u524D\u4F9D\u793A\u7BC4\u5BA2\u6236\u7D00\u9304\u8207\u554F\u984C\u95DC\u9375\u5B57\u5224\u5B9A\uFF1B\u4E0D\u78BA\u5B9A\u6642\u7531\u4F60\u78BA\u8A8D\uFF0C\u4E0D\u6703\u81EA\u52D5\u731C\u6E2C\u3002\u8ACB\u52FF\u586B\u5165\u771F\u5BE6\u500B\u8CC7\u3002</p></form>';
+      }).join("") + '</datalist></label><label class="p2-wide"><input type="checkbox" name="urgent"> \u7DCA\u6025\u6D3E\u5DE5\uFF08\u5047\u65E5\u53CA\u591C\u9593\u4EA6\u53EF\u5B89\u6392\uFF09</label><label class="p2-wide">\u6307\u5B9A\u5230\u5834\u65E5\u671F\u8207\u6642\u9593\uFF08\u53EF\u7559\u7A7A\uFF09<input type="datetime-local" name="requested"></label><label class="p2-wide">\u554F\u984C *<textarea name="note" required rows="4" maxlength="1000" placeholder="\u4F8B\u5982\uFF1A\u76E3\u8996\u5668\u6C92\u6709\u756B\u9762">' + esc(note || "") + '</textarea></label></div><div class="p2-actions"><button type="button" id="voice-input" class="p2-btn secondary">\u8A9E\u97F3\u8F38\u5165</button><button type="button" id="voice-ai" class="p2-btn secondary">AI \u6574\u7406\u6587\u5B57</button><button class="p2-btn" type="submit">\u81EA\u52D5\u5224\u5B9A\u8207\u5B89\u6392 \u2192</button><button class="p2-btn secondary" type="button" data-p2="dialog-close">\u53D6\u6D88</button></div><p class="p2-sub" style="margin-top:15px">\u76EE\u524D\u4F9D\u793A\u7BC4\u5BA2\u6236\u7D00\u9304\u8207\u554F\u984C\u95DC\u9375\u5B57\u5224\u5B9A\uFF1B\u4E0D\u78BA\u5B9A\u6642\u7531\u4F60\u78BA\u8A8D\uFF0C\u4E0D\u6703\u81EA\u52D5\u731C\u6E2C\u3002\u8ACB\u52FF\u586B\u5165\u771F\u5BE6\u500B\u8CC7\u3002</p></form>';
       setupUrgentInput(dialog, draft);
+      var noteInput = dialog.querySelector("[name=note]"), requestedInput = dialog.querySelector("[name=requested]"), requestedEdited = false;
+      function syncRequested() {
+        if (requestedEdited) return;
+        var parsed = extractRequestedTime(noteInput.value, new Date(prefill && prefill.received || Date.now()));
+        if (parsed.status === "parsed") {
+          var dt = new Date(parsed.iso);
+          requestedInput.value = localDate(dt) + "T" + String(dt.getHours()).padStart(2, "0") + ":" + String(dt.getMinutes()).padStart(2, "0");
+          requestedInput.dataset.inferred = "1";
+        } else {
+          requestedInput.value = "";
+          requestedInput.dataset.inferred = "";
+        }
+      }
+      requestedInput.addEventListener("input", function() {
+        requestedEdited = true;
+      });
+      noteInput.addEventListener("input", syncRequested);
+      if (draft && draft.requestedStart) {
+        var oldDate = new Date(draft.requestedStart);
+        requestedInput.value = localDate(oldDate) + "T" + String(oldDate.getHours()).padStart(2, "0") + ":" + String(oldDate.getMinutes()).padStart(2, "0");
+        requestedEdited = true;
+      } else syncRequested();
       dialog.querySelector("#voice-input").onclick = function() {
         var Speech = window.SpeechRecognition || window.webkitSpeechRecognition;
         if (!Speech) {
@@ -446,6 +529,7 @@ document.body.innerHTML = '\n<aside class="sidebar" id="sidebar">\n  <div class=
         recognition.onresult = function(e) {
           var area = dialog.querySelector("[name=note]");
           area.value = (area.value + " " + e.results[0][0].transcript).trim();
+          area.dispatchEvent(new Event("input", { bubbles: true }));
           notify("\u8A9E\u97F3\u5DF2\u8F49\u6210\u6587\u5B57\uFF0C\u8ACB\u6AA2\u67E5\u5167\u5BB9\u3002");
         };
         recognition.onerror = function() {
@@ -464,6 +548,7 @@ document.body.innerHTML = '\n<aside class="sidebar" id="sidebar">\n  <div class=
           var result = await window.leyanFormatSpeech(note2.value.trim());
           if (result.client) dialog.querySelector("[name=client]").value = result.client;
           note2.value = result.note;
+          note2.dispatchEvent(new Event("input", { bubbles: true }));
           notify("\u5DF2\u6574\u7406\uFF0C\u8ACB\u6838\u5C0D\u5167\u5BB9\u3002");
         } catch (err) {
           notify(err.message || "AI \u66AB\u6642\u7121\u6CD5\u4F7F\u7528\uFF0C\u53EF\u624B\u52D5\u586B\u5BEB\u3002");
@@ -476,13 +561,24 @@ document.body.innerHTML = '\n<aside class="sidebar" id="sidebar">\n  <div class=
           notify("\u8ACB\u586B\u5BEB\u5BA2\u6236\u8207\u554F\u984C\u3002");
           return;
         }
+        var parsedTime = extractRequestedTime(note2, new Date(prefill && prefill.received || Date.now()));
+        if (parsedTime.status !== "none" && !f.elements.requested.value) {
+          notify("\u8A0A\u606F\u4E2D\u7684\u6642\u9593\u4E0D\u5B8C\u6574\uFF0C\u8ACB\u586B\u5BEB\u6307\u5B9A\u5230\u5834\u65E5\u671F\u8207\u6642\u9593\u3002");
+          f.elements.requested.focus();
+          return;
+        }
+        var requested = f.elements.requested.value ? new Date(f.elements.requested.value) : null;
+        if (requested && isNaN(requested)) {
+          notify("\u8ACB\u78BA\u8A8D\u6307\u5B9A\u5230\u5834\u6642\u9593\u3002");
+          return;
+        }
         var inference = inferDispatch(client2, note2, parent);
-        draft = { id: "DRAFT", client: client2, note: note2, urgent: f.elements.urgent.checked, region: inference.region, category: inference.category, received: prefill && prefill.received || (/* @__PURE__ */ new Date()).toISOString(), hours: parent ? parent.hours : 2, buffer: parent ? parent.buffer : 30, start: null, end: null };
+        draft = { id: "DRAFT", client: client2, note: note2, urgent: f.elements.urgent.checked, requestedStart: requested ? requested.toISOString() : null, region: inference.region, category: inference.category, received: prefill && prefill.received || (/* @__PURE__ */ new Date()).toISOString(), hours: parent ? parent.hours : 1, buffer: parent ? parent.buffer : 30, start: null, end: null };
         review(inference);
       };
     }
     function review(inference) {
-      dialog.innerHTML = '<h2>\u78BA\u8A8D\u6D3E\u5DE5\u5EFA\u8B70</h2><p class="p2-sub" style="margin:10px 0 18px">\u78BA\u8A8D\u5F8C\u624D\u6703\u5EFA\u7ACB\u5DE5\u55AE\uFF0C\u4E26\u653E\u5230\u884C\u4E8B\u66C6\u3002</p><div class="p2-note"><b>' + esc(draft.client) + "</b><br>" + esc(draft.note) + '</div><form id="auto-review"><div class="p2-form"><label>\u5730\u5340' + (!draft.region ? " \xB7 \u9700\u4F60\u78BA\u8A8D" : " \xB7 \u5DF2\u5224\u5B9A") + '<select name="region" id="auto-region" required><option value="">\u8ACB\u78BA\u8A8D\u5730\u5340</option>' + opts(["\u96D9\u5317", "\u6843\u7AF9"], draft.region) + '</select><span class="p2-sub">' + esc(inference.regionReason) + "</span></label><label>\u985E\u5225" + (!draft.category ? " \xB7 \u9700\u4F60\u78BA\u8A8D" : " \xB7 \u5DF2\u5224\u5B9A") + '<select name="category" id="auto-category" required><option value="">\u8ACB\u78BA\u8A8D\u985E\u5225</option>' + opts(["\u5F31\u96FB\u7DAD\u8B77", "\u786C\u9AD4\u7DAD\u8B77"], draft.category) + '</select><span class="p2-sub">' + esc(inference.categoryReason) + '</span></label></div><div id="auto-proposal" style="margin-top:16px"></div><div class="p2-actions"><button id="auto-confirm" class="p2-btn" type="submit">\u78BA\u8A8D\u6D3E\u5DE5\u4E26\u52A0\u5165\u6708\u66C6</button><button type="button" class="p2-btn secondary" id="auto-back">\u8FD4\u56DE\u4FEE\u6539</button><button class="p2-btn secondary" type="button" data-p2="dialog-close">\u53D6\u6D88</button></div><p class="p2-sub" style="margin-top:14px">\u4E00\u822C\u6D3E\u5DE5\u907F\u958B\u9031\u672B\u53CA\u570B\u5B9A\u5047\u65E5\uFF1B\u7DCA\u6025\u6D3E\u5DE5\u4E0D\u9650\u5047\u65E5\u8207\u6642\u6BB5\u300272 \u5C0F\u6642\u5167\u5B89\u6392\u3002\u9810\u4F30\u5DE5\u6642 ' + draft.hours + " \u5C0F\u6642\uFF0C\u4EA4\u901A\u7DE9\u885D " + draft.buffer + " \u5206\u9418\uFF1B\u50C5\u6AA2\u67E5\u672C\u9801\u5DF2\u5B89\u6392\u5DE5\u55AE\uFF0C\u4E0D\u8B80\u5BEB Google \u884C\u4E8B\u66C6\uFF1B\u78BA\u8A8D\u5F8C\u4EE5 LINE \u901A\u77E5\u5DF2\u7D81\u5B9A\u7684\u5DE5\u7A0B\u5E2B\u8207\u5BA2\u6236\u3002</p></form>";
+      dialog.innerHTML = '<h2>\u78BA\u8A8D\u6D3E\u5DE5\u5EFA\u8B70</h2><p class="p2-sub" style="margin:10px 0 18px">\u78BA\u8A8D\u5F8C\u624D\u6703\u5EFA\u7ACB\u5DE5\u55AE\uFF0C\u4E26\u653E\u5230\u884C\u4E8B\u66C6\u3002</p><div class="p2-note"><b>' + esc(draft.client) + "</b><br>" + esc(draft.note) + '</div><form id="auto-review"><div class="p2-form"><label>\u5730\u5340' + (!draft.region ? " \xB7 \u9700\u4F60\u78BA\u8A8D" : " \xB7 \u5DF2\u5224\u5B9A") + '<select name="region" id="auto-region" required><option value="">\u8ACB\u78BA\u8A8D\u5730\u5340</option>' + opts(["\u96D9\u5317", "\u6843\u7AF9"], draft.region) + '</select><span class="p2-sub">' + esc(inference.regionReason) + "</span></label><label>\u985E\u5225" + (!draft.category ? " \xB7 \u9700\u4F60\u78BA\u8A8D" : " \xB7 \u5DF2\u5224\u5B9A") + '<select name="category" id="auto-category" required><option value="">\u8ACB\u78BA\u8A8D\u985E\u5225</option>' + opts(["\u5F31\u96FB\u7DAD\u8B77", "\u786C\u9AD4\u7DAD\u8B77"], draft.category) + '</select><span class="p2-sub">' + esc(inference.categoryReason) + '</span></label></div><div id="auto-proposal" style="margin-top:16px"></div><div class="p2-actions"><button id="auto-confirm" class="p2-btn" type="submit">\u78BA\u8A8D\u6D3E\u5DE5\u4E26\u52A0\u5165\u6708\u66C6</button><button type="button" class="p2-btn secondary" id="auto-back">\u8FD4\u56DE\u4FEE\u6539</button><button class="p2-btn secondary" type="button" data-p2="dialog-close">\u53D6\u6D88</button></div><p class="p2-sub" style="margin-top:14px">\u4E00\u822C\u6D3E\u5DE5\u907F\u958B\u9031\u672B\u53CA\u570B\u5B9A\u5047\u65E5\uFF1B\u7DCA\u6025\u6D3E\u5DE5\u4E0D\u9650\u5047\u65E5\u8207\u4EF6\u6578\u3002\u6307\u5B9A\u6642\u9593\u4EE5\u5BE6\u969B\u78BA\u8A8D\u70BA\u6E96\u3002\u9810\u4F30\u5DE5\u6642 ' + draft.hours + " \u5C0F\u6642\uFF0C\u4EA4\u901A\u7DE9\u885D " + draft.buffer + " \u5206\u9418\uFF1B\u50C5\u6AA2\u67E5\u672C\u9801\u5DF2\u5B89\u6392\u5DE5\u55AE\uFF0C\u4E0D\u8B80\u5BEB Google \u884C\u4E8B\u66C6\uFF1B\u78BA\u8A8D\u5F8C\u4EE5 LINE \u901A\u77E5\u5DF2\u7D81\u5B9A\u7684\u5DE5\u7A0B\u5E2B\u8207\u5BA2\u6236\u3002</p></form>";
       var f = dialog.querySelector("form");
       f.elements.region.value = draft.region;
       f.elements.category.value = draft.category;
@@ -515,7 +611,7 @@ document.body.innerHTML = '\n<aside class="sidebar" id="sidebar">\n  <div class=
         }
         var slot = list.find(function(k) {
           return k.start === choice;
-        }), j = { id: "D" + Date.now().toString(36).toUpperCase(), client: draft.client, note: draft.urgent && !draft.note.includes("\u7DCA\u6025") ? "\u3010\u7DCA\u6025\u3011" + draft.note : draft.note, region: draft.region, category: draft.category, engineer: draft.engineer, received: draft.received, hours: draft.hours, buffer: draft.buffer, start: slot ? slot.start : null, end: slot ? slot.end : null, date: slot ? localDate(new Date(slot.start)) : "", status: slot ? "\u5DF2\u6D3E\u5DE5" : "\u5F85\u6D3E\u5DE5", urgent: draft.urgent, history: [] };
+        }), j = { id: "D" + Date.now().toString(36).toUpperCase(), client: draft.client, note: draft.urgent && !draft.note.includes("\u7DCA\u6025") ? "\u3010\u7DCA\u6025\u3011" + draft.note : draft.note, region: draft.region, category: draft.category, engineer: draft.engineer, received: draft.received, requestedStart: draft.requestedStart, hours: draft.hours, buffer: draft.buffer, start: slot ? slot.start : null, end: slot ? slot.end : null, date: slot ? localDate(new Date(slot.start)) : "", status: slot ? "\u5DF2\u6D3E\u5DE5" : "\u5F85\u6D3E\u5DE5", urgent: draft.urgent, history: [] };
         if (prefill && prefill.onApprove) {
           if (!slot) {
             notify("\u7533\u8ACB\u6838\u51C6\u5FC5\u9808\u5148\u9078\u64C7\u53EF\u7528\u6642\u6BB5\u3002");
@@ -548,7 +644,7 @@ document.body.innerHTML = '\n<aside class="sidebar" id="sidebar">\n  <div class=
         history(j, "\u5BA2\u6236\u8207\u554F\u984C\u81EA\u52D5\u5224\u5B9A\u5F8C\u7531\u4F7F\u7528\u8005\u78BA\u8A8D\uFF1A" + j.region + "\uFF0F" + j.category + "\uFF0F" + j.engineer);
         if (parent) history(j, "\u7531 " + parent.id + " \u5EFA\u7ACB\u518D\u8A2A\u5831\u4FEE");
         if (slot) history(j, "\u78BA\u8A8D\u6D3E\u5DE5 " + stamp(j.start) + "\uFF0C" + j.engineer);
-        else history(j, "\u4E09\u65E5\u5167\u7121\u5408\u9069\u7A7A\u6A94\uFF0C\u5F85\u8207\u5BA2\u6236\u5354\u8ABF");
+        else history(j, j.requestedStart ? "\u6307\u5B9A\u6642\u9593\u7121\u6CD5\u5B89\u6392\uFF0C\u5F85\u8207\u5BA2\u6236\u5354\u8ABF" : "\u4E09\u65E5\u5167\u7121\u5408\u9069\u7A7A\u6A94\uFF0C\u5F85\u8207\u5BA2\u6236\u5354\u8ABF");
         if (prefill && prefill.source) history(j, "\u7531 " + prefill.source + " \u8F49\u5165");
         JOBS.unshift(j);
         persist();
@@ -573,9 +669,9 @@ document.body.innerHTML = '\n<aside class="sidebar" id="sidebar">\n  <div class=
       }
       draft.engineer = ENGINEERS[draft.region + "|" + draft.category];
       var list = slots(draft);
-      box.innerHTML = '<div class="p2-stat"><span>\u5EFA\u8B70\u5DE5\u7A0B\u5E2B</span><b style="font-size:22px;margin-top:5px">' + esc(draft.engineer) + "</b><span>" + esc(draft.region) + "\uFF0F" + esc(draft.category) + "</span></div>" + (list.length ? '<label style="display:block;font-size:12px;font-weight:600;margin-top:16px">\u5EFA\u8B70\u5230\u5834\u6642\u6BB5\uFF08\u9810\u9078\u6700\u65E9\u7A7A\u6A94\uFF09<select id="auto-slot" style="display:block;width:100%;padding:12px;margin-top:7px;border:1px solid #cbd5e1;border-radius:6px;background:white;font:inherit">' + list.map(function(k) {
+      box.innerHTML = '<div class="p2-stat"><span>\u5EFA\u8B70\u5DE5\u7A0B\u5E2B</span><b style="font-size:22px;margin-top:5px">' + esc(draft.engineer) + "</b><span>" + esc(draft.region) + "\uFF0F" + esc(draft.category) + "</span></div>" + (list.length ? '<label style="display:block;font-size:12px;font-weight:600;margin-top:16px">' + (draft.requestedStart ? "\u6307\u5B9A\u5230\u5834\u6642\u9593" : "\u5EFA\u8B70\u5230\u5834\u6642\u6BB5\uFF08\u9810\u9078\u6700\u65E9\u7A7A\u6A94\uFF09") + '<select id="auto-slot" style="display:block;width:100%;padding:12px;margin-top:7px;border:1px solid #cbd5e1;border-radius:6px;background:white;font:inherit">' + list.map(function(k) {
         return '<option value="' + k.start + '">' + stamp(k.start) + "\u2013" + hm(k.end) + "</option>";
-      }).join("") + "</select></label>" : '<div class="p2-note" style="margin-top:14px">\u4E09\u65E5\u5167\u7121\u7B26\u5408\u898F\u5247\u7684\u7A7A\u6A94\uFF0C\u7121\u6CD5\u81EA\u52D5\u5B89\u6392\u3002\u53EF\u78BA\u8A8D\u5EFA\u7ACB\u5F85\u5354\u8ABF\u5DE5\u55AE\uFF0C\u4E0D\u6703\u8D85\u671F\u6392\u5DE5\uFF0C\u4E5F\u4E0D\u6703\u5360\u7528\u6708\u66C6\u3002</div>');
+      }).join("") + "</select></label>" : '<div class="p2-note" style="margin-top:14px">' + (draft.requestedStart ? "\u6307\u5B9A\u6642\u9593\u4E0D\u7B26\u5408\u5DE5\u4F5C\u65E5\u3001\u5DE5\u4F5C\u6642\u9593\u3001\u6BCF\u65E5\u4E0A\u9650\u6216\u5DF2\u6709\u885D\u7A81\uFF1B\u8ACB\u8FD4\u56DE\u4FEE\u6539\uFF0C\u6216\u5EFA\u7ACB\u5F85\u5354\u8ABF\u5DE5\u55AE\u3002" : "\u4E09\u65E5\u5167\u7121\u7B26\u5408\u898F\u5247\u7684\u7A7A\u6A94\uFF0C\u53EF\u78BA\u8A8D\u5EFA\u7ACB\u5F85\u5354\u8ABF\u5DE5\u55AE\u3002") + "</div>");
       button.disabled = false;
       button.textContent = list.length ? "\u78BA\u8A8D\u6D3E\u5DE5\u4E26\u52A0\u5165\u6708\u66C6" : "\u78BA\u8A8D\u5EFA\u7ACB\u5F85\u5354\u8ABF\u5DE5\u55AE";
     }
@@ -589,6 +685,15 @@ document.body.innerHTML = '\n<aside class="sidebar" id="sidebar">\n  <div class=
     if (!j) return;
     var ev = null;
     if (type === "slots") {
+      showSlots();
+      return;
+    }
+    if (type === "clear-requested") {
+      if (!confirm("\u6E05\u9664\u6307\u5B9A\u6642\u9593\u5F8C\uFF0C\u5C07\u53EF\u9078\u64C7\u5176\u4ED6\u6642\u6BB5\uFF1B\u662F\u5426\u7E7C\u7E8C\uFF1F")) return;
+      history(j, "\u6E05\u9664\u6307\u5B9A\u5230\u5834\u6642\u9593 " + stamp(j.requestedStart));
+      j.requestedStart = null;
+      persist();
+      renderDispatch();
       showSlots();
       return;
     }
@@ -839,7 +944,7 @@ document.body.innerHTML = '\n<aside class="sidebar" id="sidebar">\n  <div class=
       var cus = LINE.contacts.find(function(x) {
         return x.line_user_id === m.line_user_id && x.role === "customer";
       });
-      newDialog(null, { client: cus ? cus.ref_name : inferLineClient(m.text), note: String(m.text || "").slice(0, 1e3), source: "LINE \u5831\u4FEE\uFF08" + (m.display_name || "LINE \u4F7F\u7528\u8005") + "\uFF09", onCreated: function(j, ev) {
+      newDialog(null, { client: cus ? cus.ref_name : inferLineClient(m.text), note: String(m.text || "").slice(0, 1e3), received: m.received_at, source: "LINE \u5831\u4FEE\uFF08" + (m.display_name || "LINE \u4F7F\u7528\u8005") + "\uFF09", onCreated: function(j, ev) {
         api.convertInbox(m.id, j.id, j.client).then(function() {
           LINE.inbox = LINE.inbox.filter(function(x) {
             return x.id !== m.id;
