@@ -273,7 +273,7 @@ document.body.innerHTML = '\n<aside class="sidebar" id="sidebar">\n  <div class=
       return '<div class="p2-stat"><b>' + JOBS.filter(function(j) {
         return j.status === st;
       }).length + "</b><span>" + st + "</span></div>";
-    }).join("") + '</div><div class="p2-note">一般派工避開週六、週日及國定假日；緊急派工不限假日，優先建議最早空檔。\u5DE5\u4F5C\u6642\u6BB5\u66AB\u8A2D 09:00\u201318:00\uFF1B\u4EA4\u901A\u7DE9\u885D\u9810\u8A2D 30 \u5206\u9418\u3002\u7A7A\u6A94\u50C5\u4F9D\u76EE\u524D\u5E33\u865F\u5DE5\u55AE\u8A08\u7B97\uFF0C\u672A\u8B80\u53D6 Google \u884C\u4E8B\u66C6\u3002</div><div class="p2-filters"><input aria-label="\u641C\u5C0B\u5DE5\u55AE" id="p2-search" placeholder="\u641C\u5C0B\u5BA2\u6236\u3001\u5DE5\u55AE\u6216\u554F\u984C" value="' + esc(SEARCH) + '"><select id="p2-region" aria-label="\u5730\u5340">' + opts(["\u5168\u90E8", "\u96D9\u5317", "\u6843\u7AF9"], RF) + '</select><select id="p2-status" aria-label="\u5DE5\u55AE\u72C0\u614B">' + opts(["\u5168\u90E8", "\u5F85\u6D3E\u5DE5", "\u5DF2\u6D3E\u5DE5", "\u9032\u884C\u4E2D", "\u5F85\u6599", "\u5F85\u518D\u8A2A", "\u5DF2\u5B8C\u6210", "\u5DF2\u53D6\u6D88"], SF) + '</select><button class="p2-btn secondary" data-p2="calendar">\u67E5\u770B\u6392\u7A0B</button></div><div class="card p2-table"><table><thead><tr><th>\u5DE5\u55AE\uFF0F\u5BA2\u6236</th><th>\u5340\u57DF\uFF0F\u985E\u5225</th><th>\u5DE5\u7A0B\u5E2B</th><th>\u9810\u5B9A\u5230\u5834</th><th>\u72C0\u614B</th></tr></thead><tbody>' + shown.map(function(j) {
+    }).join("") + '</div><div class="p2-note">\u4E00\u822C\u6D3E\u5DE5\u907F\u958B\u9031\u516D\u3001\u9031\u65E5\u53CA\u570B\u5B9A\u5047\u65E5\uFF1B\u7DCA\u6025\u6D3E\u5DE5\u4E0D\u9650\u5047\u65E5\uFF0C\u512A\u5148\u5EFA\u8B70\u6700\u65E9\u7A7A\u6A94\u3002\u5831\u4FEE\u8D77\u7B97 72 \u5C0F\u6642\u5167\u5B8C\u6210\uFF1B\u4EA4\u901A\u7DE9\u885D\u9810\u8A2D 30 \u5206\u9418\u3002\u672A\u8B80\u53D6 Google \u884C\u4E8B\u66C6\u3002</div><div class="p2-filters"><input aria-label="\u641C\u5C0B\u5DE5\u55AE" id="p2-search" placeholder="\u641C\u5C0B\u5BA2\u6236\u3001\u5DE5\u55AE\u6216\u554F\u984C" value="' + esc(SEARCH) + '"><select id="p2-region" aria-label="\u5730\u5340">' + opts(["\u5168\u90E8", "\u96D9\u5317", "\u6843\u7AF9"], RF) + '</select><select id="p2-status" aria-label="\u5DE5\u55AE\u72C0\u614B">' + opts(["\u5168\u90E8", "\u5F85\u6D3E\u5DE5", "\u5DF2\u6D3E\u5DE5", "\u9032\u884C\u4E2D", "\u5F85\u6599", "\u5F85\u518D\u8A2A", "\u5DF2\u5B8C\u6210", "\u5DF2\u53D6\u6D88"], SF) + '</select><button class="p2-btn secondary" data-p2="calendar">\u67E5\u770B\u6392\u7A0B</button></div><div class="card p2-table"><table><thead><tr><th>\u5DE5\u55AE\uFF0F\u5BA2\u6236</th><th>\u5340\u57DF\uFF0F\u985E\u5225</th><th>\u5DE5\u7A0B\u5E2B</th><th>\u9810\u5B9A\u5230\u5834</th><th>\u72C0\u614B</th></tr></thead><tbody>' + shown.map(function(j) {
       return '<tr class="p2-row"><td><button style="text-align:left;padding:10px 0" data-job="' + esc(j.id) + '"><b>' + esc(j.client) + '</b><div class="p2-sub">' + esc(j.id) + (j.parent ? " \xB7 \u518D\u8A2A " + esc(j.parent) : "") + (j.urgent ? " \xB7 \u6025\u4EF6" : "") + "</div></button></td><td>" + esc(j.region) + "<br>" + esc(j.category) + "</td><td>" + esc(j.engineer) + "</td><td>" + (j.start ? stamp(j.start) : "\u5C1A\u672A\u5B89\u6392") + "</td><td>" + statusLabel(j) + "</td></tr>";
     }).join("") + "</tbody></table>" + (shown.length ? "" : '<div class="p2-empty">\u6C92\u6709\u7B26\u5408\u7684\u5DE5\u55AE</div>') + "</div>" + (DSEL ? jobPanel(JOBS.find(function(j) {
       return j.id === DSEL;
@@ -304,9 +304,31 @@ document.body.innerHTML = '\n<aside class="sidebar" id="sidebar">\n  <div class=
       return '<div class="p2-history">' + stamp(h.at) + "\u3000" + esc(h.text) + "</div>";
     }).join("") + '<p class="p2-sub">\u78BA\u8A8D\u3001\u6539\u671F\u3001\u53D6\u6D88\u3001\u51FA\u767C\u8207\u5B8C\u5DE5\u5728\u96F2\u7AEF\u5132\u5B58\u6210\u529F\u5F8C\uFF0C\u6703\u4EE5 LINE \u901A\u77E5\u5DF2\u7D81\u5B9A\u7684\u5DE5\u7A0B\u5E2B\uFF0F\u5BA2\u6236\uFF1B\u901A\u77E5\u5931\u6557\u4E0D\u5F71\u97FF\u5DE5\u55AE\u3002</p></section>';
   }
-var LEYAN_HOLIDAY_YEARS=[2026,2027],LEYAN_HOLIDAYS=new Set(["20260101", "20260216", "20260217", "20260218", "20260219", "20260220", "20260227", "20260403", "20260406", "20260501", "20260619", "20260925", "20260928", "20261009", "20261026", "20261225", "20270101", "20270204", "20270205", "20270208", "20270209", "20270210", "20270301", "20270405", "20270406", "20270430", "20270609", "20270915", "20270928", "20271011", "20271025", "20271224", "20271231"]);
-function slots(j){var received=new Date(j.received),deadline=new Date(received.getTime()+72*3600000),now=new Date(),result=[];var urgent=!!j.urgent;for(var day=0;day<5;day++){var base=new Date(now);base.setHours(0,0,0,0);base.setDate(base.getDate()+day);var key=String(base.getFullYear())+String(base.getMonth()+1).padStart(2,'0')+String(base.getDate()).padStart(2,'0');if(!urgent&&(!LEYAN_HOLIDAY_YEARS.includes(base.getFullYear())||base.getDay()===0||base.getDay()===6||LEYAN_HOLIDAYS.has(key)))continue;for(var minute=urgent?(day===0?Math.ceil((now-base)/60000):0):540;minute<(urgent?1440:1080);minute+=urgent?15:60){var a=new Date(base);a.setMinutes(minute);var end=new Date(a.getTime()+j.hours*3600000);if(a<now||a<received||(!urgent&&end>deadline)||(!urgent&&(end.getDate()!==a.getDate()||end.getHours()>18||(end.getHours()===18&&end.getMinutes()>0))))continue;var conflict=JOBS.some(function(k){if(k.id===j.id||k.engineer!==j.engineer||!k.start||['已取消','已完成','待再訪'].includes(k.status))return false;var pad=Math.max(Number(j.buffer),Number(k.buffer)||0)*60000;return a.getTime()<new Date(k.end).getTime()+pad&&end.getTime()+pad>new Date(k.start).getTime();});if(!conflict)result.push({start:a.toISOString(),end:end.toISOString()});}}return result;}
-
+  var LEYAN_HOLIDAY_YEARS = [2026, 2027], LEYAN_HOLIDAYS = /* @__PURE__ */ new Set(["20260101", "20260216", "20260217", "20260218", "20260219", "20260220", "20260227", "20260403", "20260406", "20260501", "20260619", "20260925", "20260928", "20261009", "20261026", "20261225", "20270101", "20270204", "20270205", "20270208", "20270209", "20270210", "20270301", "20270405", "20270406", "20270430", "20270609", "20270915", "20270928", "20271011", "20271025", "20271224", "20271231"]);
+  function slots(j) {
+    var received = new Date(j.received), deadline = new Date(received.getTime() + 72 * 36e5), now = /* @__PURE__ */ new Date(), result = [];
+    var urgent = !!j.urgent;
+    for (var day = 0; day < 5; day++) {
+      var base = new Date(now);
+      base.setHours(0, 0, 0, 0);
+      base.setDate(base.getDate() + day);
+      var key = String(base.getFullYear()) + String(base.getMonth() + 1).padStart(2, "0") + String(base.getDate()).padStart(2, "0");
+      if (!urgent && (!LEYAN_HOLIDAY_YEARS.includes(base.getFullYear()) || base.getDay() === 0 || base.getDay() === 6 || LEYAN_HOLIDAYS.has(key))) continue;
+      for (var minute = urgent ? day === 0 ? Math.ceil((now - base) / 6e4) : 0 : 540; minute < (urgent ? 1440 : 1080); minute += urgent ? 15 : 60) {
+        var a = new Date(base);
+        a.setMinutes(minute);
+        var end = new Date(a.getTime() + j.hours * 36e5);
+        if (a < now || a < received || !urgent && end > deadline || !urgent && (end.getDate() !== a.getDate() || end.getHours() > 18 || end.getHours() === 18 && end.getMinutes() > 0)) continue;
+        var conflict = JOBS.some(function(k) {
+          if (k.id === j.id || k.engineer !== j.engineer || !k.start || ["\u5DF2\u53D6\u6D88", "\u5DF2\u5B8C\u6210", "\u5F85\u518D\u8A2A"].includes(k.status)) return false;
+          var pad = Math.max(Number(j.buffer), Number(k.buffer) || 0) * 6e4;
+          return a.getTime() < new Date(k.end).getTime() + pad && end.getTime() + pad > new Date(k.start).getTime();
+        });
+        if (!conflict) result.push({ start: a.toISOString(), end: end.toISOString() });
+      }
+    }
+    return result;
+  }
   function showSlots() {
     var j = JOBS.find(function(x) {
       return x.id === DSEL;
@@ -361,8 +383,20 @@ function slots(j){var received=new Date(j.received),deadline=new Date(received.g
     }
     return { region, category, regionReason: why, categoryReason: catWhy };
   }
-function isUrgentDispatch(text){var t=String(text||'').toLowerCase();return /緊急|急件|急修|主機.{0,8}(掛了|當機|故障|斷線|無法啟動|不能開)|(?:server|伺服器|服務器).{0,12}(無法打開|不能打開|打不開|無法啟動|無法開啟|不能開|掛了|當機|故障|斷線)|系統.{0,8}(不能用|無法使用|無法運作|不能運作|掛了|當機|癱瘓)/i.test(t);}
-function setupUrgentInput(dialog,draft){var note=dialog.querySelector('[name=note]'),box=dialog.querySelector('[name=urgent]'),manual=false;box.checked=draft?!!draft.urgent:isUrgentDispatch(note.value);box.onchange=function(){manual=true;};note.addEventListener('input',function(){if(!manual)box.checked=isUrgentDispatch(note.value);});}
+  function isUrgentDispatch(text) {
+    var t = String(text || "").toLowerCase();
+    return /緊急|急件|急修|主機.{0,8}(掛了|當機|故障|斷線|無法啟動|不能開)|(?:server|伺服器|服務器).{0,12}(無法打開|不能打開|打不開|無法啟動|無法開啟|不能開|掛了|當機|故障|斷線)|系統.{0,8}(不能用|無法使用|無法運作|不能運作|掛了|當機|癱瘓)/i.test(t);
+  }
+  function setupUrgentInput(dialog, draft) {
+    var note = dialog.querySelector("[name=note]"), box = dialog.querySelector("[name=urgent]"), manual = false;
+    box.checked = draft ? !!draft.urgent : isUrgentDispatch(note.value);
+    box.onchange = function() {
+      manual = true;
+    };
+    note.addEventListener("input", function() {
+      if (!manual) box.checked = isUrgentDispatch(note.value);
+    });
+  }
   function newDialog(parent, prefill) {
     prefill = prefill || null;
     var old = document.getElementById("p2-dialog");
@@ -374,12 +408,46 @@ function setupUrgentInput(dialog,draft){var note=dialog.querySelector('[name=not
     document.body.appendChild(dialog);
     var draft = null;
     function inputStep(client, note) {
-      dialog.innerHTML = "<h2>" + (parent ? "\u5EFA\u7ACB\u518D\u8A2A\u55AE" : "\u65B0\u589E\u6D3E\u5DE5") + "</h2>" + (prefill && prefill.source ? '<div class="p2-note" style="margin-top:12px">\u4F86\u6E90\uFF1A' + esc(prefill.source) + "\u3002\u8ACB\u78BA\u8A8D\u6216\u586B\u5165\u5BA2\u6236\u540D\u7A31\uFF1B\u5EFA\u7ACB\u5F8C\u6B64 LINE \u5E33\u865F\u6703\u7D81\u5B9A\u5230\u8A72\u5BA2\u6236\u3002</div>" : "") + '<p class="p2-sub" style="margin:10px 0 20px">\u53EA\u9700\u586B\u5BEB\u5BA2\u6236\u8207\u554F\u984C\uFF0C\u7CFB\u7D71\u6703\u5EFA\u8B70\u5730\u5340\u3001\u985E\u5225\u3001\u5DE5\u7A0B\u5E2B\u8207\u53EF\u7528\u6642\u6BB5\u3002\u78BA\u8A8D\u524D\u4E0D\u6703\u5EFA\u7ACB\u6D3E\u5DE5\u3002</p><form id="auto-input"><div class="p2-form"><label class="p2-wide">\u5BA2\u6236 *<input name="client" required maxlength="80" list="auto-customers" autocomplete="off" placeholder="\u4F8B\u5982\uFF1A\u53F0\u5317\u4FE1\u7FA9\u7259\u91AB\u8A3A\u6240" value="' + esc(client || "") + '"><datalist id="auto-customers">' + Array.from(new Set(CUSTOMER_SEEDS.concat(CASES, JOBS).map(function(j) {
+      dialog.innerHTML = "<h2>" + (parent ? "\u5EFA\u7ACB\u518D\u8A2A\u55AE" : "\u65B0\u589E\u6D3E\u5DE5") + "</h2>" + (prefill && prefill.source ? '<div class="p2-note" style="margin-top:12px">\u4F86\u6E90\uFF1A' + esc(prefill.source) + "\u3002\u8ACB\u78BA\u8A8D\u6216\u586B\u5165\u5BA2\u6236\u540D\u7A31\u3002" + (prefill.onCreated ? "\u5EFA\u7ACB\u5F8C\u6B64 LINE \u5E33\u865F\u6703\u7D81\u5B9A\u5230\u8A72\u5BA2\u6236\u3002" : "") + "</div>" : "") + '<p class="p2-sub" style="margin:10px 0 20px">\u53EA\u9700\u586B\u5BEB\u5BA2\u6236\u8207\u554F\u984C\uFF0C\u7CFB\u7D71\u6703\u5EFA\u8B70\u5730\u5340\u3001\u985E\u5225\u3001\u5DE5\u7A0B\u5E2B\u8207\u53EF\u7528\u6642\u6BB5\u3002\u78BA\u8A8D\u524D\u4E0D\u6703\u5EFA\u7ACB\u6D3E\u5DE5\u3002</p><form id="auto-input"><div class="p2-form"><label class="p2-wide">\u5BA2\u6236 *<input name="client" required maxlength="80" list="auto-customers" autocomplete="off" placeholder="\u4F8B\u5982\uFF1A\u53F0\u5317\u4FE1\u7FA9\u7259\u91AB\u8A3A\u6240" value="' + esc(client || "") + '"><datalist id="auto-customers">' + Array.from(new Set(CUSTOMER_SEEDS.concat(CASES, JOBS).map(function(j) {
         return j.client;
       }))).map(function(c) {
         return '<option value="' + esc(c) + '"></option>';
-      }).join("") + '</datalist></label><label class="p2-wide"><input type="checkbox" name="urgent"> 緊急派工（假日及夜間亦可安排）</label><label class="p2-wide">\u554F\u984C *<textarea name="note" required rows="4" maxlength="1000" placeholder="\u4F8B\u5982\uFF1A\u76E3\u8996\u5668\u6C92\u6709\u756B\u9762">' + esc(note || "") + '</textarea></label></div><div class="p2-actions"><button class="p2-btn" type="submit">\u81EA\u52D5\u5224\u5B9A\u8207\u5B89\u6392 \u2192</button><button class="p2-btn secondary" type="button" data-p2="dialog-close">\u53D6\u6D88</button></div><p class="p2-sub" style="margin-top:15px">\u76EE\u524D\u4F9D\u793A\u7BC4\u5BA2\u6236\u7D00\u9304\u8207\u554F\u984C\u95DC\u9375\u5B57\u5224\u5B9A\uFF1B\u4E0D\u78BA\u5B9A\u6642\u7531\u4F60\u78BA\u8A8D\uFF0C\u4E0D\u6703\u81EA\u52D5\u731C\u6E2C\u3002\u8ACB\u52FF\u586B\u5165\u771F\u5BE6\u500B\u8CC7\u3002</p></form>';
+      }).join("") + '</datalist></label><label class="p2-wide"><input type="checkbox" name="urgent"> \u7DCA\u6025\u6D3E\u5DE5\uFF08\u5047\u65E5\u53CA\u591C\u9593\u4EA6\u53EF\u5B89\u6392\uFF09</label><label class="p2-wide">\u554F\u984C *<textarea name="note" required rows="4" maxlength="1000" placeholder="\u4F8B\u5982\uFF1A\u76E3\u8996\u5668\u6C92\u6709\u756B\u9762">' + esc(note || "") + '</textarea></label></div><div class="p2-actions"><button type="button" id="voice-input" class="p2-btn secondary">\u8A9E\u97F3\u8F38\u5165</button><button type="button" id="voice-ai" class="p2-btn secondary">AI \u6574\u7406\u6587\u5B57</button><button class="p2-btn" type="submit">\u81EA\u52D5\u5224\u5B9A\u8207\u5B89\u6392 \u2192</button><button class="p2-btn secondary" type="button" data-p2="dialog-close">\u53D6\u6D88</button></div><p class="p2-sub" style="margin-top:15px">\u76EE\u524D\u4F9D\u793A\u7BC4\u5BA2\u6236\u7D00\u9304\u8207\u554F\u984C\u95DC\u9375\u5B57\u5224\u5B9A\uFF1B\u4E0D\u78BA\u5B9A\u6642\u7531\u4F60\u78BA\u8A8D\uFF0C\u4E0D\u6703\u81EA\u52D5\u731C\u6E2C\u3002\u8ACB\u52FF\u586B\u5165\u771F\u5BE6\u500B\u8CC7\u3002</p></form>';
       setupUrgentInput(dialog, draft);
+      dialog.querySelector("#voice-input").onclick = function() {
+        var Speech = window.SpeechRecognition || window.webkitSpeechRecognition;
+        if (!Speech) {
+          notify("\u76EE\u524D\u5E33\u865F\u4E0D\u652F\u63F4\u8A9E\u97F3\u8FA8\u8B58\uFF0C\u8ACB\u624B\u52D5\u8F38\u5165\u3002");
+          return;
+        }
+        var recognition = new Speech();
+        recognition.lang = "zh-TW";
+        recognition.onresult = function(e) {
+          var area = dialog.querySelector("[name=note]");
+          area.value = (area.value + " " + e.results[0][0].transcript).trim();
+          notify("\u8A9E\u97F3\u5DF2\u8F49\u6210\u6587\u5B57\uFF0C\u8ACB\u6AA2\u67E5\u5167\u5BB9\u3002");
+        };
+        recognition.onerror = function() {
+          notify("\u8A9E\u97F3\u8FA8\u8B58\u5931\u6557\uFF0C\u8ACB\u624B\u52D5\u8F38\u5165\u3002");
+        };
+        recognition.start();
+      };
+      dialog.querySelector("#voice-ai").onclick = async function() {
+        var note2 = dialog.querySelector("[name=note]");
+        if (!note2.value.trim()) {
+          notify("\u8ACB\u5148\u8F38\u5165\u6216\u8AAA\u51FA\u5831\u4FEE\u5167\u5BB9\u3002");
+          return;
+        }
+        if (!confirm("AI \u6574\u7406\u6703\u5C07\u6587\u5B57\u9001\u81F3 Google \u8655\u7406\u3002\u662F\u5426\u7E7C\u7E8C\uFF1F")) return;
+        try {
+          var result = await window.leyanFormatSpeech(note2.value.trim());
+          if (result.client) dialog.querySelector("[name=client]").value = result.client;
+          note2.value = result.note;
+          notify("\u5DF2\u6574\u7406\uFF0C\u8ACB\u6838\u5C0D\u5167\u5BB9\u3002");
+        } catch (err) {
+          notify(err.message || "AI \u66AB\u6642\u7121\u6CD5\u4F7F\u7528\uFF0C\u53EF\u624B\u52D5\u586B\u5BEB\u3002");
+        }
+      };
       dialog.querySelector("form").onsubmit = function(e) {
         e.preventDefault();
         var f = e.target, client2 = f.elements.client.value.trim(), note2 = f.elements.note.value.trim();
@@ -388,12 +456,12 @@ function setupUrgentInput(dialog,draft){var note=dialog.querySelector('[name=not
           return;
         }
         var inference = inferDispatch(client2, note2, parent);
-        draft = { id: "DRAFT", client: client2, note: note2, urgent: f.elements.urgent.checked, region: inference.region, category: inference.category, received: (/* @__PURE__ */ new Date()).toISOString(), hours: parent ? parent.hours : 2, buffer: parent ? parent.buffer : 30, start: null, end: null };
+        draft = { id: "DRAFT", client: client2, note: note2, urgent: f.elements.urgent.checked, region: inference.region, category: inference.category, received: prefill && prefill.received || (/* @__PURE__ */ new Date()).toISOString(), hours: parent ? parent.hours : 2, buffer: parent ? parent.buffer : 30, start: null, end: null };
         review(inference);
       };
     }
     function review(inference) {
-      dialog.innerHTML = '<h2>\u78BA\u8A8D\u6D3E\u5DE5\u5EFA\u8B70</h2><p class="p2-sub" style="margin:10px 0 18px">\u78BA\u8A8D\u5F8C\u624D\u6703\u5EFA\u7ACB\u5DE5\u55AE\uFF0C\u4E26\u653E\u5230\u884C\u4E8B\u66C6\u3002</p><div class="p2-note"><b>' + esc(draft.client) + "</b><br>" + esc(draft.note) + '</div><form id="auto-review"><div class="p2-form"><label>\u5730\u5340' + (!draft.region ? " \xB7 \u9700\u4F60\u78BA\u8A8D" : " \xB7 \u5DF2\u5224\u5B9A") + '<select name="region" id="auto-region" required><option value="">\u8ACB\u78BA\u8A8D\u5730\u5340</option>' + opts(["\u96D9\u5317", "\u6843\u7AF9"], draft.region) + '</select><span class="p2-sub">' + esc(inference.regionReason) + "</span></label><label>\u985E\u5225" + (!draft.category ? " \xB7 \u9700\u4F60\u78BA\u8A8D" : " \xB7 \u5DF2\u5224\u5B9A") + '<select name="category" id="auto-category" required><option value="">\u8ACB\u78BA\u8A8D\u985E\u5225</option>' + opts(["\u5F31\u96FB\u7DAD\u8B77", "\u786C\u9AD4\u7DAD\u8B77"], draft.category) + '</select><span class="p2-sub">' + esc(inference.categoryReason) + '</span></label></div><div id="auto-proposal" style="margin-top:16px"></div><div class="p2-actions"><button id="auto-confirm" class="p2-btn" type="submit">\u78BA\u8A8D\u6D3E\u5DE5\u4E26\u52A0\u5165\u6708\u66C6</button><button type="button" class="p2-btn secondary" id="auto-back">\u8FD4\u56DE\u4FEE\u6539</button><button class="p2-btn secondary" type="button" data-p2="dialog-close">\u53D6\u6D88</button></div><p class="p2-sub" style="margin-top:14px">一般派工避開週末及國定假日；緊急派工不限假日與時段。\u9810\u4F30\u5DE5\u6642 ' + draft.hours + " \u5C0F\u6642\uFF0C\u4EA4\u901A\u7DE9\u885D " + draft.buffer + " \u5206\u9418\uFF1B\u50C5\u6AA2\u67E5\u672C\u9801\u5DF2\u5B89\u6392\u5DE5\u55AE\uFF0C\u4E0D\u8B80\u5BEB Google \u884C\u4E8B\u66C6\uFF1B\u78BA\u8A8D\u5F8C\u4EE5 LINE \u901A\u77E5\u5DF2\u7D81\u5B9A\u7684\u5DE5\u7A0B\u5E2B\u8207\u5BA2\u6236\u3002</p></form>";
+      dialog.innerHTML = '<h2>\u78BA\u8A8D\u6D3E\u5DE5\u5EFA\u8B70</h2><p class="p2-sub" style="margin:10px 0 18px">\u78BA\u8A8D\u5F8C\u624D\u6703\u5EFA\u7ACB\u5DE5\u55AE\uFF0C\u4E26\u653E\u5230\u884C\u4E8B\u66C6\u3002</p><div class="p2-note"><b>' + esc(draft.client) + "</b><br>" + esc(draft.note) + '</div><form id="auto-review"><div class="p2-form"><label>\u5730\u5340' + (!draft.region ? " \xB7 \u9700\u4F60\u78BA\u8A8D" : " \xB7 \u5DF2\u5224\u5B9A") + '<select name="region" id="auto-region" required><option value="">\u8ACB\u78BA\u8A8D\u5730\u5340</option>' + opts(["\u96D9\u5317", "\u6843\u7AF9"], draft.region) + '</select><span class="p2-sub">' + esc(inference.regionReason) + "</span></label><label>\u985E\u5225" + (!draft.category ? " \xB7 \u9700\u4F60\u78BA\u8A8D" : " \xB7 \u5DF2\u5224\u5B9A") + '<select name="category" id="auto-category" required><option value="">\u8ACB\u78BA\u8A8D\u985E\u5225</option>' + opts(["\u5F31\u96FB\u7DAD\u8B77", "\u786C\u9AD4\u7DAD\u8B77"], draft.category) + '</select><span class="p2-sub">' + esc(inference.categoryReason) + '</span></label></div><div id="auto-proposal" style="margin-top:16px"></div><div class="p2-actions"><button id="auto-confirm" class="p2-btn" type="submit">\u78BA\u8A8D\u6D3E\u5DE5\u4E26\u52A0\u5165\u6708\u66C6</button><button type="button" class="p2-btn secondary" id="auto-back">\u8FD4\u56DE\u4FEE\u6539</button><button class="p2-btn secondary" type="button" data-p2="dialog-close">\u53D6\u6D88</button></div><p class="p2-sub" style="margin-top:14px">\u4E00\u822C\u6D3E\u5DE5\u907F\u958B\u9031\u672B\u53CA\u570B\u5B9A\u5047\u65E5\uFF1B\u7DCA\u6025\u6D3E\u5DE5\u4E0D\u9650\u5047\u65E5\u8207\u6642\u6BB5\u300272 \u5C0F\u6642\u5167\u5B89\u6392\u3002\u9810\u4F30\u5DE5\u6642 ' + draft.hours + " \u5C0F\u6642\uFF0C\u4EA4\u901A\u7DE9\u885D " + draft.buffer + " \u5206\u9418\uFF1B\u50C5\u6AA2\u67E5\u672C\u9801\u5DF2\u5B89\u6392\u5DE5\u55AE\uFF0C\u4E0D\u8B80\u5BEB Google \u884C\u4E8B\u66C6\uFF1B\u78BA\u8A8D\u5F8C\u4EE5 LINE \u901A\u77E5\u5DF2\u7D81\u5B9A\u7684\u5DE5\u7A0B\u5E2B\u8207\u5BA2\u6236\u3002</p></form>";
       var f = dialog.querySelector("form");
       f.elements.region.value = draft.region;
       f.elements.category.value = draft.category;
@@ -426,7 +494,31 @@ function setupUrgentInput(dialog,draft){var note=dialog.querySelector('[name=not
         }
         var slot = list.find(function(k) {
           return k.start === choice;
-        }), j = { id: "D" + Date.now().toString(36).toUpperCase(), client: draft.client, note: draft.urgent && !draft.note.includes('緊急') ? '【緊急】' + draft.note : draft.note, region: draft.region, category: draft.category, engineer: draft.engineer, received: draft.received, hours: draft.hours, buffer: draft.buffer, start: slot ? slot.start : null, end: slot ? slot.end : null, date: slot ? localDate(new Date(slot.start)) : "", status: slot ? "\u5DF2\u6D3E\u5DE5" : "\u5F85\u6D3E\u5DE5", urgent: draft.urgent, history: [] };
+        }), j = { id: "D" + Date.now().toString(36).toUpperCase(), client: draft.client, note: draft.urgent && !draft.note.includes("\u7DCA\u6025") ? "\u3010\u7DCA\u6025\u3011" + draft.note : draft.note, region: draft.region, category: draft.category, engineer: draft.engineer, received: draft.received, hours: draft.hours, buffer: draft.buffer, start: slot ? slot.start : null, end: slot ? slot.end : null, date: slot ? localDate(new Date(slot.start)) : "", status: slot ? "\u5DF2\u6D3E\u5DE5" : "\u5F85\u6D3E\u5DE5", urgent: draft.urgent, history: [] };
+        if (prefill && prefill.onApprove) {
+          if (!slot) {
+            notify("\u7533\u8ACB\u6838\u51C6\u5FC5\u9808\u5148\u9078\u64C7\u53EF\u7528\u6642\u6BB5\u3002");
+            return;
+          }
+          history(j, "\u7D93\u7BA1\u7406\u8005\u78BA\u8A8D\u6D3E\u5DE5 " + stamp(j.start) + "\uFF0C" + j.engineer);
+          history(j, "\u7533\u8ACB\u4F86\u6E90\uFF1A" + prefill.source);
+          var confirmButton = dialog.querySelector("#auto-confirm");
+          confirmButton.disabled = true;
+          prefill.onApprove(j).then(function() {
+            JOBS.unshift(j);
+            dialog.close();
+            go("dispatch");
+            DSEL = j.id;
+            renderDispatch();
+            document.getElementById("p2-detail").scrollIntoView({ block: "start" });
+            notify("\u5DF2\u6838\u51C6\u4E26\u52A0\u5165\u884C\u4E8B\u66C6\u3002");
+            lineNotify({ event: "dispatch_confirmed", dispatchId: j.id });
+          }).catch(function(err) {
+            confirmButton.disabled = false;
+            notify("\u6838\u51C6\u5931\u6557\uFF1A" + (err.message || "\u8ACB\u91CD\u8A66"));
+          });
+          return;
+        }
         if (parent) {
           j.parent = parent.id;
           parent.status = "\u5F85\u518D\u8A2A";
@@ -549,6 +641,9 @@ function setupUrgentInput(dialog,draft){var note=dialog.querySelector('[name=not
     notify("\u5DE5\u55AE\u5DF2\u66F4\u65B0\uFF08\u8B8A\u66F4\u5F85\u540C\u6B65\uFF09\u3002");
     if (ev) lineNotify(ev);
   }
+  window.leyanReviewRequest = function(record, onApprove) {
+    newDialog(null, { client: record.client, note: record.note, source: { manual: "\u624B\u52D5", voice: "\u8A9E\u97F3", line: "LINE" }[record.source] || record.source, received: record.created_at, onApprove });
+  };
   var LINE = { inbox: [], contacts: [], stats: null, quota: null, codes: {}, error: "", loading: null, at: 0 };
   function lineApi() {
     return window.leyanLine && window.leyanLine.available ? window.leyanLine : null;
@@ -772,7 +867,7 @@ function setupUrgentInput(dialog,draft){var note=dialog.querySelector('[name=not
     });
     document.getElementById("content").innerHTML = '<div class="p2-head"><div><h2>\u6D3E\u5DE5\u884C\u4E8B\u66C6</h2><p class="p2-sub">\u78BA\u8A8D\u6D3E\u5DE5\u5F8C\u81EA\u52D5\u986F\u793A\uFF0C\u672A\u5B89\u6392\u7684\u65E5\u671F\u7559\u767D\u3002\u9EDE\u65E5\u671F\u770B\u7576\u65E5\u660E\u7D30\uFF0C\u9EDE\u6D3E\u5DE5\u958B\u555F\u5DE5\u55AE\u3002</p></div><button class="p2-btn" data-p2="dispatch">\u5B89\u6392\u6D3E\u5DE5 \u2192</button></div><div class="cal-controls"><h3 class="cal-heading">' + year + " \u5E74 " + (month + 1) + ' \u6708</h3><button data-cal-move="-1" aria-label="\u4E0A\u500B\u6708">\u2039</button><button data-cal-today>\u4ECA\u5929</button><button data-cal-move="1" aria-label="\u4E0B\u500B\u6708">\u203A</button><select id="p2-calreg" aria-label="\u6392\u7A0B\u5730\u5340">' + opts(["\u5168\u90E8", "\u96D9\u5317", "\u6843\u7AF9"], CALREG) + '</select><select id="cal-engineer" aria-label="\u6392\u7A0B\u5DE5\u7A0B\u5E2B">' + opts(["\u5168\u90E8"].concat(Object.values(ENGINEERS)), CALENGINEER) + '</select></div><div class="cal-shell"><div class="cal-week">' + ["\u65E5", "\u4E00", "\u4E8C", "\u4E09", "\u56DB", "\u4E94", "\u516D"].map(function(d) {
       return "<span>" + d + "</span>";
-    }).join("") + '</div><div class="cal-grid">' + cells + '</div></div><div class="cal-legend"><span><i></i>\u96D9\u5317</span><span><i class="peach"></i>\u6843\u7AF9</span><span>\u7070\u8272\uFF1A\u5DF2\u5B8C\u6210</span><span>\u672C\u6708 ' + visibleCount + ' \u4EF6</span><span>一般派工週末及國定假日不安排</span></div><section class="card cal-selected"><h3>' + esc(CALDAY.replace(/-/g, " / ")) + " \xB7 " + selected.length + " \u4EF6\u6D3E\u5DE5</h3>" + (selected.length ? selected.map(function(j) {
+    }).join("") + '</div><div class="cal-grid">' + cells + '</div></div><div class="cal-legend"><span><i></i>\u96D9\u5317</span><span><i class="peach"></i>\u6843\u7AF9</span><span>\u7070\u8272\uFF1A\u5DF2\u5B8C\u6210</span><span>\u672C\u6708 ' + visibleCount + ' \u4EF6</span><span>\u4E00\u822C\u6D3E\u5DE5\u9031\u672B\u53CA\u570B\u5B9A\u5047\u65E5\u4E0D\u5B89\u6392</span></div><section class="card cal-selected"><h3>' + esc(CALDAY.replace(/-/g, " / ")) + " \xB7 " + selected.length + " \u4EF6\u6D3E\u5DE5</h3>" + (selected.length ? selected.map(function(j) {
       return '<div class="cal-agenda-item"><div><b>' + hm(j.start) + "\u2013" + hm(j.end) + "\u3000" + esc(j.engineer) + '</b><div class="p2-sub">' + esc(j.client) + " \xB7 " + esc(j.region) + "\uFF0F" + esc(j.category) + " \xB7 " + esc(j.status) + '</div></div><button class="p2-btn secondary" data-job="' + esc(j.id) + '">\u67E5\u770B\u5DE5\u55AE</button></div>';
     }).join("") : '<p class="cal-empty">\u7576\u65E5\u5C1A\u7121\u5B89\u6392\u6D3E\u5DE5</p>') + '</section><p class="p2-sub" style="margin-top:14px">\u50C5\u986F\u793A\u76EE\u524D\u5E33\u865F\u5DF2\u78BA\u8A8D\u7684\u6D3E\u5DE5\uFF1B\u65B0\u589E\u5F85\u6D3E\u5DE5\u4E0D\u6703\u5148\u5360\u7528\u6708\u66C6\u3002\u53D6\u6D88\u5373\u79FB\u9664\uFF0C\u91CD\u65B0\u5B89\u6392\u6703\u79FB\u81F3\u65B0\u6642\u6BB5\u3002\u672A\u4E32\u63A5 Google \u884C\u4E8B\u66C6\u3002</p>';
     document.getElementById("p2-calreg").onchange = function(e) {
