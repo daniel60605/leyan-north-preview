@@ -344,6 +344,27 @@ document.body.innerHTML = '\n<aside class="sidebar" id="sidebar">\n  <div class=
   function normClient(t) {
     return String(t || "").toLowerCase().replace(/\s+/g, "").replace(/臺/g, "\u53F0");
   }
+  function inferLineClient(text) {
+    var raw = String(text || "").trim(), normalized = normClient(raw);
+    var names = Array.from(new Set(CUSTOMER_SEEDS.concat(CASES, JOBS).map(function(x) {
+      return String(x.client || "").trim();
+    }).filter(function(n) {
+      return normClient(n).length >= 2 && normalized.includes(normClient(n));
+    })));
+    var longest = names.filter(function(n) {
+      return !names.some(function(m) {
+        return n !== m && normClient(m).includes(normClient(n));
+      });
+    });
+    if (longest.length === 1) return longest[0];
+    if (longest.length > 1) return "";
+    var explicit = raw.match(/(?:客戶(?:名稱)?|店名|診所名稱)\s*[:：]\s*([^，,。；;\n]{2,40})/);
+    var before = raw.match(/^([^，,。；;\n]{2,30}?)(?:要|需要|來)?報修(?:[，,。；;\s]|$)/);
+    var first = raw.match(/^([^，,。；;\n]{2,30})[，,。；;\n]/);
+    var candidate = explicit && explicit[1] || before && before[1] || first && /(客戶|牙醫|診所|醫院|門市|公司|商行|餐廳|飯店|學校)$/.test(first[1].trim()) && first[1] || "";
+    candidate = String(candidate).trim().replace(/^(?:客戶|店名)\s*[:：]?\s*/, "").trim();
+    return candidate.length >= 2 && !/^(我要|我想|需要|有問題|您好|你好|測試)$/.test(candidate) ? candidate : "";
+  }
   function regionFromText(t) {
     var n = normClient(t), north = /台北|新北|雙北|板橋|三重|汐止|信義|大安|松山|士林|北投|中和|永和|新莊|土城|淡水|蘆洲/.test(n), south = /桃園|新竹|桃竹|中壢|竹北|八德|龜山|蘆竹|竹東|平鎮|楊梅|湖口|新豐/.test(n);
     return north === south ? "" : north ? "\u96D9\u5317" : "\u6843\u7AF9";
@@ -365,7 +386,7 @@ document.body.innerHTML = '\n<aside class="sidebar" id="sidebar">\n  <div class=
       region = regionFromText(client);
       why = region ? "\u4F9D\u5BA2\u6236\u540D\u7A31\u4E2D\u7684\u5730\u540D\u5224\u5B9A" : "\u5BA2\u6236\u7D00\u9304\u8207\u540D\u7A31\u672A\u63D0\u4F9B\u660E\u78BA\u5730\u5340";
     }
-    var weak = problem.match(/弱電|監視|攝影機|攝像|網路|網絡|網線|交換器|路由器|wifi|wi-fi|廣播|門禁|電話|音響|對講|讀卡|刷卡|伺服器|網際網路/gi) || [], hard = problem.match(/硬體|冷氣|空調|電梯|消防|水電|漏水|水管|馬桶|照明|燈具|燈泡|插座|配電|電源|鐵門|捲門|天花板|牆面|門鎖|排水|電箱/gi) || [];
+    var weak = problem.match(/弱電|監視|攝影機|攝像|網路|網絡|網線|交換器|路由器|wifi|wi-fi|廣播|門禁|電話|音響|喇叭|hdmi|對講|讀卡(?!機)|刷卡|網際網路/gi) || [], hard = problem.match(/硬體|電腦|主機|server|伺服器|服務器|電視|讀卡機|印表機|打印機|冷氣|空調|電梯|消防|水電|漏水|水管|馬桶|照明|燈具|燈泡|插座|配電|電源|鐵門|捲門|天花板|牆面|門鎖|排水|電箱/gi) || [];
     var category = "", catWhy = "";
     if (weak.length && !hard.length) {
       category = "\u5F31\u96FB\u7DAD\u8B77";
@@ -818,7 +839,7 @@ document.body.innerHTML = '\n<aside class="sidebar" id="sidebar">\n  <div class=
       var cus = LINE.contacts.find(function(x) {
         return x.line_user_id === m.line_user_id && x.role === "customer";
       });
-      newDialog(null, { client: cus ? cus.ref_name : "", note: String(m.text || "").slice(0, 1e3), source: "LINE \u5831\u4FEE\uFF08" + (m.display_name || "LINE \u4F7F\u7528\u8005") + "\uFF09", onCreated: function(j, ev) {
+      newDialog(null, { client: cus ? cus.ref_name : inferLineClient(m.text), note: String(m.text || "").slice(0, 1e3), source: "LINE \u5831\u4FEE\uFF08" + (m.display_name || "LINE \u4F7F\u7528\u8005") + "\uFF09", onCreated: function(j, ev) {
         api.convertInbox(m.id, j.id, j.client).then(function() {
           LINE.inbox = LINE.inbox.filter(function(x) {
             return x.id !== m.id;
