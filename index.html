@@ -87,6 +87,8 @@ td{padding:10px 14px;border-bottom:1px solid #f8fafc;vertical-align:middle} tr:l
 
 .cal-controls{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:15px}.cal-heading{font-size:20px;margin-right:auto;white-space:nowrap}.cal-controls button{border:1px solid #cbd5e1;border-radius:6px;padding:8px 12px;background:white}.cal-controls select{border:1px solid #cbd5e1;border-radius:6px;padding:9px;background:white;font:inherit;max-width:100%}.cal-shell{background:white;border:1px solid #e2e8f0;border-radius:10px;overflow:hidden}.cal-week,.cal-grid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr))}.cal-week span{font-size:12px;font-weight:600;text-align:center;padding:12px 0;background:#f8fafc;border-bottom:1px solid #e2e8f0;color:#64748b}.cal-day{min-height:138px;padding:8px;min-width:0;border-right:1px solid #e2e8f0;border-bottom:1px solid #e2e8f0;background:white}.cal-day:nth-child(7n){border-right:0}.cal-day.other-month{background:#f8fafc}.cal-day.other-month .cal-date{color:#94a3b8}.cal-day.saturday{background:#fafafa}.cal-day.selected{background:#eff6ff}.cal-date{font-size:13px;color:#334155;padding:4px 7px;border-radius:50%;min-width:28px;min-height:28px}.cal-date.today{color:white;background:#2563eb;font-weight:700}.cal-event{display:block;text-align:left;width:100%;padding:6px 7px;margin-top:5px;background:#eff6ff;color:#1d4ed8;border-left:3px solid #2563eb;border-radius:4px;font-size:11px;line-height:1.5;min-width:0}.cal-event.region-peach{background:#f0fdfa;color:#0f766e;border-left-color:#0d9488}.cal-event.finished{background:#f1f5f9;color:#64748b;border-left-color:#94a3b8}.cal-event span{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.cal-event .cal-time{font-size:10px;font-weight:700}.cal-selected{margin-top:18px;padding:20px}.cal-agenda-item{display:flex;justify-content:space-between;gap:12px;border-bottom:1px solid #e2e8f0;padding:14px 0;align-items:center}.cal-agenda-item:last-child{border-bottom:0}.cal-legend{display:flex;gap:16px;font-size:12px;color:#64748b;margin-top:12px;flex-wrap:wrap}.cal-legend i{display:inline-block;width:8px;height:8px;background:#2563eb;border-radius:50%;margin-right:4px}.cal-legend .peach{background:#0d9488}.cal-empty{font-size:13px;color:#64748b;padding:18px 0}.cal-selected h3{font-size:16px}button:focus-visible{outline:2px solid #2563eb;outline-offset:2px}@media(max-width:600px){.cal-day{min-height:104px;padding:3px 2px}.cal-event{font-size:10px;padding:4px 2px;border-left-width:2px}.cal-event .cal-customer{display:none}.cal-event .cal-time{font-size:9px}.cal-week span{font-size:11px}.cal-date{font-size:12px;padding:4px;min-width:25px;min-height:25px}.cal-controls{gap:6px}.cal-controls select{flex:1;min-width:110px}.cal-heading{font-size:18px}.cal-selected{padding:14px}.cal-agenda-item{align-items:flex-start}.cal-legend{gap:10px}.cal-controls button{padding:8px 10px}}
 
+
+.content,.detail-panel{min-width:0}.detail-header{gap:12px;flex-wrap:wrap}.detail-header>div{min-width:0}.detail-header>div:last-child{flex-wrap:wrap}.detail-title,.detail-id,.note-box,.case-num{overflow-wrap:anywhere}.stage-timeline{max-width:100%}.pay-box{min-width:0}.pay-amount{overflow-wrap:anywhere}.p2-form label{min-width:0}.case-right{max-width:44%}@media(max-width:600px){.detail-panel{padding:16px}.payment-row{display:grid;grid-template-columns:minmax(0,1fr)}.case-card{padding:12px;gap:9px}.case-num{width:36px;font-size:10px}.case-amt{overflow-wrap:anywhere}.case-sub{overflow-wrap:anywhere}.detail-title{font-size:16px}}
 </style>
 </head>
 <body>
@@ -196,8 +198,8 @@ function renderDashboard(){
   var today=localDate(new Date());
   var td=DISPATCH.filter(function(d){return d.date===today;});
   var active=CASES.filter(function(c){return c.status!=="結案";}).length;
-  var pendPay=CASES.filter(function(c){return !c.balancePaid&&c.amount!==null;});
-  var pendAmt=pendPay.reduce(function(s,c){return s+(c.balance||0);},0);
+  var pendPay=CASES.filter(function(c){return caseDue(c)>0;});
+  var pendAmt=pendPay.reduce(function(s,c){return s+caseDue(c);},0);
   var closed=CASES.filter(function(c){return c.status==="結案";}).length;
 
   var stats="<div class=stats-row>"
@@ -208,7 +210,7 @@ function renderDashboard(){
     +"<div class=stat-sub>施工中 "+CASES.filter(function(c){return c.status==="施工";}).length+" · 驗收 "+CASES.filter(function(c){return c.status==="驗收";}).length+"</div></div>"
     +"<div class=stat-icon style=background:#f5f3ff>📁</div></div></div>"
     +"<div class=stat-card><div class=stat-top><div><div class=stat-num style=font-size:17px>"+fmt(pendAmt)+"</div><div class=stat-label>待收款合計</div>"
-    +"<div class=stat-sub>"+pendPay.length+" 件未收尾款</div></div>"
+    +"<div class=stat-sub>"+pendPay.length+" 件待收款（含訂金／尾款）</div></div>"
     +"<div class=stat-icon style=background:#fffbeb>💰</div></div></div>"
     +"<div class=stat-card><div class=stat-top><div><div class=stat-num>"+closed+"</div><div class=stat-label>累計結案</div>"
     +"<div class=stat-sub>台北 · 新北 · 桃竹</div></div>"
@@ -228,15 +230,10 @@ function renderDashboard(){
     +"<div class=table-wrap><table><thead><tr><th>客戶</th><th>地區</th><th>類別</th><th>工程師</th><th>狀態</th></tr></thead>"
     +"<tbody>"+dr+"</tbody></table></div></div>";
 
-  var todos=[
-    {dot:"#06b6d4",txt:"桃園中壢百貨商場 — 驗收",sub:"請聯絡李店長確認驗收日期"},
-    {dot:"#f59e0b",txt:"新北三重診所 — 尾款 NT$315,000",sub:"已驗收，待尾款入帳後結案"},
-    {dot:"#8b5cf6",txt:"新竹竹北廠辦 — 合約已簽",sub:"確認收訂金時間，安排材料採購"},
-    {dot:"#10b981",txt:"桃園八德物流 — 訂金入帳",sub:"11/15 開工，確認工程師到場時間"}
-  ];
+  var todos=CASES.filter(function(c){return caseDue(c)>0||c.status!=="結案";}).slice(0,4).map(function(c){return {dot:(STATUS_MAP[c.status]||{}).color||"#64748b",txt:c.client+" — "+c.status,sub:c.amount==null?"總金額未定":caseDue(c)>0?"待收款 "+fmt(caseDue(c)):"目前無待收款"};});
   var todoHtml=todos.map(function(t){
     return "<div class=todo-item><div class=todo-dot style=background:"+t.dot+"></div>"
-      +"<div><div class=todo-txt>"+t.txt+"</div><div class=todo-sub>"+t.sub+"</div></div></div>";
+      +"<div><div class=todo-txt>"+esc(t.txt)+"</div><div class=todo-sub>"+esc(t.sub)+"</div></div></div>";
   }).join("");
 
   var todoCard="<div class=card>"
@@ -245,10 +242,10 @@ function renderDashboard(){
 
   var recent=CASES.filter(function(c){return c.status!=="結案";}).slice(0,5);
   var ri=recent.map(function(c){
-    return "<div class=case-card data-case="+c.id+">"
-      +"<div class=case-info><div class=case-name>"+c.client+"</div><div class=case-sub>"+c.type+"</div>"+sbar(c.statusIdx)+"</div>"
+    return "<div class=case-card data-case="+esc(c.id)+">"
+      +"<div class=case-info><div class=case-name>"+esc(c.client)+"</div><div class=case-sub>"+esc(c.type)+"</div>"+sbar(c.statusIdx)+"</div>"
       +"<div class=case-right><div>"+badge(c.status)+"</div>"
-      +"<div class=case-amt style=margin-top:4px>"+(c.amount?"NT$"+(c.amount/10000).toFixed(0)+"萬":"—")+"</div></div></div>";
+      +"<div class=case-amt style=margin-top:4px>"+(c.amount!=null?"NT$"+(c.amount/10000).toFixed(0)+"萬":"—")+"</div></div></div>";
   }).join("");
 
   var caseCard="<div class=card>"
@@ -272,10 +269,10 @@ function renderCases(){
 
   var filtered=FILTER==="all"?CASES:CASES.filter(function(c){return c.status===FILTER;});
   var items=filtered.map(function(c){
-    return "<div class='case-card"+(SEL===c.id?" selected":"")+"' data-case="+c.id+">"
-      +"<div class=case-num>"+c.id+"</div>"
-      +"<div class=case-info><div class=case-name>"+c.client+"</div>"
-      +"<div class=case-sub>"+c.type+" · "+c.contact+"</div>"
+    return "<div class='case-card"+(SEL===c.id?" selected":"")+"' data-case="+esc(c.id)+">"
+      +"<div class=case-num>"+esc(c.id)+"</div>"
+      +"<div class=case-info><div class=case-name>"+esc(c.client)+"</div>"
+      +"<div class=case-sub>"+esc(c.type)+" · "+esc(c.contact)+"</div>"
       +sbar(c.statusIdx)+"</div>"
       +"<div class=case-right><div>"+badge(c.status)+"</div>"
       +"<div class=case-amt style=margin-top:5px>"+fmt(c.amount)+"</div>"
@@ -287,7 +284,7 @@ function renderCases(){
 
   document.getElementById("content").innerHTML=
     "<div class=section-hd style=margin-bottom:12px><span class=section-title>業務案件</span>"
-    +"<button class=btn-primary>＋ 新增案件</button></div>"
+    +"<button class=btn-primary data-case-new>＋ 新增案件</button></div>"
     +"<div class=filter-tabs>"+tabs+"</div>"
     +"<div class=card style=overflow:visible><div class=case-list>"+items+"</div></div>"
     +detail;
@@ -307,26 +304,27 @@ function renderDetail(c){
 
   return "<div class=detail-panel>"
     +"<div class=detail-header>"
-    +"<div><div class=detail-title>"+c.client+"</div><div class=detail-id>"+c.id+" · "+c.type+"</div></div>"
+    +"<div><div class=detail-title>"+esc(c.client)+"</div><div class=detail-id>"+esc(c.id)+" · "+esc(c.type)+"</div></div>"
     +"<div style=display:flex;gap:8px;align-items:center>"+badge(c.status)
-    +"<button class=close-btn data-close-detail=1>✕</button></div></div>"
+    +"<button class=btn-sm data-case-edit="+esc(c.id)+">編輯案件</button><button class=close-btn data-close-detail=1>✕</button></div></div>"
     +"<div class=stage-timeline>"+tl+"</div>"
     +"<div class=detail-grid>"
-    +"<div class=info-item><label>聯絡人</label><span>"+c.contact+"</span></div>"
-    +"<div class=info-item><label>電話</label><span>"+c.phone+"</span></div>"
-    +"<div class=info-item><label>地址</label><span>"+c.address+"</span></div>"
+    +"<div class=info-item><label>聯絡人</label><span>"+esc(c.contact)+"</span></div>"
+    +"<div class=info-item><label>電話</label><span>"+esc(c.phone)+"</span></div>"
+    +"<div class=info-item><label>地址</label><span>"+esc(c.address)+"</span></div>"
     +"<div class=info-item><label>施工期間</label><span>"+fmtD(c.start)+" — "+fmtD(c.end)+"</span></div>"
     +"</div>"
     +"<div class=payment-row>"
-    +"<div class='pay-box "+(c.depositPaid?"paid":"pending")+"'><div class=pay-label>訂金 (30%)</div><div class=pay-amount>"+fmt(c.deposit)+"</div>"
+    +"<div class='pay-box "+(c.depositPaid?"paid":"pending")+"'><div class=pay-label>訂金</div><div class=pay-amount>"+fmt(c.deposit)+"</div>"
     +"<div class=pay-status style=color:"+(c.depositPaid?"#10b981":"#d97706")+">"+(c.depositPaid?"✓ 已入帳":"⏳ 待入帳")+"</div></div>"
-    +"<div class='pay-box "+(c.balancePaid?"paid":"pending")+"'><div class=pay-label>尾款 (70%)</div><div class=pay-amount>"+fmt(c.balance)+"</div>"
+    +"<div class='pay-box "+(c.balancePaid?"paid":"pending")+"'><div class=pay-label>尾款</div><div class=pay-amount>"+fmt(c.balance)+"</div>"
     +"<div class=pay-status style=color:"+(c.balancePaid?"#10b981":"#d97706")+">"+(c.balancePaid?"✓ 已入帳":"⏳ 待入帳")+"</div></div>"
     +"<div class=pay-box><div class=pay-label>合約總額</div><div class=pay-amount>"+fmt(c.amount)+"</div>"
     +"<div class=pay-status style=color:#64748b>含工料全額</div></div>"
     +"</div>"
+    +"<div class=note-box style=margin-bottom:14px>已收款："+fmt(c.amount==null?null:caseReceived(c))+"　待收款："+fmt(c.amount==null?null:caseDue(c))+(c.status==="結案"&&caseDue(c)>0?"　（案件已結案，仍有款項待收）":"")+"</div>"
     +"<div class=pay-label style=margin-bottom:6px>備注</div>"
-    +"<div class=note-box>"+c.note+"</div>"
+    +"<div class=note-box>"+esc(c.note)+"</div>"
     +"</div>";
 }
 
@@ -394,6 +392,22 @@ document.getElementById('p2-calreg').onchange=function(e){CALREG=e.target.value;
 document.addEventListener('click',function(e){var move=e.target.closest('[data-cal-move]');if(move){CALMONTH=new Date(CALMONTH.getFullYear(),CALMONTH.getMonth()+Number(move.dataset.calMove),1);CALDAY=localDate(CALMONTH);renderSchedule();return;}if(e.target.closest('[data-cal-today]')){var now=new Date();CALMONTH=new Date(now.getFullYear(),now.getMonth(),1);CALDAY=localDate(now);renderSchedule();return;}var day=e.target.closest('[data-cal-date]');if(day){CALDAY=day.dataset.calDate;renderSchedule();return;}var show=e.target.closest('[data-job-calendar]');if(show){var j=JOBS.find(function(k){return k.id===show.dataset.jobCalendar;});if(!j||!j.start)return;var d=new Date(j.start);CALMONTH=new Date(d.getFullYear(),d.getMonth(),1);CALDAY=localDate(d);CALREG=CALENGINEER='全部';go('calendar');}});
 
 document.addEventListener('click',function(e){var job=e.target.closest('[data-job]');if(job){go('dispatch');DSEL=job.dataset.job;renderDispatch();document.getElementById('p2-detail').scrollIntoView({block:'start'});return;}var a=e.target.closest('[data-action]');if(a){action(a.dataset.action);return;}var p=e.target.closest('[data-p2]');if(!p)return;var type=p.dataset.p2;if(type==='new')newDialog();else if(type==='close'){DSEL=null;renderDispatch();}else if(type==='dialog-close')document.getElementById('p2-dialog').close();else if(type==='calendar')go('calendar');else if(type==='dispatch')go('dispatch');});
+
+// Editable business cases; kept separate from dispatch browser records.
+var CASEKEY='leyan-cases-demo-v1';
+function caseDue(c){if(c.amount==null)return 0;return (c.depositPaid?0:Number(c.deposit)||0)+(c.balancePaid?0:Number(c.balance)||0);}
+function caseReceived(c){if(c.amount==null)return 0;return (c.depositPaid?Number(c.deposit)||0:0)+(c.balancePaid?Number(c.balance)||0:0);}
+function saveCases(){try{localStorage.setItem(CASEKEY,JSON.stringify(CASES));}catch(e){notify('瀏覽器無法儲存案件，變更只保留至重新整理前。');}}
+function initCases(){try{var list=JSON.parse(localStorage.getItem(CASEKEY));if(Array.isArray(list)&&list.every(function(c){return c&&typeof c.id==='string'&&/^[A-Za-z0-9_-]+$/.test(c.id)&&typeof c.client==='string'&&STAGES.includes(c.status)&&(c.amount==null||Number.isSafeInteger(c.amount)&&c.amount>=0)&&Number.isSafeInteger(c.deposit)&&c.deposit>=0&&(c.balance==null||Number.isSafeInteger(c.balance)&&c.balance>=0);}))CASES=list;}catch(e){}CASES.forEach(function(c){c.statusIdx=STAGES.indexOf(c.status);});}
+function caseEditor(id){var c=id?CASES.find(function(x){return x.id===id;}):null;if(id&&!c)return;var old=document.getElementById('case-dialog');if(old)old.remove();var dialog=document.createElement('dialog');dialog.id='case-dialog';dialog.className='p2-dialog';dialog.setAttribute('aria-label',c?'編輯案件':'新增案件');var v=c||{client:'',type:'',status:'洽談',amount:null,deposit:null,balance:null,depositPaid:false,balancePaid:false,note:''};dialog.innerHTML='<h2>'+(c?'編輯案件 · '+esc(c.id):'新增案件')+'</h2><p class="p2-sub" style="margin:10px 0 18px">修改案件進度及收款資料，儲存後同步更新列表與儀表板。</p><form id="case-form"><div class="p2-form"><label class="p2-wide">客戶／案件名稱 *<input name="caseClient" required maxlength="100" value="'+esc(v.client)+'"></label><label>案件類別<input name="caseType" maxlength="60" placeholder="例如：設備安裝" value="'+esc(v.type)+'"></label><label>目前狀態 *<select name="caseStage">'+opts(STAGES,v.status)+'</select></label><label>總金額（NT$）<input name="caseAmount" type="number" min="0" max="999999999999" step="1" placeholder="金額未定可留空" value="'+(v.amount==null?'':v.amount)+'"></label><label>訂金（NT$）<input name="caseDeposit" type="number" min="0" max="999999999999" step="1" value="'+(v.deposit==null?'':v.deposit)+'"></label><label>尾款（NT$）<input name="caseBalance" type="number" min="0" max="999999999999" step="1" value="'+(v.balance==null?'':v.balance)+'"></label><label>訂金狀態<select name="depositState">'+opts(['待收款','已收款'],v.depositPaid?'已收款':'待收款')+'</select></label><label>尾款狀態<select name="balanceState">'+opts(['待收款','已收款'],v.balancePaid?'已收款':'待收款')+'</select></label><label class="p2-wide">備註<textarea name="caseNote" rows="3" maxlength="2000">'+esc(v.note)+'</textarea></label></div><p class="p2-sub" style="margin-top:12px">訂金不限定比例。調整總額或訂金時會重算尾款；也可自行修改，儲存時會檢查「訂金＋尾款＝總金額」。金額以新台幣整數元計。</p><div id="case-summary" class="p2-note" style="margin-top:12px"></div><p id="case-error" role="alert" style="color:#b91c1c;margin-top:12px"></p><div class="p2-actions"><button class="p2-btn" type="submit">儲存案件</button><button class="p2-btn secondary" type="button" id="case-cancel">取消</button></div><p class="p2-sub" style="margin-top:12px">原型僅儲存在目前瀏覽器，請勿填寫真實個資。</p></form>';document.body.appendChild(dialog);var f=dialog.querySelector('form'),error=dialog.querySelector('#case-error');
+function numbers(){return {amount:f.elements.caseAmount.value===''?null:Number(f.elements.caseAmount.value),deposit:Number(f.elements.caseDeposit.value||0),balance:f.elements.caseBalance.value===''?null:Number(f.elements.caseBalance.value),depositPaid:f.elements.depositState.value==='已收款',balancePaid:f.elements.balanceState.value==='已收款'};}
+function summary(){var n=numbers();error.textContent='';if(n.amount==null){dialog.querySelector('#case-summary').textContent='總金額尚未確定，待確認後可再次編輯。';return;}var balance=n.balance==null?n.amount-n.deposit:n.balance;var money={amount:n.amount,deposit:n.deposit,balance:balance,depositPaid:n.depositPaid,balancePaid:n.balancePaid};dialog.querySelector('#case-summary').textContent=n.deposit+balance!==n.amount?'金額不一致：請確認訂金與尾款合計。':'已收款 '+fmt(caseReceived(money))+' ／ 待收款 '+fmt(caseDue(money));}
+function recalc(){var n=numbers();if(n.amount!=null&&n.amount>=n.deposit)f.elements.caseBalance.value=String(n.amount-n.deposit);summary();}f.elements.caseAmount.oninput=recalc;f.elements.caseDeposit.oninput=recalc;f.elements.caseBalance.oninput=summary;f.elements.depositState.onchange=summary;f.elements.balanceState.onchange=summary;dialog.querySelector('#case-cancel').onclick=function(){dialog.close();};
+f.onsubmit=function(e){e.preventDefault();var n=numbers(),client=f.elements.caseClient.value.trim();if(!client){error.textContent='請輸入客戶／案件名稱。';return;}if(n.amount==null){if(n.deposit>0||(n.balance||0)>0||n.depositPaid||n.balancePaid){error.textContent='請先填寫總金額，才能設定款項或已收款狀態。';return;}n.deposit=0;n.balance=null;}else{if(n.balance==null)n.balance=n.amount-n.deposit;if(![n.amount,n.deposit,n.balance].every(function(x){return Number.isSafeInteger(x)&&x>=0&&x<=999999999999;})){error.textContent='金額請填寫有效的非負整數。';return;}if(n.deposit+n.balance!==n.amount){error.textContent='訂金加尾款必須等於總金額，請調整後再儲存。';return;}}
+var status=f.elements.caseStage.value,record=c||{id:'C'+Date.now().toString(36).toUpperCase()+Math.random().toString(36).slice(2,5).toUpperCase(),contact:'',phone:'',address:'',start:null,end:null,history:[]};var prior=c?{status:c.status,amount:c.amount,deposit:c.deposit,balance:c.balance,depositPaid:c.depositPaid,balancePaid:c.balancePaid}:null;Object.assign(record,n,{client:client,type:f.elements.caseType.value.trim()||'一般案件',note:f.elements.caseNote.value.trim(),status:status,statusIdx:STAGES.indexOf(status),updatedAt:new Date().toISOString()});record.history=record.history||[];record.history.push({at:record.updatedAt,text:c?'更新案件狀態／金額／收款資料':'建立案件',before:prior});if(!c)CASES.unshift(record);saveCases();dialog.close();go('cases');FILTER='all';SEL=record.id;renderCases();notify('案件已儲存，進度與收款統計已更新（僅本機）。');};summary();dialog.showModal();}
+document.addEventListener('click',function(e){var add=e.target.closest('[data-case-new]');if(add){caseEditor();return;}var edit=e.target.closest('[data-case-edit]');if(edit)caseEditor(edit.dataset.caseEdit);});
+initCases();
+
 initJobs();
 
 // ── INIT ─────────────────────────────────────────────────────────────
