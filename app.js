@@ -1,9 +1,9 @@
 // app-entry.generated.mjs
 var css = document.createElement("link");
 css.rel = "stylesheet";
-css.href = "app.css?v=396f5a55de";
+css.href = "app.css?v=a4c29455c2";
 document.head.appendChild(css);
-document.body.innerHTML = '\n<aside class="sidebar" id="sidebar">\n  <div class="sb-logo">\n    <div class="sb-dots"><div class="sb-dot" style="background:#f59e0b"></div><div class="sb-dot" style="background:#3b82f6"></div></div>\n    <div class="sb-brand">\u6A02\u884D <small>\u5317\u5340\u5DE5\u4F5C\u7BA1\u7406</small></div>\n  </div>\n  <nav>\n    <div class="nav-item" data-page="dashboard"><span class="nav-icon">\u{1F4CA}</span> \u5100\u8868\u677F</div>\n    <div class="nav-item" data-page="cases"><span class="nav-icon">\u{1F4C1}</span> \u696D\u52D9\u6848\u4EF6</div>\n    <div class="nav-item" data-page="dispatch"><span class="nav-icon">\u{1F527}</span> \u5831\u4FEE\u6D3E\u5DE5</div>\n    <div class="nav-item" data-page="calendar"><span class="nav-icon">\u{1F4C5}</span> \u884C\u4E8B\u66C6</div>\n    <div class="nav-item" data-page="line"><span class="nav-icon">\u{1F4AC}</span> LINE \u8A2D\u5B9A<span class="line-badge" id="line-nav-badge" hidden></span></div>\n    <div class="nav-item" data-page="settings"><span class="nav-icon">\u2699\uFE0F</span> \u7BA1\u7406\u8CC7\u6599</div>\n  </nav>\n  <div class="sb-footer"><div>\u4E92\u52D5\u539F\u578B \xB7 \u7B2C\u4E8C\u968E\u6BB5</div><div style="color:#3b82f6;margin-top:2px">v2.0 \xB7 \u672C\u6A5F\u793A\u7BC4</div></div>\n</aside>\n<div class="overlay" id="overlay"></div>\n<div class="app">\n  <header class="topbar">\n    <button class="menu-btn" id="menuBtn">\u2630</button>\n    <div class="page-title" id="pageTitle">\u5100\u8868\u677F</div>\n    <div style="display:flex;align-items:center;gap:10px;margin-left:auto">\n      <span class="date-chip" id="todayDate"></span>\n      <span class="user-pill">\u5317\u5340\u7D93\u7406</span>\n    </div>\n  </header>\n  <div style="padding:10px 24px;background:#fff7ed;color:#9a3412;font-size:13px">\u5DE5\u4F5C\u7BA1\u7406\uFF5C\u8CC7\u6599\u4F9D\u767B\u5165\u5E33\u865F\u4FDD\u5B58\u5728\u96F2\u7AEF\uFF1B\u672A\u4E32\u63A5Google\u884C\u4E8B\u66C6\u3002LINE\u901A\u77E5\u8ACB\u65BC\u300CLINE \u8A2D\u5B9A\u300D\u7D81\u5B9A\u3002</div><div class="content" id="content"></div>\n</div>\n';
+document.body.innerHTML = '\n<aside class="sidebar" id="sidebar">\n  <div class="sb-logo">\n    <div class="sb-dots"><div class="sb-dot" style="background:#f59e0b"></div><div class="sb-dot" style="background:#3b82f6"></div></div>\n    <div class="sb-brand">\u6A02\u884D <small>\u5317\u5340\u5DE5\u4F5C\u7BA1\u7406</small></div>\n  </div>\n  <nav>\n    <div class="nav-item" data-page="dashboard"><span class="nav-icon">\u{1F4CA}</span> \u6D3E\u5DE5\u7E3D\u89BD</div>\n    \n    <div class="nav-item" data-page="dispatch"><span class="nav-icon">\u{1F527}</span> \u5831\u4FEE\u6D3E\u5DE5</div>\n    <div class="nav-item" data-page="calendar"><span class="nav-icon">\u{1F4C5}</span> \u884C\u4E8B\u66C6</div>\n    <div class="nav-item" data-page="line"><span class="nav-icon">\u{1F4AC}</span> LINE \u8A2D\u5B9A<span class="line-badge" id="line-nav-badge" hidden></span></div>\n    <div class="nav-item" data-page="settings"><span class="nav-icon">\u{1F465}</span> \u4EBA\u54E1\u540D\u55AE</div>\n  </nav>\n  <div class="sb-footer"><div>\u4E92\u52D5\u539F\u578B \xB7 \u7B2C\u4E8C\u968E\u6BB5</div><div style="color:#3b82f6;margin-top:2px">v2.0 \xB7 \u672C\u6A5F\u793A\u7BC4</div></div>\n</aside>\n<div class="overlay" id="overlay"></div>\n<div class="app">\n  <header class="topbar">\n    <button class="menu-btn" id="menuBtn">\u2630</button>\n    <div class="page-title" id="pageTitle">\u5100\u8868\u677F</div>\n    <div style="display:flex;align-items:center;gap:10px;margin-left:auto">\n      <span class="date-chip" id="todayDate"></span>\n      <span class="user-pill">\u5317\u5340\u7D93\u7406</span>\n    </div>\n  </header>\n  <div style="padding:10px 24px;background:#fff7ed;color:#9a3412;font-size:13px">\u5DE5\u4F5C\u7BA1\u7406\uFF5C\u8CC7\u6599\u4F9D\u767B\u5165\u5E33\u865F\u4FDD\u5B58\u5728\u96F2\u7AEF\uFF1B\u672A\u4E32\u63A5Google\u884C\u4E8B\u66C6\u3002LINE\u901A\u77E5\u8ACB\u65BC\u300CLINE \u8A2D\u5B9A\u300D\u7D81\u5B9A\u3002</div><div class="content" id="content"></div>\n</div>\n';
 (function() {
   var CASES = [];
   var DISPATCH = [];
@@ -85,114 +85,397 @@ document.body.innerHTML = '\n<aside class="sidebar" id="sidebar">\n  <div class=
   function go(page) {
     PAGE = page;
     SEL = null;
+    PREVEAL = {};
     document.querySelectorAll(".nav-item").forEach(function(el) {
       el.classList.toggle("active", el.dataset.page === page);
     });
-    var t = { dashboard: "\u5100\u8868\u677F", cases: "\u696D\u52D9\u6848\u4EF6", dispatch: "\u5831\u4FEE\u6D3E\u5DE5", calendar: "\u884C\u4E8B\u66C6", line: "LINE \u8A2D\u5B9A", settings: "\u7BA1\u7406\u8CC7\u6599" };
+    var t = { dashboard: "\u6D3E\u5DE5\u7E3D\u89BD", dispatch: "\u5831\u4FEE\u6D3E\u5DE5", calendar: "\u884C\u4E8B\u66C6", line: "LINE \u8A2D\u5B9A", settings: "\u4EBA\u54E1\u540D\u55AE" };
     document.getElementById("pageTitle").textContent = t[page] || page;
     document.getElementById("sidebar").classList.remove("open");
     document.getElementById("overlay").classList.remove("show");
     render();
     window.scrollTo(0, 0);
   }
-  function renderDashboard() {
-    var today = localDate(/* @__PURE__ */ new Date());
-    var td = DISPATCH.filter(function(d) {
-      return d.date === today;
-    });
-    var active = CASES.filter(function(c) {
-      return c.status !== "\u7D50\u6848";
-    }).length;
-    var pendPay = CASES.filter(function(c) {
-      return caseDue(c) > 0;
-    });
-    var pendAmt = pendPay.reduce(function(s, c) {
-      return s + caseDue(c);
-    }, 0);
-    var closed = CASES.filter(function(c) {
-      return c.status === "\u7D50\u6848";
-    }).length;
-    var stats = "<div class=stats-row><div class=stat-card><div class=stat-top><div><div class=stat-num>" + td.length + "</div><div class=stat-label>\u4ECA\u65E5\u6D3E\u5DE5</div><div class=stat-sub>\u96D9\u5317 " + td.filter(function(d) {
-      return d.region === "\u96D9\u5317";
-    }).length + " \xB7 \u6843\u7AF9 " + td.filter(function(d) {
-      return d.region === "\u6843\u7AF9";
-    }).length + "</div></div><div class=stat-icon style=background:#eff6ff>\u{1F527}</div></div></div><div class=stat-card><div class=stat-top><div><div class=stat-num>" + active + "</div><div class=stat-label>\u9032\u884C\u4E2D\u6848\u4EF6</div><div class=stat-sub>\u65BD\u5DE5\u4E2D " + CASES.filter(function(c) {
-      return c.status === "\u65BD\u5DE5";
-    }).length + " \xB7 \u9A57\u6536 " + CASES.filter(function(c) {
-      return c.status === "\u9A57\u6536";
-    }).length + "</div></div><div class=stat-icon style=background:#f5f3ff>\u{1F4C1}</div></div></div><div class=stat-card><div class=stat-top><div><div class=stat-num style=font-size:17px>" + fmt(pendAmt) + "</div><div class=stat-label>\u5F85\u6536\u6B3E\u5408\u8A08</div><div class=stat-sub>" + pendPay.length + " \u4EF6\u5F85\u6536\u6B3E\uFF08\u542B\u8A02\u91D1\uFF0F\u5C3E\u6B3E\uFF09</div></div><div class=stat-icon style=background:#fffbeb>\u{1F4B0}</div></div></div><div class=stat-card><div class=stat-top><div><div class=stat-num>" + closed + "</div><div class=stat-label>\u7D2F\u8A08\u7D50\u6848</div><div class=stat-sub>\u53F0\u5317 \xB7 \u65B0\u5317 \xB7 \u6843\u7AF9</div></div><div class=stat-icon style=background:#f0fdf4>\u2705</div></div></div></div>";
-    var dr = td.map(function(d) {
-      return "<tr><td><strong>" + esc(d.client) + "</strong><div style=font-size:11px;color:#94a3b8>" + esc((d.address || "").substring(0, 18)) + "</div></td><td><span class=badge style=background:#f1f5f9;color:#334155>" + d.region + "</span></td><td>" + d.category + "</td><td><strong>" + esc(d.engineer) + "</strong></td><td>" + dbadge(d.status) + "</td></tr>";
-    }).join("");
-    if (!dr) dr = "<tr><td colspan=5 style=text-align:center;color:#94a3b8;padding:24px>\u4ECA\u65E5\u7121\u6D3E\u5DE5\u8A18\u9304</td></tr>";
-    var tbl = "<div class=card><div class=section-hd style=padding:14px_18px_0><span class=section-title>\u4ECA\u65E5\u6D3E\u5DE5</span><button class=btn-sm data-nav=dispatch>\u67E5\u770B\u5168\u90E8 \u2192</button></div><div class=table-wrap><table><thead><tr><th>\u5BA2\u6236</th><th>\u5730\u5340</th><th>\u985E\u5225</th><th>\u5DE5\u7A0B\u5E2B</th><th>\u72C0\u614B</th></tr></thead><tbody>" + dr + "</tbody></table></div></div>";
-    var todos = CASES.filter(function(c) {
-      return caseDue(c) > 0 || c.status !== "\u7D50\u6848";
-    }).slice(0, 4).map(function(c) {
-      return { dot: (STATUS_MAP[c.status] || {}).color || "#64748b", txt: c.client + " \u2014 " + c.status, sub: c.amount == null ? "\u7E3D\u91D1\u984D\u672A\u5B9A" : caseDue(c) > 0 ? "\u5F85\u6536\u6B3E " + fmt(caseDue(c)) : "\u76EE\u524D\u7121\u5F85\u6536\u6B3E" };
-    });
-    var todoHtml = todos.map(function(t) {
-      return "<div class=todo-item><div class=todo-dot style=background:" + t.dot + "></div><div><div class=todo-txt>" + esc(t.txt) + "</div><div class=todo-sub>" + esc(t.sub) + "</div></div></div>";
-    }).join("");
-    var todoCard = "<div class=card><div class=section-hd style=padding:14px_18px_0><span class=section-title>\u5F85\u8FA6\u63D0\u9192</span></div>" + todoHtml + "</div>";
-    var recent = CASES.filter(function(c) {
-      return c.status !== "\u7D50\u6848";
-    }).slice(0, 5);
-    var ri = recent.map(function(c) {
-      return "<div class=case-card data-case=" + esc(c.id) + "><div class=case-info><div class=case-name>" + esc(c.client) + "</div><div class=case-sub>" + renderCaseTags(c) + "</div>" + sbar(c.statusIdx) + "</div><div class=case-right><div>" + badge(c.status) + "</div><div class=case-amt style=margin-top:4px>" + (c.amount != null ? "NT$" + (c.amount / 1e4).toFixed(0) + "\u842C" : "\u2014") + "</div></div></div>";
-    }).join("");
-    var caseCard = "<div class=card><div class=section-hd style=padding:14px_18px_0><span class=section-title>\u6848\u4EF6\u9032\u5EA6</span><button class=btn-sm data-nav=cases>\u67E5\u770B\u5168\u90E8 \u2192</button></div><div class=case-list style=margin-top:8px>" + ri + "</div></div>";
-    document.getElementById("content").innerHTML = stats + "<div class=dash-grid>" + tbl + todoCard + "</div>" + caseCard;
-  }
-  function renderCases() {
-    var fl = ["all", "\u6D3D\u8AC7", "\u5831\u50F9", "\u7C3D\u7D04", "\u6536\u8A02\u91D1", "\u65BD\u5DE5", "\u9A57\u6536", "\u6536\u5C3E\u6B3E", "\u7D50\u6848"];
-    var tabs = fl.map(function(f) {
-      var cnt = f === "all" ? CASES.length : CASES.filter(function(c) {
-        return c.status === f;
-      }).length;
-      var lbl = f === "all" ? "\u5168\u90E8 (" + cnt + ")" : f + (cnt ? " (" + cnt + ")" : "");
-      return "<div class='filter-tab" + (FILTER === f ? " active" : "") + "' data-filter=" + f + ">" + lbl + "</div>";
-    }).join("");
-    var filtered = FILTER === "all" ? CASES : CASES.filter(function(c) {
-      return c.status === FILTER;
-    });
-    var items = filtered.map(function(c) {
-      return "<div class='case-card" + (SEL === c.id ? " selected" : "") + "' data-case=" + esc(c.id) + "><div class=case-num>" + esc(c.id) + "</div><div class=case-info><div class=case-name>" + esc(c.client) + "</div><div class=case-sub>" + renderCaseTags(c) + " \xB7 " + esc(c.contact) + "</div>" + sbar(c.statusIdx) + "</div><div class=case-right><div>" + badge(c.status) + "</div><div class=case-amt style=margin-top:5px>" + fmt(c.amount) + "</div><div class=case-date>" + fmtD(c.start) + "</div></div></div>";
-    }).join("");
-    if (!items) items = "<div style=padding:40px;text-align:center;color:#94a3b8>\u6B64\u72C0\u614B\u7121\u6848\u4EF6</div>";
-    var detail = SEL ? renderDetail(CASES.find(function(c) {
-      return c.id === SEL;
-    })) : "";
-    document.getElementById("content").innerHTML = "<div class=section-hd style=margin-bottom:12px><span class=section-title>\u696D\u52D9\u6848\u4EF6</span><button class=btn-primary data-case-new>\uFF0B \u65B0\u589E\u6848\u4EF6</button></div><div class=filter-tabs>" + tabs + "</div><div class=card style=overflow:visible><div class=case-list>" + items + "</div></div>" + detail;
-    if (SEL) {
-      var el = document.querySelector(".detail-panel");
-      if (el) setTimeout(function() {
-        el.scrollIntoView({ behavior: "smooth", block: "nearest" });
-      }, 50);
-    }
-  }
-  function renderDetail(c) {
-    if (!c) return "";
-    var tl = STAGES.map(function(s, i) {
-      var dc = i < c.statusIdx ? "done" : i === c.statusIdx ? "current" : "";
-      var ln = i < 7 ? "<div class='stage-line" + (i < c.statusIdx ? " done" : "") + "'></div>" : "";
-      return "<div class=stage-step><div class=stage-step-line><div class='stage-circle " + dc + "'>" + (i < c.statusIdx ? "\u2713" : i + 1) + "</div>" + ln + "</div><div class='stage-lbl " + dc + "'>" + s + "</div></div>";
-    }).join("");
-    return "<div class=detail-panel><div class=detail-header><div><div class=detail-title>" + esc(c.client) + "</div><div class=detail-id>" + esc(c.id) + " \xB7 " + renderCaseTags(c) + "</div></div><div style=display:flex;gap:8px;align-items:center>" + badge(c.status) + "<button class=btn-sm data-case-edit=" + esc(c.id) + ">\u7DE8\u8F2F\u6848\u4EF6</button><button class=close-btn data-close-detail=1>\u2715</button></div></div><div class=stage-timeline>" + tl + "</div><div class=detail-grid><div class=info-item><label>\u806F\u7D61\u4EBA</label><span>" + esc(c.contact) + "</span></div><div class=info-item><label>\u96FB\u8A71</label><span>" + esc(c.phone) + "</span></div><div class=info-item><label>\u5730\u5740</label><span>" + esc(c.address) + "</span></div><div class=info-item><label>\u65BD\u5DE5\u671F\u9593</label><span>" + fmtD(c.start) + " \u2014 " + fmtD(c.end) + "</span></div></div><div class=payment-row><div class='pay-box " + (c.depositPaid ? "paid" : "pending") + "'><div class=pay-label>\u8A02\u91D1</div><div class=pay-amount>" + fmt(c.deposit) + "</div><div class=pay-status style=color:" + (c.depositPaid ? "#10b981" : "#d97706") + ">" + (c.depositPaid ? "\u2713 \u5DF2\u5165\u5E33" : "\u23F3 \u5F85\u5165\u5E33") + "</div></div><div class='pay-box " + (c.balancePaid ? "paid" : "pending") + "'><div class=pay-label>\u5C3E\u6B3E</div><div class=pay-amount>" + fmt(c.balance) + "</div><div class=pay-status style=color:" + (c.balancePaid ? "#10b981" : "#d97706") + ">" + (c.balancePaid ? "\u2713 \u5DF2\u5165\u5E33" : "\u23F3 \u5F85\u5165\u5E33") + "</div></div><div class=pay-box><div class=pay-label>\u5408\u7D04\u7E3D\u984D</div><div class=pay-amount>" + fmt(c.amount) + "</div><div class=pay-status style=color:#64748b>\u542B\u5DE5\u6599\u5168\u984D</div></div></div><div class=note-box style=margin-bottom:14px>\u5DF2\u6536\u6B3E\uFF1A" + fmt(c.amount == null ? null : caseReceived(c)) + "\u3000\u5F85\u6536\u6B3E\uFF1A" + fmt(c.amount == null ? null : caseDue(c)) + (c.status === "\u7D50\u6848" && caseDue(c) > 0 ? "\u3000\uFF08\u6848\u4EF6\u5DF2\u7D50\u6848\uFF0C\u4ECD\u6709\u6B3E\u9805\u5F85\u6536\uFF09" : "") + "</div><div class=pay-label style=margin-bottom:6px>\u5099\u6CE8</div><div class=note-box>" + esc(c.note) + "</div></div>";
-  }
   function ph(icon, name, desc) {
     document.getElementById("content").innerHTML = "<div class=placeholder><div class=placeholder-icon>" + icon + "</div><h3>" + name + " \u2014 \u5EFA\u7F6E\u4E2D</h3><p>" + desc + "</p></div>";
   }
   function render() {
-    if (PAGE === "dashboard") renderDashboard();
-    else if (PAGE === "cases") renderCases();
-    else if (PAGE === "dispatch") renderDispatch();
+    if (PAGE === "dashboard") renderDispatchDashboard();
+    else if (PAGE === "cases") {
+      PAGE = "dashboard";
+      renderDispatchDashboard();
+    } else if (PAGE === "dispatch") renderDispatch();
     else if (PAGE === "calendar") renderSchedule();
     else if (PAGE === "line") renderLine();
-    else if (PAGE === "settings") ph("\u2699\uFE0F", "\u7BA1\u7406\u8CC7\u6599", "\u5DE5\u7A0B\u5E2B\u8207\u5BA2\u6236\u8CC7\u6599\u7DAD\u8B77\u4ECB\u9762\u5C1A\u672A\u5EFA\u7F6E\uFF1B\u76EE\u524D\u63A1\u7528\u793A\u7BC4\u5C0D\u61C9\u8868\u3002");
+    else if (PAGE === "settings") renderRosterManager();
   }
   var P2KEY = "leyan-dispatch-demo-v2", JOBS = [], DSEL = null, SEARCH = "", RF = "\u5168\u90E8", SF = "\u5168\u90E8", CALREG = "\u5168\u90E8";
   var ENGINEERS = { "\u96D9\u5317|\u5F31\u96FB\u7DAD\u8B77": "\u6731\u79B9\u52F3", "\u96D9\u5317|\u786C\u9AD4\u7DAD\u8B77": "\u8D99\u842C\u5EAD", "\u6843\u7AF9|\u5F31\u96FB\u7DAD\u8B77": "\u8521\u93AE\u5B87", "\u6843\u7AF9|\u786C\u9AD4\u7DAD\u8B77": "\u9EC3\u667A\u7FA4" };
+  var COUNTIES = ["\u81FA\u5317\u5E02", "\u65B0\u5317\u5E02", "\u57FA\u9686\u5E02", "\u6843\u5712\u5E02", "\u65B0\u7AF9\u5E02", "\u65B0\u7AF9\u7E23", "\u82D7\u6817\u7E23", "\u81FA\u4E2D\u5E02", "\u5F70\u5316\u7E23", "\u5357\u6295\u7E23", "\u96F2\u6797\u7E23", "\u5609\u7FA9\u5E02", "\u5609\u7FA9\u7E23", "\u81FA\u5357\u5E02", "\u9AD8\u96C4\u5E02", "\u5C4F\u6771\u7E23", "\u5B9C\u862D\u7E23", "\u82B1\u84EE\u7E23", "\u81FA\u6771\u7E23", "\u6F8E\u6E56\u7E23", "\u91D1\u9580\u7E23", "\u9023\u6C5F\u7E23"];
+  var DEFAULT_ROSTER = [
+    { id: "legacy-north-weak", name: "\u6731\u79B9\u52F3", regions: ["\u81FA\u5317\u5E02", "\u65B0\u5317\u5E02"], primaryRegions: ["\u81FA\u5317\u5E02", "\u65B0\u5317\u5E02"], skills: ["\u5F31\u96FB\u7DAD\u8B77"], active: true },
+    { id: "legacy-north-hard", name: "\u8D99\u842C\u5EAD", regions: ["\u81FA\u5317\u5E02", "\u65B0\u5317\u5E02"], primaryRegions: ["\u81FA\u5317\u5E02", "\u65B0\u5317\u5E02"], skills: ["\u786C\u9AD4\u7DAD\u8B77"], active: true },
+    { id: "legacy-taozhu-weak", name: "\u8521\u93AE\u5B87", regions: ["\u6843\u5712\u5E02", "\u65B0\u7AF9\u5E02", "\u65B0\u7AF9\u7E23"], primaryRegions: ["\u6843\u5712\u5E02", "\u65B0\u7AF9\u5E02", "\u65B0\u7AF9\u7E23"], skills: ["\u5F31\u96FB\u7DAD\u8B77"], active: true },
+    { id: "legacy-taozhu-hard", name: "\u9EC3\u667A\u7FA4", regions: ["\u6843\u5712\u5E02", "\u65B0\u7AF9\u5E02", "\u65B0\u7AF9\u7E23"], primaryRegions: ["\u6843\u5712\u5E02", "\u65B0\u7AF9\u5E02", "\u65B0\u7AF9\u7E23"], skills: ["\u786C\u9AD4\u7DAD\u8B77"], active: true }
+  ];
+  var initialRoster = window.leyanRoster ? window.leyanRoster.list() : null;
+  var TITLE_SUGGEST = ["\u7DAD\u8B77\u5DE5\u7A0B\u5E2B", "\u5F31\u96FB\u5DE5\u7A0B\u5E2B", "\u57F9\u8A13", "\u696D\u52D9", "\u884C\u653F\u52A9\u7406", "\u958B\u696D\u9867\u554F", "\u7D93\u7406"];
+  function isEngineer(e) {
+    return !!e && String(e.title == null ? "" : e.title).indexOf("\u5DE5\u7A0B\u5E2B") >= 0;
+  }
+  function inferArea(e) {
+    var r = Array.isArray(e.regions) ? e.regions : [];
+    if (r.some(function(x) {
+      return x === "\u81FA\u5317\u5E02" || x === "\u65B0\u5317\u5E02" || x === "\u57FA\u9686\u5E02";
+    })) return "\u96D9\u5317";
+    if (r.some(function(x) {
+      return x === "\u6843\u5712\u5E02" || x === "\u65B0\u7AF9\u5E02" || x === "\u65B0\u7AF9\u7E23";
+    })) return "\u6843\u7AF9";
+    return "";
+  }
+  function normPerson(e) {
+    var o = Object.assign({}, e);
+    o.employeeId = o.employeeId == null ? "" : String(o.employeeId);
+    if (o.title === void 0 || o.title === null) o.title = "\u5DE5\u7A0B\u5E2B";
+    if (o.area == null) o.area = inferArea(o);
+    if (o.account == null) o.account = "";
+    if (o.password == null) o.password = "";
+    if (o.active == null) o.active = true;
+    return o;
+  }
+  var ROSTER = (initialRoster === null ? JSON.parse(JSON.stringify(DEFAULT_ROSTER)) : initialRoster).map(normPerson);
+  function engineerRoster() {
+    return ROSTER.filter(isEngineer);
+  }
+  function countForDay(name, day) {
+    return JOBS.filter(function(j) {
+      return j.engineer === name && j.start && j.status !== "\u5DF2\u53D6\u6D88" && localDate(new Date(j.start)) === day;
+    }).length;
+  }
+  function isSameCounty(j, county) {
+    var r = String(j.region || "").replace(/台/g, "\u81FA");
+    if (r === county) return true;
+    if (r === "\u96D9\u5317" || r === "\u6843\u7AF9") {
+      var inferred = regionFromText(String(j.client || "") + " " + String(j.note || ""));
+      return inferred === county;
+    }
+    return false;
+  }
+  function supportsEngineer(e, county, category) {
+    return isEngineer(e) && !!e.active && Array.isArray(e.regions) && e.regions.includes(county) && Array.isArray(e.skills) && e.skills.includes(category);
+  }
+  function suggestEngineers(draft) {
+    var staff = ROSTER.filter(function(e) {
+      return supportsEngineer(e, draft.region, draft.category);
+    }), plans = [];
+    staff.forEach(function(e) {
+      var test = Object.assign({}, draft, { engineer: e.name });
+      var candidateSlots = slots(test);
+      candidateSlots.forEach(function(slot) {
+        var day = localDate(new Date(slot.start)), same = JOBS.some(function(j) {
+          return j.engineer === e.name && j.start && j.status !== "\u5DF2\u53D6\u6D88" && localDate(new Date(j.start)) === day && isSameCounty(j, draft.region);
+        });
+        plans.push({ name: e.name, slot, primary: (e.primaryRegions || []).includes(draft.region), same, count: countForDay(e.name, day) });
+      });
+    });
+    plans.sort(function(a, b) {
+      return Number(b.primary) - Number(a.primary) || Number(b.same) - Number(a.same) || a.count - b.count || a.slot.start.localeCompare(b.slot.start) || a.name.localeCompare(b.name, "zh-Hant");
+    });
+    return { people: staff, plans };
+  }
+  function renderDispatchDashboard() {
+    var today = localDate(/* @__PURE__ */ new Date()), jobs = JOBS.filter(function(j) {
+      return j.start && localDate(new Date(j.start)) === today && j.status !== "\u5DF2\u53D6\u6D88";
+    });
+    var pending = JOBS.filter(function(j) {
+      return j.status === "\u5F85\u6D3E\u5DE5";
+    }).length;
+    document.getElementById("content").innerHTML = '<div class="p2-head"><div><h2>\u6D3E\u5DE5\u7E3D\u89BD</h2><div class="p2-sub">\u4EE5\u5DE5\u7A0B\u5E2B\u3001\u670D\u52D9\u5340\u57DF\u8207\u5DE5\u55AE\u638C\u63E1\u4ECA\u65E5\u6D3E\u5DE5\u3002</div></div><button class="p2-btn" data-p2="new">\uFF0B \u65B0\u589E\u6D3E\u5DE5</button></div><div id="line-inbox-banner"></div><div class="p2-grid"><div class="p2-stat"><b>' + jobs.length + '</b><span>\u4ECA\u65E5\u884C\u7A0B</span></div><div class="p2-stat"><b>' + pending + '</b><span>\u5F85\u6D3E\u5DE5</span></div><div class="p2-stat"><b>' + engineerRoster().filter(function(e) {
+      return e.active;
+    }).length + '</b><span>\u555F\u7528\u5DE5\u7A0B\u5E2B</span></div><div class="p2-stat"><b>' + LINE.inbox.length + '</b><span>LINE \u5F85\u8655\u7406</span></div></div><section class="card p2-panel"><div class="p2-head"><h3>\u4ECA\u65E5\u884C\u7A0B</h3><button class="p2-btn secondary" data-p2="calendar">\u958B\u555F\u884C\u4E8B\u66C6</button></div>' + (jobs.length ? jobs.map(function(j) {
+      return '<div class="line-row"><div><b>' + esc(hm(j.start)) + "\u3000" + esc(j.engineer) + '</b><div class="p2-sub">' + esc(j.client) + " \xB7 " + esc(j.region) + " \xB7 " + esc(j.note) + '</div></div><button class="p2-btn secondary" data-job="' + esc(j.id) + '">\u67E5\u770B</button></div>';
+    }).join("") : '<p class="p2-sub">\u4ECA\u5929\u6C92\u6709\u5DF2\u5B89\u6392\u7684\u5DE5\u55AE\u3002</p>') + '</section><section class="card p2-panel"><div class="p2-head"><h3>\u5F85\u8FA6\u63D0\u9192</h3></div><div class="line-row"><div><b>\u5F85\u6D3E\u5DE5 ' + pending + ' \u4EF6</b><div class="p2-sub">\u5C1A\u5F85\u5B89\u6392\u6642\u6BB5\u6216\u5DE5\u7A0B\u5E2B</div></div><button class="p2-btn secondary" data-p2="dispatch">\u67E5\u770B\u5DE5\u55AE</button></div><div class="line-row"><div><b>\u5F85\u518D\u8A2A ' + JOBS.filter(function(j) {
+      return j.status === "\u5F85\u518D\u8A2A";
+    }).length + ' \u4EF6</b><div class="p2-sub">\u9700\u8FFD\u8E64\u5F8C\u7E8C\u670D\u52D9</div></div><button class="p2-btn secondary" data-p2="dispatch">\u67E5\u770B\u5DE5\u55AE</button></div><div class="line-row"><div><b>LINE \u8A0A\u606F</b><div class="p2-sub">\u8ACB\u78BA\u8A8D\u4E26\u8655\u7406\u6536\u5230\u7684\u8A0A\u606F</div></div><button class="p2-btn secondary" data-nav="line">\u67E5\u770B LINE</button></div></section>';
+    lineBanner();
+    loadLine(false);
+  }
+  var PQ = "", PAREA = "\u5168\u90E8", PTITLE = "\u5168\u90E8", PSORT = "asc", PREVEAL = {};
+  function areaGroup(a) {
+    a = String(a || "").trim();
+    return a === "\u96D9\u5317" || a === "\u6843\u7AF9" ? a : a ? "\u5176\u4ED6" : "\u672A\u8A2D\u5B9A";
+  }
+  function peopleRows() {
+    var q = PQ.trim().toLowerCase();
+    var list = ROSTER.filter(function(e) {
+      if (PAREA !== "\u5168\u90E8" && areaGroup(e.area) !== PAREA) return false;
+      if (PTITLE === "__eng") {
+        if (!isEngineer(e)) return false;
+      } else if (PTITLE !== "\u5168\u90E8" && String(e.title || "") !== PTITLE) return false;
+      if (!q) return true;
+      return [e.employeeId, e.name, e.title, e.area, e.account].some(function(x) {
+        return String(x || "").toLowerCase().indexOf(q) >= 0;
+      });
+    });
+    return list.sort(function(a, b) {
+      var x = String(a.employeeId || ""), y = String(b.employeeId || "");
+      if (!x !== !y) return x ? -1 : 1;
+      var c = x.localeCompare(y, "zh-Hant", { numeric: true });
+      return (PSORT === "asc" ? c : -c) || String(a.name).localeCompare(String(b.name), "zh-Hant");
+    });
+  }
+  function personDispatch(e) {
+    if (!isEngineer(e)) return '<span class="p2-sub">\u4E0D\u53C3\u8207\u6D3E\u5DE5</span>';
+    return '<span class="roster-state ' + (e.active ? "is-active" : "") + '">' + (e.active ? "\u555F\u7528\u4E2D" : "\u5DF2\u505C\u7528") + '</span><div class="p2-sub">' + esc((e.skills || []).join("\u3001") || "\u672A\u8A2D\u5B9A\u985E\u5225") + '</div><div class="p2-sub">\u4E3B\u8981\uFF1A' + esc((e.primaryRegions || []).join("\u3001") || "\u672A\u8A2D\u5B9A") + '</div><div class="roster-tags">' + (e.regions || []).map(function(r) {
+      return "<span>" + esc(r) + "</span>";
+    }).join("") + "</div>";
+  }
+  function personPassword(e) {
+    if (!e.password) return '<span class="p2-sub">\u672A\u8A2D\u5B9A</span>';
+    var shown = !!PREVEAL[e.id];
+    return '<span class="pw-cell"><span class="pw-val' + (shown ? " is-shown" : "") + '">' + (shown ? esc(e.password) : "\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022") + '</span><span class="pw-btns"><button type="button" class="btn-sm" data-people="reveal" data-id="' + esc(e.id) + '" aria-pressed="' + shown + '" aria-label="' + (shown ? "\u96B1\u85CF" : "\u986F\u793A") + esc(e.name) + '\u7684\u5BC6\u78BC">' + (shown ? "\u96B1\u85CF" : "\u986F\u793A") + '</button><button type="button" class="btn-sm" data-people="copy" data-id="' + esc(e.id) + '" aria-label="\u8907\u88FD' + esc(e.name) + '\u7684\u5BC6\u78BC">\u8907\u88FD</button></span></span>';
+  }
+  function renderPeopleList() {
+    var box = document.getElementById("people-list");
+    if (!box) return;
+    var list = peopleRows(), arrow = PSORT === "asc" ? "\u2191" : "\u2193";
+    box.innerHTML = (list.length ? '<div class="card people-card"><table class="people-table"><thead><tr><th aria-sort="' + (PSORT === "asc" ? "ascending" : "descending") + '"><button type="button" class="people-sort" data-people="sort">\u54E1\u5DE5\u7DE8\u865F ' + arrow + "</button></th><th>\u59D3\u540D</th><th>\u8077\u4F4D</th><th>\u5340\u57DF</th><th>\u5E33\u865F</th><th>\u5BC6\u78BC</th><th>\u6D3E\u5DE5\u8A2D\u5B9A</th><th>\u64CD\u4F5C</th></tr></thead><tbody>" + list.map(function(e) {
+      return '<tr data-person="' + esc(e.id) + '"><td data-label="\u54E1\u5DE5\u7DE8\u865F">' + (e.employeeId ? "<b>" + esc(e.employeeId) + "</b>" : '<span class="badge people-missing">\u5F85\u88DC\u7DE8\u865F</span>') + '</td><td data-label="\u59D3\u540D"><b>' + esc(e.name) + '</b></td><td data-label="\u8077\u4F4D">' + (e.title ? esc(e.title) : '<span class="p2-sub">\u672A\u8A2D\u5B9A</span>') + '</td><td data-label="\u5340\u57DF">' + (e.area ? esc(e.area) : '<span class="p2-sub">\u672A\u8A2D\u5B9A</span>') + '</td><td data-label="\u5E33\u865F">' + (e.account ? esc(e.account) : '<span class="p2-sub">\u672A\u8A2D\u5B9A</span>') + '</td><td data-label="\u5BC6\u78BC">' + personPassword(e) + '</td><td data-label="\u6D3E\u5DE5\u8A2D\u5B9A">' + personDispatch(e) + '</td><td data-label="\u64CD\u4F5C"><span class="people-actions"><button type="button" class="btn-sm" data-roster="edit" data-id="' + esc(e.id) + '">\u7DE8\u8F2F</button>' + (isEngineer(e) ? '<button type="button" class="btn-sm" data-roster="toggle" data-id="' + esc(e.id) + '">' + (e.active ? "\u505C\u7528" : "\u555F\u7528") + "</button>" : "") + '<button type="button" class="btn-sm people-del" data-roster="delete" data-id="' + esc(e.id) + '">\u522A\u9664</button></span></td></tr>';
+    }).join("") + "</tbody></table></div>" : '<p class="p2-empty card">' + (ROSTER.length ? "\u6C92\u6709\u7B26\u5408\u689D\u4EF6\u7684\u4EBA\u54E1\u3002" : "\u5C1A\u7121\u4EBA\u54E1\uFF0C\u8ACB\u5148\u65B0\u589E\u3002") + "</p>") + '<p class="p2-sub">\u5171 ' + ROSTER.length + " \u4F4D\uFF0C\u986F\u793A " + list.length + " \u4F4D \xB7 \u4F9D\u54E1\u5DE5\u7DE8\u865F" + (PSORT === "asc" ? "\u7531\u5C0F\u5230\u5927" : "\u7531\u5927\u5230\u5C0F") + "</p>";
+  }
+  function renderRosterManager() {
+    var el = document.getElementById("content"), titles = Array.from(new Set(ROSTER.map(function(e) {
+      return String(e.title || "");
+    }).filter(Boolean).concat(TITLE_SUGGEST))), missing = ROSTER.filter(function(e) {
+      return !e.employeeId;
+    }).length;
+    function opt(v, l, cur) {
+      return '<option value="' + esc(v) + '"' + (v === cur ? " selected" : "") + ">" + esc(l) + "</option>";
+    }
+    el.innerHTML = '<div class="p2-head"><div><h2>\u4EBA\u54E1\u540D\u55AE</h2><p class="p2-sub">\u5168\u9AD4\u4EBA\u54E1\u8CC7\u6599\u3002\u8077\u4F4D\u542B\u300C\u5DE5\u7A0B\u5E2B\u300D\u8005\u624D\u6703\u51FA\u73FE\u5728\u6D3E\u5DE5\u5EFA\u8B70\u3001\u884C\u4E8B\u66C6\u7BE9\u9078\u8207 LINE \u7D81\u5B9A\u3002\u5E33\u865F\u8207\u5BC6\u78BC\u50C5\u7BA1\u7406\u8005\u53EF\u898B\u3002</p></div><button class="p2-btn" data-roster="new">\uFF0B \u65B0\u589E\u4EBA\u54E1</button></div>' + (missing ? '<div class="p2-note" id="people-missing-note">\u6709 ' + missing + " \u4F4D\u4EBA\u54E1\u5C1A\u672A\u586B\u5BEB\u54E1\u5DE5\u7DE8\u865F\uFF08\u7531\u820A\u5DE5\u7A0B\u5E2B\u540D\u518A\u8F49\u5165\uFF09\uFF0C\u8ACB\u6309\u300C\u7DE8\u8F2F\u300D\u88DC\u4E0A\u3002</div>" : "") + '<div class="p2-filters people-filters"><input id="people-search" type="search" placeholder="\u641C\u5C0B\u54E1\u5DE5\u7DE8\u865F\u3001\u59D3\u540D\u3001\u8077\u4F4D\u3001\u5E33\u865F" aria-label="\u641C\u5C0B\u4EBA\u54E1" value="' + esc(PQ) + '"><select id="people-area" aria-label="\u5340\u57DF\u7BE9\u9078">' + ["\u5168\u90E8", "\u96D9\u5317", "\u6843\u7AF9", "\u5176\u4ED6", "\u672A\u8A2D\u5B9A"].map(function(v) {
+      return opt(v, v === "\u5168\u90E8" ? "\u5168\u90E8\u5340\u57DF" : v, PAREA);
+    }).join("") + '</select><select id="people-title" aria-label="\u8077\u4F4D\u7BE9\u9078">' + opt("\u5168\u90E8", "\u5168\u90E8\u8077\u4F4D", PTITLE) + opt("__eng", "\u542B\u300C\u5DE5\u7A0B\u5E2B\u300D", PTITLE) + titles.map(function(v) {
+      return opt(v, v, PTITLE);
+    }).join("") + '</select><button type="button" class="p2-btn secondary" data-people="sort">\u54E1\u5DE5\u7DE8\u865F ' + (PSORT === "asc" ? "\u2191" : "\u2193") + '</button></div><div id="people-list"></div>';
+    renderPeopleList();
+  }
+  function rosterEditor(id) {
+    var old = ROSTER.find(function(e) {
+      return e.id === id;
+    }), v = old || { employeeId: "", name: "", title: "", area: "", account: "", password: "", regions: [], primaryRegions: [], skills: [], active: true };
+    var dialog = document.createElement("dialog");
+    dialog.className = "p2-dialog";
+    dialog.id = "roster-dialog";
+    dialog.setAttribute("aria-label", old ? "\u7DE8\u8F2F\u4EBA\u54E1" : "\u65B0\u589E\u4EBA\u54E1");
+    var prev = document.getElementById("roster-dialog");
+    if (prev) prev.remove();
+    document.body.appendChild(dialog);
+    var lockName = !!old && (isEngineer(old) || JOBS.some(function(j) {
+      return j.engineer === old.name;
+    })), areaSel = v.area === "\u96D9\u5317" || v.area === "\u6843\u7AF9" || !v.area ? v.area || "" : "\u5176\u4ED6";
+    function choice(name, values, selected) {
+      return values.map(function(x) {
+        return '<label class="region-choice"><input type="checkbox" name="' + name + '" value="' + esc(x) + '"' + (selected.includes(x) ? " checked" : "") + "><span>" + esc(x) + "</span></label>";
+      }).join("");
+    }
+    dialog.innerHTML = "<h2>" + (old ? "\u7DE8\u8F2F\u4EBA\u54E1" : "\u65B0\u589E\u4EBA\u54E1") + '</h2><form id="roster-form" autocomplete="off"><div class="p2-form"><label>\u54E1\u5DE5\u7DE8\u865F *<input name="employeeId" maxlength="30" required value="' + esc(v.employeeId || "") + '"></label><label>\u59D3\u540D *<input name="engineerName" maxlength="60" required value="' + esc(v.name) + '"' + (lockName ? " readonly" : "") + '></label><label>\u8077\u4F4D<input name="title" list="people-title-suggest" maxlength="40" value="' + esc(v.title || "") + '" placeholder="\u4F8B\u5982\uFF1A\u7DAD\u8B77\u5DE5\u7A0B\u5E2B"><datalist id="people-title-suggest">' + TITLE_SUGGEST.map(function(t) {
+      return '<option value="' + esc(t) + '"></option>';
+    }).join("") + '</datalist></label><label>\u5340\u57DF<select name="areaSel">' + [["", "\u8ACB\u9078\u64C7"], ["\u96D9\u5317", "\u96D9\u5317"], ["\u6843\u7AF9", "\u6843\u7AF9"], ["\u5176\u4ED6", "\u5176\u4ED6\uFF08\u81EA\u884C\u586B\u5BEB\uFF09"]].map(function(o) {
+      return '<option value="' + o[0] + '"' + (o[0] === areaSel ? " selected" : "") + ">" + o[1] + "</option>";
+    }).join("") + '</select></label><label class="area-other"' + (areaSel === "\u5176\u4ED6" ? "" : " hidden") + '>\u5176\u4ED6\u5340\u57DF<input name="areaOther" maxlength="40" value="' + esc(areaSel === "\u5176\u4ED6" ? v.area : "") + '"></label><label>\u5E33\u865F<input name="account" maxlength="120" autocomplete="off" value="' + esc(v.account || "") + '"></label><label>\u5BC6\u78BC<span class="pw-edit"><input name="password" type="password" maxlength="200" autocomplete="new-password" value="' + esc(v.password || "") + '"><button type="button" class="btn-sm" data-people="pw-edit">\u986F\u793A</button></span></label><div class="p2-wide eng-fields"><fieldset class="roster-field"><legend>\u5DE5\u4F5C\u985E\u5225\uFF08\u53EF\u8907\u9078\uFF09*</legend><div class="roster-tags">' + choice("skills", ["\u5F31\u96FB\u7DAD\u8B77", "\u786C\u9AD4\u7DAD\u8B77"], v.skills || []) + '</div></fieldset><fieldset class="roster-field"><legend>\u652F\u63F4\u7E23\u5E02\uFF08\u53EF\u8907\u9078\uFF09*</legend><div class="county-grid">' + choice("regions", COUNTIES, v.regions || []) + '</div></fieldset><fieldset class="roster-field"><legend>\u4E3B\u8981\u8CA0\u8CAC\u7E23\u5E02\uFF08\u53EF\u8907\u9078\uFF09</legend><p class="p2-sub">\u4E3B\u8981\u7E23\u5E02\u5FC5\u9808\u5305\u542B\u5728\u652F\u63F4\u7E23\u5E02\u5167\uFF1B\u7B26\u5408\u689D\u4EF6\u6642\u512A\u5148\u63A8\u85A6\u3002</p><div class="county-grid">' + choice("primaryRegions", COUNTIES, v.primaryRegions || []) + '</div></fieldset><p class="p2-sub">\u4EE5\u4E0A\u6D3E\u5DE5\u8A2D\u5B9A\u50C5\u9069\u7528\u8077\u4F4D\u542B\u300C\u5DE5\u7A0B\u5E2B\u300D\u7684\u4EBA\u54E1\u3002</p></div></div><p class="p2-sub">' + (lockName ? "\u59D3\u540D\u7528\u65BC\u65E2\u6709\u5DE5\u55AE\u53CA LINE \u7D81\u5B9A\uFF0C\u5DF2\u5EFA\u7ACB\u5F8C\u4E0D\u76F4\u63A5\u66F4\u6539\u3002" : "\u8077\u4F4D\u542B\u300C\u5DE5\u7A0B\u5E2B\u300D\u8005\u6703\u52A0\u5165\u6D3E\u5DE5\u5EFA\u8B70\uFF1B\u59D3\u540D\u5EFA\u7ACB\u5F8C\u7528\u65BC\u5DE5\u55AE\u8207 LINE \u7D81\u5B9A\u3002") + '</p><p class="req-error" role="alert"></p><div class="p2-actions"><button class="p2-btn" type="submit">\u5132\u5B58\u4EBA\u54E1</button><button class="p2-btn secondary" type="button" data-roster="close">\u53D6\u6D88</button></div></form>';
+    var form = dialog.querySelector("form"), engBox = dialog.querySelector(".eng-fields");
+    function syncEng() {
+      engBox.hidden = !isEngineer({ title: form.elements.title.value });
+    }
+    function syncArea() {
+      var other = form.elements.areaSel.value === "\u5176\u4ED6";
+      dialog.querySelector(".area-other").hidden = !other;
+    }
+    syncEng();
+    form.elements.title.addEventListener("input", syncEng);
+    form.elements.areaSel.addEventListener("change", syncArea);
+    form.onsubmit = async function(ev) {
+      ev.preventDefault();
+      var f = ev.target, error = dialog.querySelector("[role=alert]"), empId = f.elements.employeeId.value.trim(), name = f.elements.engineerName.value.trim(), title = f.elements.title.value.trim(), area = f.elements.areaSel.value === "\u5176\u4ED6" ? f.elements.areaOther.value.trim() : f.elements.areaSel.value, fd = new FormData(f), regions = fd.getAll("regions"), primary = fd.getAll("primaryRegions"), skills = fd.getAll("skills"), eng = isEngineer({ title });
+      if (!empId || !name) {
+        error.textContent = "\u8ACB\u586B\u5BEB\u54E1\u5DE5\u7DE8\u865F\u8207\u59D3\u540D\u3002";
+        return;
+      }
+      if (ROSTER.some(function(e) {
+        return e.id !== id && String(e.employeeId || "").trim().toLowerCase() === empId.toLowerCase();
+      })) {
+        error.textContent = "\u54E1\u5DE5\u7DE8\u865F\u300C" + empId + "\u300D\u5DF2\u88AB\u4F7F\u7528\uFF0C\u8ACB\u78BA\u8A8D\u5F8C\u518D\u8F38\u5165\u3002";
+        return;
+      }
+      if (ROSTER.some(function(e) {
+        return e.id !== id && String(e.name || "").trim() === name;
+      })) {
+        error.textContent = "\u5DF2\u6709\u540C\u540D\u4EBA\u54E1\uFF1B\u8ACB\u7528\u53EF\u8FA8\u8B58\u7684\u59D3\u540D\uFF0C\u907F\u514D LINE \u901A\u77E5\u9001\u932F\u5C0D\u8C61\u3002";
+        return;
+      }
+      if (eng && (!skills.length || !regions.length)) {
+        error.textContent = "\u5DE5\u7A0B\u5E2B\u8ACB\u81F3\u5C11\u52FE\u9078\u4E00\u9805\u5DE5\u4F5C\u985E\u5225\u53CA\u4E00\u500B\u652F\u63F4\u7E23\u5E02\u3002";
+        return;
+      }
+      if (eng && primary.some(function(x) {
+        return !regions.includes(x);
+      })) {
+        error.textContent = "\u4E3B\u8981\u8CA0\u8CAC\u7E23\u5E02\u5FC5\u9808\u4E5F\u52FE\u9078\u5728\u652F\u63F4\u7E23\u5E02\u4E2D\u3002";
+        return;
+      }
+      var obj = Object.assign({}, old || {}, { id: old ? old.id : crypto.randomUUID(), employeeId: empId, name, title, area, account: f.elements.account.value.trim(), password: f.elements.password.value, active: old ? old.active !== false : true });
+      if (eng) {
+        obj.regions = regions;
+        obj.primaryRegions = primary;
+        obj.skills = skills;
+      }
+      var next = old ? ROSTER.map(function(e) {
+        return e.id === old.id ? obj : e;
+      }) : ROSTER.concat([obj]);
+      var button = f.querySelector("[type=submit]");
+      button.disabled = true;
+      try {
+        if (!window.leyanRoster) throw Error("\u7121\u6CD5\u9023\u7DDA\u4EBA\u54E1\u540D\u55AE\u3002");
+        ROSTER = (await window.leyanRoster.save(next)).map(normPerson);
+        dialog.close();
+        dialog.remove();
+        renderRosterManager();
+        notify("\u4EBA\u54E1\u540D\u55AE\u5DF2\u5132\u5B58\u3002");
+      } catch (e) {
+        error.textContent = e.message || "\u5132\u5B58\u5931\u6557\u3002";
+        button.disabled = false;
+      }
+    };
+    dialog.showModal();
+  }
+  function copyText(text) {
+    if (navigator.clipboard && navigator.clipboard.writeText) return navigator.clipboard.writeText(text);
+    return new Promise(function(ok, fail) {
+      var t = document.createElement("textarea");
+      t.value = text;
+      t.setAttribute("readonly", "");
+      t.style.position = "fixed";
+      t.style.opacity = "0";
+      document.body.appendChild(t);
+      t.select();
+      var done = false;
+      try {
+        done = document.execCommand("copy");
+      } catch (e) {
+      }
+      t.remove();
+      done ? ok() : fail(Error("copy"));
+    });
+  }
+  document.addEventListener("input", function(ev) {
+    if (ev.target && ev.target.id === "people-search") {
+      PQ = ev.target.value;
+      renderPeopleList();
+    }
+  });
+  document.addEventListener("change", function(ev) {
+    var t = ev.target;
+    if (!t) return;
+    if (t.id === "people-area") {
+      PAREA = t.value;
+      renderPeopleList();
+    } else if (t.id === "people-title") {
+      PTITLE = t.value;
+      renderPeopleList();
+    }
+  });
+  document.addEventListener("click", function(ev) {
+    var b = ev.target.closest("[data-people]");
+    if (!b) return;
+    var type = b.dataset.people;
+    if (type === "sort") {
+      PSORT = PSORT === "asc" ? "desc" : "asc";
+      var sb = document.querySelector(".people-filters [data-people=sort]");
+      if (sb) sb.textContent = "\u54E1\u5DE5\u7DE8\u865F " + (PSORT === "asc" ? "\u2191" : "\u2193");
+      renderPeopleList();
+      return;
+    }
+    if (type === "pw-edit") {
+      var input = b.parentNode.querySelector("input");
+      var show = input.type === "password";
+      input.type = show ? "text" : "password";
+      b.textContent = show ? "\u96B1\u85CF" : "\u986F\u793A";
+      return;
+    }
+    var item = ROSTER.find(function(e) {
+      return e.id === b.dataset.id;
+    });
+    if (!item) return;
+    if (type === "reveal") {
+      PREVEAL[item.id] = !PREVEAL[item.id];
+      renderPeopleList();
+      var again = document.querySelector('[data-people=reveal][data-id="' + CSS.escape(item.id) + '"]');
+      if (again) again.focus();
+      return;
+    }
+    if (type === "copy") {
+      copyText(String(item.password || "")).then(function() {
+        notify("\u5DF2\u8907\u88FD\u300C" + item.name + "\u300D\u7684\u5BC6\u78BC\u3002");
+      }, function() {
+        notify("\u7121\u6CD5\u8907\u88FD\uFF0C\u8ACB\u6309\u300C\u986F\u793A\u300D\u5F8C\u624B\u52D5\u8907\u88FD\u3002");
+      });
+    }
+  });
+  document.addEventListener("click", async function(ev) {
+    var b = ev.target.closest("[data-roster]");
+    if (!b) return;
+    var type = b.dataset.roster;
+    if (type === "new") {
+      rosterEditor();
+      return;
+    }
+    if (type === "edit") {
+      rosterEditor(b.dataset.id);
+      return;
+    }
+    if (type === "close") {
+      var d = document.getElementById("roster-dialog");
+      if (d) {
+        d.close();
+        d.remove();
+      }
+      return;
+    }
+    var item = ROSTER.find(function(e) {
+      return e.id === b.dataset.id;
+    });
+    if (!item) return;
+    if (type === "toggle") {
+      if (!confirm((item.active ? "\u505C\u7528" : "\u555F\u7528") + "\u300C" + item.name + "\u300D\uFF1F\u65E2\u6709\u5DE5\u55AE\u4E0D\u6703\u66F4\u52D5\u3002")) return;
+      b.disabled = true;
+      try {
+        ROSTER = (await window.leyanRoster.save(ROSTER.map(function(e) {
+          return e.id === item.id ? Object.assign({}, e, { active: !e.active }) : e;
+        }))).map(normPerson);
+        renderRosterManager();
+        notify("\u5DE5\u7A0B\u5E2B\u72C0\u614B\u5DF2\u66F4\u65B0\u3002");
+      } catch (e) {
+        b.disabled = false;
+        notify(e.message || "\u66F4\u65B0\u5931\u6557\u3002");
+      }
+      return;
+    }
+    if (type === "delete") {
+      if (!confirm("\u78BA\u5B9A\u522A\u9664\u300C" + item.name + "\u300D" + (item.employeeId ? "\uFF08" + item.employeeId + "\uFF09" : "") + "\uFF1F" + (isEngineer(item) ? "\u65E2\u6709\u5DE5\u55AE\u4ECD\u4FDD\u7559\u539F\u5DE5\u7A0B\u5E2B\u59D3\u540D\uFF0C\u4F46\u4E4B\u5F8C\u4E0D\u6703\u518D\u88AB\u63A8\u85A6\u6D3E\u5DE5\u3002" : "\u6B64\u52D5\u4F5C\u7121\u6CD5\u5FA9\u539F\u3002"))) return;
+      b.disabled = true;
+      try {
+        ROSTER = (await window.leyanRoster.save(ROSTER.filter(function(e) {
+          return e.id !== item.id;
+        }))).map(normPerson);
+        delete PREVEAL[item.id];
+        renderRosterManager();
+        notify("\u5DF2\u522A\u9664\u300C" + item.name + "\u300D\u3002");
+      } catch (e) {
+        b.disabled = false;
+        notify(e.message || "\u522A\u9664\u5931\u6557\u3002");
+      }
+    }
+  });
   function esc(v) {
     return String(v == null ? "" : v).replace(/[&<>"']/g, function(c) {
       return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c];
@@ -246,14 +529,6 @@ document.body.innerHTML = '\n<aside class="sidebar" id="sidebar">\n  <div class=
       });
       persist();
     }
-    JOBS.forEach(function(j) {
-      var name = ENGINEERS[j.region + "|" + j.category];
-      if (name) j.engineer = name;
-      delete j.contact;
-      delete j.phone;
-      delete j.address;
-    });
-    persist();
     DISPATCH = JOBS;
   }
   function opts(list, current) {
@@ -273,7 +548,7 @@ document.body.innerHTML = '\n<aside class="sidebar" id="sidebar">\n  <div class=
       return '<div class="p2-stat"><b>' + JOBS.filter(function(j) {
         return j.status === st;
       }).length + "</b><span>" + st + "</span></div>";
-    }).join("") + '</div><div class="p2-note">\u4E00\u822C\u6D3E\u5DE5\u907F\u958B\u9031\u516D\u3001\u9031\u65E5\u53CA\u570B\u5B9A\u5047\u65E5\uFF1B\u7DCA\u6025\u6D3E\u5DE5\u4E0D\u9650\u5047\u65E5\uFF0C\u512A\u5148\u5EFA\u8B70\u6700\u65E9\u7A7A\u6A94\u3002\u4E00\u822C\u6642\u6BB5 09:30\u300111:30\u300113:30\u300115:30\uFF0C\u6BCF\u4F4D\u5DE5\u7A0B\u5E2B\u6BCF\u65E5\u4E00\u822C\u6848\u4EF6\u6700\u591A 4 \u4EF6\uFF1B\u9810\u8A2D\u5DE5\u6642 1 \u5C0F\u6642\u3001\u4EA4\u901A\u7DE9\u885D 30 \u5206\u9418\u3002\u672A\u8B80\u53D6 Google \u884C\u4E8B\u66C6\u3002</div><div class="p2-filters"><input aria-label="\u641C\u5C0B\u5DE5\u55AE" id="p2-search" placeholder="\u641C\u5C0B\u5BA2\u6236\u3001\u5DE5\u55AE\u6216\u554F\u984C" value="' + esc(SEARCH) + '"><select id="p2-region" aria-label="\u5730\u5340">' + opts(["\u5168\u90E8", "\u96D9\u5317", "\u6843\u7AF9"], RF) + '</select><select id="p2-status" aria-label="\u5DE5\u55AE\u72C0\u614B">' + opts(["\u5168\u90E8", "\u5F85\u6D3E\u5DE5", "\u5DF2\u6D3E\u5DE5", "\u9032\u884C\u4E2D", "\u5F85\u6599", "\u5F85\u518D\u8A2A", "\u5DF2\u5B8C\u6210", "\u5DF2\u53D6\u6D88"], SF) + '</select><button class="p2-btn secondary" data-p2="calendar">\u67E5\u770B\u6392\u7A0B</button></div><div class="card p2-table"><table><thead><tr><th>\u5DE5\u55AE\uFF0F\u5BA2\u6236</th><th>\u5340\u57DF\uFF0F\u985E\u5225</th><th>\u5DE5\u7A0B\u5E2B</th><th>\u9810\u5B9A\u5230\u5834</th><th>\u72C0\u614B</th></tr></thead><tbody>' + shown.map(function(j) {
+    }).join("") + '</div><div class="p2-note">\u4E00\u822C\u6D3E\u5DE5\u907F\u958B\u9031\u516D\u3001\u9031\u65E5\u53CA\u570B\u5B9A\u5047\u65E5\uFF1B\u7DCA\u6025\u6D3E\u5DE5\u4E0D\u9650\u5047\u65E5\uFF0C\u512A\u5148\u5EFA\u8B70\u6700\u65E9\u7A7A\u6A94\u3002\u4E00\u822C\u6642\u6BB5 09:30\u300111:30\u300113:30\u300115:30\uFF0C\u6BCF\u4F4D\u5DE5\u7A0B\u5E2B\u6BCF\u65E5\u4E00\u822C\u6848\u4EF6\u6700\u591A 4 \u4EF6\uFF1B\u9810\u8A2D\u5DE5\u6642 1 \u5C0F\u6642\u3001\u4EA4\u901A\u7DE9\u885D 30 \u5206\u9418\u3002\u672A\u8B80\u53D6 Google \u884C\u4E8B\u66C6\u3002</div><div class="p2-filters"><input aria-label="\u641C\u5C0B\u5DE5\u55AE" id="p2-search" placeholder="\u641C\u5C0B\u5BA2\u6236\u3001\u5DE5\u55AE\u6216\u554F\u984C" value="' + esc(SEARCH) + '"><select id="p2-region" aria-label="\u5730\u5340">' + opts(["\u5168\u90E8", "\u96D9\u5317", "\u6843\u7AF9"].concat(COUNTIES), RF) + '</select><select id="p2-status" aria-label="\u5DE5\u55AE\u72C0\u614B">' + opts(["\u5168\u90E8", "\u5F85\u6D3E\u5DE5", "\u5DF2\u6D3E\u5DE5", "\u9032\u884C\u4E2D", "\u5F85\u6599", "\u5F85\u518D\u8A2A", "\u5DF2\u5B8C\u6210", "\u5DF2\u53D6\u6D88"], SF) + '</select><button class="p2-btn secondary" data-p2="calendar">\u67E5\u770B\u6392\u7A0B</button></div><div class="card p2-table"><table><thead><tr><th>\u5DE5\u55AE\uFF0F\u5BA2\u6236</th><th>\u5340\u57DF\uFF0F\u985E\u5225</th><th>\u5DE5\u7A0B\u5E2B</th><th>\u9810\u5B9A\u5230\u5834</th><th>\u72C0\u614B</th></tr></thead><tbody>' + shown.map(function(j) {
       return '<tr class="p2-row"><td><button style="text-align:left;padding:10px 0" data-job="' + esc(j.id) + '"><b>' + esc(j.client) + '</b><div class="p2-sub">' + esc(j.id) + (j.parent ? " \xB7 \u518D\u8A2A " + esc(j.parent) : "") + (j.urgent ? " \xB7 \u6025\u4EF6" : "") + "</div></button></td><td>" + esc(j.region) + "<br>" + esc(j.category) + "</td><td>" + esc(j.engineer) + "</td><td>" + (j.start ? stamp(j.start) : "\u5C1A\u672A\u5B89\u6392") + "</td><td>" + statusLabel(j) + "</td></tr>";
     }).join("") + "</tbody></table>" + (shown.length ? "" : '<div class="p2-empty">\u6C92\u6709\u7B26\u5408\u7684\u5DE5\u55AE</div>') + "</div>" + (DSEL ? jobPanel(JOBS.find(function(j) {
       return j.id === DSEL;
@@ -422,7 +697,8 @@ document.body.innerHTML = '\n<aside class="sidebar" id="sidebar">\n  <div class=
     var explicit = raw.match(/(?:客戶(?:名稱)?|店名|診所名稱)\s*[:：]\s*([^，,。；;\n]{2,40})/);
     var before = raw.match(/^([^，,。；;\n]{2,30}?)(?:要|需要|來)?報修(?:[，,。；;\s]|$)/);
     var first = raw.match(/^([^，,。；;\n]{2,30})[，,。；;\n]/);
-    var candidate = explicit && explicit[1] || before && before[1] || first && /(客戶|牙醫|診所|醫院|門市|公司|商行|餐廳|飯店|學校)$/.test(first[1].trim()) && first[1] || "";
+    var clinic = raw.match(/^(.{2,30}?(?:牙醫診所|牙醫|診所|醫院|門市|公司|商行|餐廳|飯店|學校|客戶))(?=的|監視器|攝影機|電話|喇叭|電腦|主機|SERVER|server|電視|讀卡機|印表機|網路|要|需要|報修|維修|[，,。；;\s])/i);
+    var candidate = explicit && explicit[1] || before && before[1] || clinic && clinic[1] || first && /(客戶|牙醫|診所|醫院|門市|公司|商行|餐廳|飯店|學校)$/.test(first[1].trim()) && first[1] || "";
     candidate = String(candidate).trim().replace(/^(?:客戶|店名)\s*[:：]?\s*/, "").trim();
     return candidate.length >= 2 && !/^(我要|我想|需要|有問題|您好|你好|測試)$/.test(candidate) ? candidate : "";
   }
@@ -432,20 +708,26 @@ document.body.innerHTML = '\n<aside class="sidebar" id="sidebar">\n  <div class=
     var prefix = raw.replace(/^(?:客戶(?:名稱)?|店名|診所名稱)\s*[:：]\s*/, "");
     if (!prefix.toLowerCase().startsWith(name.toLowerCase())) return raw;
     var rest = prefix.slice(name.length);
-    if (rest && !/^[\s，,。；;:：]|^(?:要|需要|來)?(?:報修|維修)/.test(rest)) return raw;
+    if (rest && !/^[\s，,。；;:：]|^(?:要|需要|來)?(?:報修|維修)|^的?(?:監視器|攝影機|電話|喇叭|電腦|主機|server|伺服器|電視|讀卡機|印表機|網路)/i.test(rest)) return raw;
+    rest = rest.replace(/^的(?=監視器|攝影機|電話|喇叭|電腦|主機|server|伺服器|電視|讀卡機|印表機|網路)/i, "");
     rest = rest.replace(/^[\s，,。；;:：]*/, "").replace(/^(?:要|需要|來)?(?:報修|維修)(?:內容|狀況|問題)?\s*[:：，,。；;]?\s*/, "").replace(/^(?:報修內容|報修狀況|狀況|問題)\s*[:：]\s*/, "").trim();
+    rest = rest.replace(/(?:需要|要|請)?(?:安排)?(?:報修|維修)(?:工程師)?(?:於|在)?(?:台北|臺北|新北|桃園|新竹|基隆|台中|臺中|高雄|台南|臺南)?[。！!]?$/i, "").trim();
     return rest;
   }
   function regionFromText(t) {
-    var n = normClient(t), north = /台北|新北|雙北|板橋|三重|汐止|信義|大安|松山|士林|北投|中和|永和|新莊|土城|淡水|蘆洲/.test(n), south = /桃園|新竹|桃竹|中壢|竹北|八德|龜山|蘆竹|竹東|平鎮|楊梅|湖口|新豐/.test(n);
-    return north === south ? "" : north ? "\u96D9\u5317" : "\u6843\u7AF9";
+    var n = normClient(t), hits = COUNTIES.filter(function(c) {
+      var full = normClient(c), short = full.slice(0, -1);
+      if (short === "\u65B0\u7AF9" || short === "\u5609\u7FA9") return n.includes(full);
+      return n.includes(full) || n.includes(short);
+    });
+    return hits.length === 1 ? hits[0] : "";
   }
-  function inferDispatch(client, problem, parent) {
+  function inferDispatch(client, problem, parent, sourceText) {
     var found = CUSTOMER_SEEDS.concat(CASES, JOBS).filter(function(j) {
       return normClient(j.client) === normClient(client);
     });
     var regions = Array.from(new Set(found.map(function(j) {
-      return j.region || regionFromText(j.client);
+      return COUNTIES.includes(j.region) ? j.region : regionFromText(j.client);
     }).filter(Boolean)));
     var region = "", why = "";
     if (regions.length === 1) {
@@ -454,8 +736,8 @@ document.body.innerHTML = '\n<aside class="sidebar" id="sidebar">\n  <div class=
     } else if (regions.length > 1) {
       why = "\u540C\u540D\u5BA2\u6236\u6709\u591A\u500B\u5730\u5340\uFF0C\u8ACB\u78BA\u8A8D\u5206\u5E97";
     } else {
-      region = regionFromText(client);
-      why = region ? "\u4F9D\u5BA2\u6236\u540D\u7A31\u4E2D\u7684\u5730\u540D\u5224\u5B9A" : "\u5BA2\u6236\u7D00\u9304\u8207\u540D\u7A31\u672A\u63D0\u4F9B\u660E\u78BA\u5730\u5340";
+      region = regionFromText(client + " " + (sourceText || problem || ""));
+      why = region ? "\u4F9D\u5BA2\u6236\u6216\u5831\u4FEE\u5167\u5BB9\u4E2D\u7684\u5730\u540D\u5224\u5B9A" : "\u5BA2\u6236\u7D00\u9304\u8207\u540D\u7A31\u672A\u63D0\u4F9B\u660E\u78BA\u5730\u5340";
     }
     var weak = problem.match(/弱電|監視|攝影機|攝像|網路|網絡|網線|交換器|路由器|wifi|wi-fi|廣播|門禁|電話|音響|喇叭|hdmi|對講|讀卡(?!機)|刷卡|網際網路/gi) || [], hard = problem.match(/硬體|電腦|主機|server|伺服器|服務器|電視|讀卡機|印表機|打印機|冷氣|空調|電梯|消防|水電|漏水|水管|馬桶|照明|燈具|燈泡|插座|配電|電源|鐵門|捲門|天花板|牆面|門鎖|排水|電箱/gi) || [];
     var category = "", catWhy = "";
@@ -582,19 +864,24 @@ document.body.innerHTML = '\n<aside class="sidebar" id="sidebar">\n  <div class=
           notify("\u8ACB\u78BA\u8A8D\u6307\u5B9A\u5230\u5834\u6642\u9593\u3002");
           return;
         }
-        var inference = inferDispatch(client2, note2, parent);
+        var inference = inferDispatch(client2, note2, parent, prefill && prefill.originalText);
         draft = { id: "DRAFT", client: client2, note: note2, urgent: f.elements.urgent.checked, requestedStart: requested ? requested.toISOString() : null, region: inference.region, category: inference.category, received: prefill && prefill.received || (/* @__PURE__ */ new Date()).toISOString(), hours: parent ? parent.hours : 1, buffer: parent ? parent.buffer : 30, start: null, end: null };
         review(inference);
       };
     }
     function review(inference) {
-      dialog.innerHTML = '<h2>\u78BA\u8A8D\u6D3E\u5DE5\u5EFA\u8B70</h2><p class="p2-sub" style="margin:10px 0 18px">\u78BA\u8A8D\u5F8C\u624D\u6703\u5EFA\u7ACB\u5DE5\u55AE\uFF0C\u4E26\u653E\u5230\u884C\u4E8B\u66C6\u3002</p><div class="p2-note"><b>' + esc(draft.client) + "</b><br>" + esc(draft.note) + '</div><form id="auto-review"><div class="p2-form"><label>\u5730\u5340' + (!draft.region ? " \xB7 \u9700\u4F60\u78BA\u8A8D" : " \xB7 \u5DF2\u5224\u5B9A") + '<select name="region" id="auto-region" required><option value="">\u8ACB\u78BA\u8A8D\u5730\u5340</option>' + opts(["\u96D9\u5317", "\u6843\u7AF9"], draft.region) + '</select><span class="p2-sub">' + esc(inference.regionReason) + "</span></label><label>\u985E\u5225" + (!draft.category ? " \xB7 \u9700\u4F60\u78BA\u8A8D" : " \xB7 \u5DF2\u5224\u5B9A") + '<select name="category" id="auto-category" required><option value="">\u8ACB\u78BA\u8A8D\u985E\u5225</option>' + opts(["\u5F31\u96FB\u7DAD\u8B77", "\u786C\u9AD4\u7DAD\u8B77"], draft.category) + '</select><span class="p2-sub">' + esc(inference.categoryReason) + '</span></label></div><div id="auto-proposal" style="margin-top:16px"></div><div class="p2-actions"><button id="auto-confirm" class="p2-btn" type="submit">\u78BA\u8A8D\u6D3E\u5DE5\u4E26\u52A0\u5165\u6708\u66C6</button><button type="button" class="p2-btn secondary" id="auto-back">\u8FD4\u56DE\u4FEE\u6539</button><button class="p2-btn secondary" type="button" data-p2="dialog-close">\u53D6\u6D88</button></div><p class="p2-sub" style="margin-top:14px">\u4E00\u822C\u6D3E\u5DE5\u907F\u958B\u9031\u672B\u53CA\u570B\u5B9A\u5047\u65E5\uFF1B\u7DCA\u6025\u6D3E\u5DE5\u4E0D\u9650\u5047\u65E5\u8207\u4EF6\u6578\u3002\u6307\u5B9A\u6642\u9593\u4EE5\u5BE6\u969B\u78BA\u8A8D\u70BA\u6E96\u3002\u9810\u4F30\u5DE5\u6642 ' + draft.hours + " \u5C0F\u6642\uFF0C\u4EA4\u901A\u7DE9\u885D " + draft.buffer + " \u5206\u9418\uFF1B\u50C5\u6AA2\u67E5\u672C\u9801\u5DF2\u5B89\u6392\u5DE5\u55AE\uFF0C\u4E0D\u8B80\u5BEB Google \u884C\u4E8B\u66C6\uFF1B\u78BA\u8A8D\u5F8C\u4EE5 LINE \u901A\u77E5\u5DF2\u7D81\u5B9A\u7684\u5DE5\u7A0B\u5E2B\u8207\u5BA2\u6236\u3002</p></form>";
+      dialog.innerHTML = '<h2>\u78BA\u8A8D\u6D3E\u5DE5\u5EFA\u8B70</h2><p class="p2-sub" style="margin:10px 0 18px">\u78BA\u8A8D\u5F8C\u624D\u6703\u5EFA\u7ACB\u5DE5\u55AE\uFF0C\u4E26\u653E\u5230\u884C\u4E8B\u66C6\u3002</p><div class="p2-note"><b>' + esc(draft.client) + "</b><br>" + esc(draft.note) + '</div><form id="auto-review"><div class="p2-form"><label>\u5730\u5340' + (!draft.region ? " \xB7 \u9700\u4F60\u78BA\u8A8D" : " \xB7 \u5DF2\u5224\u5B9A") + '<select name="region" id="auto-region" required><option value="">\u8ACB\u78BA\u8A8D\u5730\u5340</option>' + opts(COUNTIES, draft.region) + '</select><span class="p2-sub">' + esc(inference.regionReason) + "</span></label><label>\u985E\u5225" + (!draft.category ? " \xB7 \u9700\u4F60\u78BA\u8A8D" : " \xB7 \u5DF2\u5224\u5B9A") + '<select name="category" id="auto-category" required><option value="">\u8ACB\u78BA\u8A8D\u985E\u5225</option>' + opts(["\u5F31\u96FB\u7DAD\u8B77", "\u786C\u9AD4\u7DAD\u8B77"], draft.category) + '</select><span class="p2-sub">' + esc(inference.categoryReason) + '</span></label></div><div id="auto-proposal" style="margin-top:16px"></div><div class="p2-actions"><button id="auto-confirm" class="p2-btn" type="submit">\u78BA\u8A8D\u6D3E\u5DE5\u4E26\u52A0\u5165\u6708\u66C6</button><button type="button" class="p2-btn secondary" id="auto-back">\u8FD4\u56DE\u4FEE\u6539</button><button class="p2-btn secondary" type="button" data-p2="dialog-close">\u53D6\u6D88</button></div><p class="p2-sub" style="margin-top:14px">\u4E00\u822C\u6D3E\u5DE5\u907F\u958B\u9031\u672B\u53CA\u570B\u5B9A\u5047\u65E5\uFF1B\u7DCA\u6025\u6D3E\u5DE5\u4E0D\u9650\u5047\u65E5\u8207\u4EF6\u6578\u3002\u6307\u5B9A\u6642\u9593\u4EE5\u5BE6\u969B\u78BA\u8A8D\u70BA\u6E96\u3002\u9810\u4F30\u5DE5\u6642 ' + draft.hours + " \u5C0F\u6642\uFF0C\u4EA4\u901A\u7DE9\u885D " + draft.buffer + " \u5206\u9418\uFF1B\u50C5\u6AA2\u67E5\u672C\u9801\u5DF2\u5B89\u6392\u5DE5\u55AE\uFF0C\u4E0D\u8B80\u5BEB Google \u884C\u4E8B\u66C6\uFF1B\u78BA\u8A8D\u5F8C\u4EE5 LINE \u901A\u77E5\u5DF2\u7D81\u5B9A\u7684\u5DE5\u7A0B\u5E2B\u8207\u5BA2\u6236\u3002</p></form>";
       var f = dialog.querySelector("form");
       f.elements.region.value = draft.region;
       f.elements.category.value = draft.category;
       function update() {
-        draft.region = f.elements.region.value;
-        draft.category = f.elements.category.value;
+        var nr = f.elements.region.value, nc = f.elements.category.value;
+        if (nr !== draft.region || nc !== draft.category) {
+          draft.engineer = "";
+          draft.manualEngineer = false;
+        }
+        draft.region = nr;
+        draft.category = nc;
         proposal();
       }
       f.elements.region.onchange = update;
@@ -605,7 +892,12 @@ document.body.innerHTML = '\n<aside class="sidebar" id="sidebar">\n  <div class=
       f.onsubmit = function(e) {
         e.preventDefault();
         if (!draft.region || !draft.category) return;
-        draft.engineer = ENGINEERS[draft.region + "|" + draft.category];
+        if (!ROSTER.some(function(e2) {
+          return e2.name === draft.engineer && supportsEngineer(e2, draft.region, draft.category);
+        })) {
+          notify("\u8ACB\u9078\u64C7\u6709\u652F\u63F4\u6B64\u7E23\u5E02\u8207\u985E\u5225\u7684\u5DE5\u7A0B\u5E2B\u3002");
+          return;
+        }
         var list = slots(draft), picked = dialog.querySelector("#auto-slot"), choice = picked ? picked.value : "";
         if (list.length && !list.some(function(k) {
           return k.start === choice;
@@ -673,15 +965,36 @@ document.body.innerHTML = '\n<aside class="sidebar" id="sidebar">\n  <div class=
     function proposal() {
       var box = dialog.querySelector("#auto-proposal"), button = dialog.querySelector("#auto-confirm");
       if (!draft.region || !draft.category) {
-        box.innerHTML = '<div class="p2-note">\u8CC7\u6599\u4E0D\u8DB3\uFF0C\u8ACB\u5148\u78BA\u8A8D\u4E0A\u65B9\u5730\u5340\uFF0F\u985E\u5225\uFF0C\u7CFB\u7D71\u624D\u80FD\u5B89\u6392\u5C0D\u61C9\u5DE5\u7A0B\u5E2B\u3002</div>';
+        box.innerHTML = '<div class="p2-note">\u8CC7\u6599\u4E0D\u8DB3\uFF0C\u8ACB\u5148\u78BA\u8A8D\u7E23\u5E02\u8207\u985E\u5225\u3002</div>';
         button.disabled = true;
         return;
       }
-      draft.engineer = ENGINEERS[draft.region + "|" + draft.category];
-      var list = slots(draft);
-      box.innerHTML = '<div class="p2-stat"><span>\u5EFA\u8B70\u5DE5\u7A0B\u5E2B</span><b style="font-size:22px;margin-top:5px">' + esc(draft.engineer) + "</b><span>" + esc(draft.region) + "\uFF0F" + esc(draft.category) + "</span></div>" + (list.length ? '<label style="display:block;font-size:12px;font-weight:600;margin-top:16px">' + (draft.requestedStart ? "\u6307\u5B9A\u5230\u5834\u6642\u9593" : "\u5EFA\u8B70\u5230\u5834\u6642\u6BB5\uFF08\u9810\u9078\u6700\u65E9\u7A7A\u6A94\uFF09") + '<select id="auto-slot" style="display:block;width:100%;padding:12px;margin-top:7px;border:1px solid #cbd5e1;border-radius:6px;background:white;font:inherit">' + list.map(function(k) {
-        return '<option value="' + k.start + '">' + stamp(k.start) + "\u2013" + hm(k.end) + "</option>";
+      var suggestion = suggestEngineers(draft), people = suggestion.people, plans = suggestion.plans;
+      if (!people.length) {
+        draft.engineer = "";
+        box.innerHTML = '<div class="p2-note">\u6C92\u6709\u555F\u7528\u4E14\u652F\u63F4\u6B64\u7E23\u5E02\u8207\u985E\u5225\u7684\u5DE5\u7A0B\u5E2B\uFF0C\u8ACB\u5148\u5230\u4EBA\u54E1\u540D\u55AE\u65B0\u589E\u6216\u8ABF\u6574\u3002</div>';
+        button.disabled = true;
+        return;
+      }
+      if (!draft.manualEngineer || !people.some(function(e) {
+        return e.name === draft.engineer;
+      })) {
+        draft.engineer = plans.length ? plans[0].name : people[0].name;
+        draft.manualEngineer = false;
+      }
+      var list = slots(draft), ranked = plans.find(function(x) {
+        return x.name === draft.engineer;
+      }), chosen = ranked ? ranked.slot.start : list[0] && list[0].start;
+      box.innerHTML = '<label class="p2-sub">\u5DE5\u7A0B\u5E2B\uFF08\u53EF\u8ABF\u6574\uFF09<select id="auto-engineer" style="display:block;width:100%;padding:12px;margin:7px 0 12px;border:1px solid #cbd5e1;border-radius:6px;background:white;font:inherit">' + people.map(function(e) {
+        return '<option value="' + esc(e.name) + '"' + (e.name === draft.engineer ? " selected" : "") + ">" + esc(e.name) + ((e.primaryRegions || []).includes(draft.region) ? " \xB7 \u4E3B\u8981\u5DE5\u7A0B\u5E2B" : "") + "</option>";
+      }).join("") + '</select></label><p class="p2-sub">\u7B26\u5408\u689D\u4EF6\u6642\uFF0C\u4F9D\u4E3B\u8981\u5DE5\u7A0B\u5E2B\u3001\u7576\u5929\u540C\u7E23\u5E02\u884C\u7A0B\u53CA\u7576\u65E5\u6848\u4EF6\u8F03\u5C11\u6392\u5E8F\uFF1B\u53EF\u624B\u52D5\u9078\u64C7\u3002</p>' + (list.length ? '<label style="display:block;font-size:12px;font-weight:600;margin-top:16px">' + (draft.requestedStart ? "\u6307\u5B9A\u5230\u5834\u6642\u9593" : "\u5EFA\u8B70\u5230\u5834\u6642\u6BB5") + '<select id="auto-slot" style="display:block;width:100%;padding:12px;margin-top:7px;border:1px solid #cbd5e1;border-radius:6px;background:white;font:inherit">' + list.map(function(k) {
+        return '<option value="' + k.start + '"' + (k.start === chosen ? " selected" : "") + ">" + stamp(k.start) + "\u2013" + hm(k.end) + "</option>";
       }).join("") + "</select></label>" : '<div class="p2-note" style="margin-top:14px">' + (draft.requestedStart ? "\u6307\u5B9A\u6642\u9593\u4E0D\u7B26\u5408\u5DE5\u4F5C\u65E5\u3001\u5DE5\u4F5C\u6642\u9593\u3001\u6BCF\u65E5\u4E0A\u9650\u6216\u5DF2\u6709\u885D\u7A81\uFF1B\u8ACB\u8FD4\u56DE\u4FEE\u6539\uFF0C\u6216\u5EFA\u7ACB\u5F85\u5354\u8ABF\u5DE5\u55AE\u3002" : "\u4E09\u65E5\u5167\u7121\u7B26\u5408\u898F\u5247\u7684\u7A7A\u6A94\uFF0C\u53EF\u78BA\u8A8D\u5EFA\u7ACB\u5F85\u5354\u8ABF\u5DE5\u55AE\u3002") + "</div>");
+      box.querySelector("#auto-engineer").onchange = function(e) {
+        draft.engineer = e.target.value;
+        draft.manualEngineer = true;
+        proposal();
+      };
       button.disabled = false;
       button.textContent = list.length ? "\u78BA\u8A8D\u6D3E\u5DE5\u4E26\u52A0\u5165\u6708\u66C6" : "\u78BA\u8A8D\u5EFA\u7ACB\u5F85\u5354\u8ABF\u5DE5\u55AE";
     }
@@ -778,7 +1091,7 @@ document.body.innerHTML = '\n<aside class="sidebar" id="sidebar">\n  <div class=
     if (ev) lineNotify(ev);
   }
   window.leyanReviewRequest = function(record, onApprove) {
-    newDialog(null, { client: record.client, note: record.source === "line" ? lineReportContent(record.note, record.client) : record.note, source: { manual: "\u624B\u52D5", voice: "\u8A9E\u97F3", line: "LINE" }[record.source] || record.source, received: record.created_at, onApprove });
+    newDialog(null, { client: record.client, note: record.source === "line" ? lineReportContent(record.note, record.client) : record.note, originalText: record.note, source: { manual: "\u624B\u52D5", voice: "\u8A9E\u97F3", line: "LINE" }[record.source] || record.source, received: record.created_at, onApprove });
   };
   var LINE = { inbox: [], contacts: [], stats: null, quota: null, codes: {}, error: "", loading: null, at: 0 };
   function lineApi() {
@@ -800,9 +1113,10 @@ document.body.innerHTML = '\n<aside class="sidebar" id="sidebar">\n  <div class=
     return { engineer: "\u5DE5\u7A0B\u5E2B", manager: "\u7BA1\u7406\u8005", customer: "\u5BA2\u6236" }[r] || r;
   }
   function lineTargets() {
-    return Object.keys(ENGINEERS).map(function(k) {
-      var p = k.split("|");
-      return { role: "engineer", ref: ENGINEERS[k], label: p[0] + p[1].replace("\u7DAD\u8B77", "") + " " + ENGINEERS[k] };
+    return ROSTER.filter(function(e) {
+      return isEngineer(e) && e.active;
+    }).map(function(e) {
+      return { role: "engineer", ref: e.name, label: (e.regions || []).join("\u3001") + " " + e.name };
     }).concat([{ role: "manager", ref: "\u5317\u5340\u7D93\u7406", label: "\u7BA1\u7406\u8005\uFF08\u6211\uFF09\u30FB\u6BCF\u65E5\u63D0\u9192" }]);
   }
   function lineBadge() {
@@ -954,8 +1268,8 @@ document.body.innerHTML = '\n<aside class="sidebar" id="sidebar">\n  <div class=
       var cus = LINE.contacts.find(function(x) {
         return x.line_user_id === m.line_user_id && x.role === "customer";
       });
-      var clientName = cus ? cus.ref_name : inferLineClient(m.text);
-      newDialog(null, { client: clientName, note: lineReportContent(m.text, clientName).slice(0, 1e3), received: m.received_at, source: "LINE \u5831\u4FEE\uFF08" + (m.display_name || "LINE \u4F7F\u7528\u8005") + "\uFF09", onCreated: function(j, ev) {
+      var inferredClient = inferLineClient(m.text), clientName = inferredClient || (cus ? cus.ref_name : "");
+      newDialog(null, { client: clientName, note: lineReportContent(m.text, clientName).slice(0, 1e3), originalText: String(m.text || ""), received: m.received_at, source: "LINE \u5831\u4FEE\uFF08" + (m.display_name || "LINE \u4F7F\u7528\u8005") + "\uFF09", onCreated: function(j, ev) {
         api.convertInbox(m.id, j.id, j.client).then(function() {
           LINE.inbox = LINE.inbox.filter(function(x) {
             return x.id !== m.id;
@@ -1002,7 +1316,11 @@ document.body.innerHTML = '\n<aside class="sidebar" id="sidebar">\n  <div class=
     var selected = jobs.filter(function(j) {
       return localDate(new Date(j.start)) === CALDAY;
     });
-    document.getElementById("content").innerHTML = '<div class="p2-head"><div><h2>\u6D3E\u5DE5\u884C\u4E8B\u66C6</h2><p class="p2-sub">\u78BA\u8A8D\u6D3E\u5DE5\u5F8C\u81EA\u52D5\u986F\u793A\uFF0C\u672A\u5B89\u6392\u7684\u65E5\u671F\u7559\u767D\u3002\u9EDE\u65E5\u671F\u770B\u7576\u65E5\u660E\u7D30\uFF0C\u9EDE\u6D3E\u5DE5\u958B\u555F\u5DE5\u55AE\u3002</p></div><button class="p2-btn" data-p2="dispatch">\u5B89\u6392\u6D3E\u5DE5 \u2192</button></div><div class="cal-controls"><h3 class="cal-heading">' + year + " \u5E74 " + (month + 1) + ' \u6708</h3><button data-cal-move="-1" aria-label="\u4E0A\u500B\u6708">\u2039</button><button data-cal-today>\u4ECA\u5929</button><button data-cal-move="1" aria-label="\u4E0B\u500B\u6708">\u203A</button><select id="p2-calreg" aria-label="\u6392\u7A0B\u5730\u5340">' + opts(["\u5168\u90E8", "\u96D9\u5317", "\u6843\u7AF9"], CALREG) + '</select><select id="cal-engineer" aria-label="\u6392\u7A0B\u5DE5\u7A0B\u5E2B">' + opts(["\u5168\u90E8"].concat(Object.values(ENGINEERS)), CALENGINEER) + '</select></div><div class="cal-shell"><div class="cal-week">' + ["\u65E5", "\u4E00", "\u4E8C", "\u4E09", "\u56DB", "\u4E94", "\u516D"].map(function(d) {
+    document.getElementById("content").innerHTML = '<div class="p2-head"><div><h2>\u6D3E\u5DE5\u884C\u4E8B\u66C6</h2><p class="p2-sub">\u78BA\u8A8D\u6D3E\u5DE5\u5F8C\u81EA\u52D5\u986F\u793A\uFF0C\u672A\u5B89\u6392\u7684\u65E5\u671F\u7559\u767D\u3002\u9EDE\u65E5\u671F\u770B\u7576\u65E5\u660E\u7D30\uFF0C\u9EDE\u6D3E\u5DE5\u958B\u555F\u5DE5\u55AE\u3002</p></div><button class="p2-btn" data-p2="dispatch">\u5B89\u6392\u6D3E\u5DE5 \u2192</button></div><div class="cal-controls"><h3 class="cal-heading">' + year + " \u5E74 " + (month + 1) + ' \u6708</h3><button data-cal-move="-1" aria-label="\u4E0A\u500B\u6708">\u2039</button><button data-cal-today>\u4ECA\u5929</button><button data-cal-move="1" aria-label="\u4E0B\u500B\u6708">\u203A</button><select id="p2-calreg" aria-label="\u6392\u7A0B\u5730\u5340">' + opts(["\u5168\u90E8", "\u96D9\u5317", "\u6843\u7AF9"].concat(COUNTIES), CALREG) + '</select><select id="cal-engineer" aria-label="\u6392\u7A0B\u5DE5\u7A0B\u5E2B">' + opts(["\u5168\u90E8"].concat(Array.from(new Set(engineerRoster().map(function(e) {
+      return e.name;
+    }).concat(JOBS.map(function(j) {
+      return j.engineer;
+    }).filter(Boolean))))), CALENGINEER) + '</select></div><div class="cal-shell"><div class="cal-week">' + ["\u65E5", "\u4E00", "\u4E8C", "\u4E09", "\u56DB", "\u4E94", "\u516D"].map(function(d) {
       return "<span>" + d + "</span>";
     }).join("") + '</div><div class="cal-grid">' + cells + '</div></div><div class="cal-legend"><span><i></i>\u96D9\u5317</span><span><i class="peach"></i>\u6843\u7AF9</span><span>\u7070\u8272\uFF1A\u5DF2\u5B8C\u6210</span><span>\u672C\u6708 ' + visibleCount + ' \u4EF6</span><span>\u4E00\u822C\u6D3E\u5DE5\u9031\u672B\u53CA\u570B\u5B9A\u5047\u65E5\u4E0D\u5B89\u6392</span></div><section class="card cal-selected"><h3>' + esc(CALDAY.replace(/-/g, " / ")) + " \xB7 " + selected.length + " \u4EF6\u6D3E\u5DE5</h3>" + (selected.length ? selected.map(function(j) {
       return '<div class="cal-agenda-item"><div><b>' + hm(j.start) + "\u2013" + hm(j.end) + "\u3000" + esc(j.engineer) + '</b><div class="p2-sub">' + esc(j.client) + " \xB7 " + esc(j.region) + "\uFF0F" + esc(j.category) + " \xB7 " + esc(j.status) + '</div></div><button class="p2-btn secondary" data-job="' + esc(j.id) + '">\u67E5\u770B\u5DE5\u55AE</button></div>';
