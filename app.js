@@ -1,7 +1,7 @@
 // app-entry.generated.mjs
 var css = document.createElement("link");
 css.rel = "stylesheet";
-css.href = "app.css?v=a4c29455c2";
+css.href = "app.css?v=d72c428df9";
 document.head.appendChild(css);
 document.body.innerHTML = '\n<aside class="sidebar" id="sidebar">\n  <div class="sb-logo">\n    <div class="sb-dots"><div class="sb-dot" style="background:#f59e0b"></div><div class="sb-dot" style="background:#3b82f6"></div></div>\n    <div class="sb-brand">\u6A02\u884D <small>\u5317\u5340\u5DE5\u4F5C\u7BA1\u7406</small></div>\n  </div>\n  <nav>\n    <div class="nav-item" data-page="dashboard"><span class="nav-icon">\u{1F4CA}</span> \u6D3E\u5DE5\u7E3D\u89BD</div>\n    \n    <div class="nav-item" data-page="dispatch"><span class="nav-icon">\u{1F527}</span> \u5831\u4FEE\u6D3E\u5DE5</div>\n    <div class="nav-item" data-page="calendar"><span class="nav-icon">\u{1F4C5}</span> \u884C\u4E8B\u66C6</div>\n    <div class="nav-item" data-page="line"><span class="nav-icon">\u{1F4AC}</span> LINE \u8A2D\u5B9A<span class="line-badge" id="line-nav-badge" hidden></span></div>\n    <div class="nav-item" data-page="settings"><span class="nav-icon">\u{1F465}</span> \u4EBA\u54E1\u540D\u55AE</div>\n  </nav>\n  <div class="sb-footer"><div>\u4E92\u52D5\u539F\u578B \xB7 \u7B2C\u4E8C\u968E\u6BB5</div><div style="color:#3b82f6;margin-top:2px">v2.0 \xB7 \u672C\u6A5F\u793A\u7BC4</div></div>\n</aside>\n<div class="overlay" id="overlay"></div>\n<div class="app">\n  <header class="topbar">\n    <button class="menu-btn" id="menuBtn">\u2630</button>\n    <div class="page-title" id="pageTitle">\u5100\u8868\u677F</div>\n    <div style="display:flex;align-items:center;gap:10px;margin-left:auto">\n      <span class="date-chip" id="todayDate"></span>\n      <span class="user-pill">\u5317\u5340\u7D93\u7406</span>\n    </div>\n  </header>\n  <div style="padding:10px 24px;background:#fff7ed;color:#9a3412;font-size:13px">\u5DE5\u4F5C\u7BA1\u7406\uFF5C\u8CC7\u6599\u4F9D\u767B\u5165\u5E33\u865F\u4FDD\u5B58\u5728\u96F2\u7AEF\uFF1B\u672A\u4E32\u63A5Google\u884C\u4E8B\u66C6\u3002LINE\u901A\u77E5\u8ACB\u65BC\u300CLINE \u8A2D\u5B9A\u300D\u7D81\u5B9A\u3002</div><div class="content" id="content"></div>\n</div>\n';
 (function() {
@@ -119,28 +119,88 @@ document.body.innerHTML = '\n<aside class="sidebar" id="sidebar">\n  <div class=
     { id: "legacy-taozhu-hard", name: "\u9EC3\u667A\u7FA4", regions: ["\u6843\u5712\u5E02", "\u65B0\u7AF9\u5E02", "\u65B0\u7AF9\u7E23"], primaryRegions: ["\u6843\u5712\u5E02", "\u65B0\u7AF9\u5E02", "\u65B0\u7AF9\u7E23"], skills: ["\u786C\u9AD4\u7DAD\u8B77"], active: true }
   ];
   var initialRoster = window.leyanRoster ? window.leyanRoster.list() : null;
-  var TITLE_SUGGEST = ["\u7DAD\u8B77\u5DE5\u7A0B\u5E2B", "\u5F31\u96FB\u5DE5\u7A0B\u5E2B", "\u57F9\u8A13", "\u696D\u52D9", "\u884C\u653F\u52A9\u7406", "\u958B\u696D\u9867\u554F", "\u7D93\u7406"];
-  function isEngineer(e) {
-    return !!e && String(e.title == null ? "" : e.title).indexOf("\u5DE5\u7A0B\u5E2B") >= 0;
+  var TITLES = ["\u7E3D\u76E3", "\u57F7\u884C\u9577", "\u5340\u7D93\u7406", "\u884C\u653F\u52A9\u7406", "\u5F31\u96FB\u5DE5\u7A0B\u5E2B", "\u7DAD\u8B77\u5DE5\u7A0B\u5E2B", "\u696D\u52D9", "\u57F9\u8A13", "\u958B\u696D\u9867\u554F"], ENG_TITLES = ["\u5F31\u96FB\u5DE5\u7A0B\u5E2B", "\u7DAD\u8B77\u5DE5\u7A0B\u5E2B"];
+  var ROSTER_ONLY = !!window.leyanRosterOnly, OWNER_EMAIL = String(window.leyanRoster && window.leyanRoster.ownerEmail || "").toLowerCase(), SELF_EMAIL = String(window.leyanRoster && window.leyanRoster.selfEmail || "").toLowerCase();
+  function isEmail(v) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(String(v || "").trim());
   }
-  function inferArea(e) {
-    var r = Array.isArray(e.regions) ? e.regions : [];
-    if (r.some(function(x) {
-      return x === "\u81FA\u5317\u5E02" || x === "\u65B0\u5317\u5E02" || x === "\u57FA\u9686\u5E02";
-    })) return "\u96D9\u5317";
-    if (r.some(function(x) {
-      return x === "\u6843\u5712\u5E02" || x === "\u65B0\u7AF9\u5E02" || x === "\u65B0\u7AF9\u7E23";
-    })) return "\u6843\u7AF9";
+  function isOwnerRow(e) {
+    return !!OWNER_EMAIL && String(e.account || "").trim().toLowerCase() === OWNER_EMAIL;
+  }
+  function hasAdmin(e) {
+    return isOwnerRow(e) || !!e.admin && isEmail(e.account);
+  }
+  function normCounty(x) {
+    var s = String(x || "").trim().replace(/台/g, "\u81FA");
+    if (COUNTIES.includes(s)) return s;
+    if (s.length >= 2 && s !== "\u65B0\u7AF9" && s !== "\u5609\u7FA9") {
+      var hit = COUNTIES.filter(function(c) {
+        return c.slice(0, -1) === s;
+      });
+      if (hit.length === 1) return hit[0];
+    }
     return "";
+  }
+  function countyList(v) {
+    var out = [];
+    (Array.isArray(v) ? v : []).forEach(function(x) {
+      var c = normCounty(x);
+      if (c && out.indexOf(c) < 0) out.push(c);
+    });
+    return out;
+  }
+  function regionsOf(e) {
+    return (e.primaryRegions || []).concat(e.supportRegions || []);
+  }
+  function isEngineer(e) {
+    return !!e && (ENG_TITLES.indexOf(e.title) >= 0 || !e.title && !!e.legacyEngineer);
   }
   function normPerson(e) {
     var o = Object.assign({}, e);
     o.employeeId = o.employeeId == null ? "" : String(o.employeeId);
-    if (o.title === void 0 || o.title === null) o.title = "\u5DE5\u7A0B\u5E2B";
-    if (o.area == null) o.area = inferArea(o);
     if (o.account == null) o.account = "";
     if (o.password == null) o.password = "";
     if (o.active == null) o.active = true;
+    o.admin = !!o.admin;
+    var t = o.title == null ? null : String(o.title).trim().replace(/台/g, "\u81FA");
+    if (t !== null && TITLES.indexOf(t) >= 0) {
+      o.title = t;
+      delete o.legacyEngineer;
+      delete o.legacyTitle;
+    } else if (t === null || t.indexOf("\u5DE5\u7A0B\u5E2B") >= 0) {
+      var sk = Array.isArray(o.skills) ? o.skills : [], weak = sk.indexOf("\u5F31\u96FB\u7DAD\u8B77") >= 0, hard = sk.indexOf("\u786C\u9AD4\u7DAD\u8B77") >= 0;
+      if (weak && !hard) o.title = "\u5F31\u96FB\u5DE5\u7A0B\u5E2B";
+      else if (hard && !weak) o.title = "\u7DAD\u8B77\u5DE5\u7A0B\u5E2B";
+      else {
+        o.title = "";
+        o.legacyEngineer = true;
+        if (t) o.legacyTitle = t;
+      }
+      if (o.title) {
+        delete o.legacyEngineer;
+        delete o.legacyTitle;
+      }
+    } else if (t) {
+      o.legacyTitle = t;
+      o.title = "";
+    } else o.title = "";
+    var prim = countyList(o.primaryRegions), sup = countyList(Array.isArray(o.supportRegions) ? o.supportRegions : o.regions);
+    if (!prim.length && !sup.length && o.area) {
+      var a = String(o.area).trim();
+      if (a === "\u96D9\u5317") prim = ["\u81FA\u5317\u5E02", "\u65B0\u5317\u5E02"];
+      else if (a === "\u6843\u7AF9") prim = ["\u6843\u5712\u5E02", "\u65B0\u7AF9\u5E02", "\u65B0\u7AF9\u7E23"];
+      else {
+        var parts = a.split(/[、,，\/\s]+/).filter(Boolean), cs = parts.map(normCounty);
+        if (parts.length && cs.every(Boolean)) prim = countyList(cs);
+        else o.legacyArea = a;
+      }
+    }
+    o.primaryRegions = prim;
+    o.supportRegions = sup.filter(function(c) {
+      return prim.indexOf(c) < 0;
+    });
+    delete o.regions;
+    delete o.area;
     return o;
   }
   var ROSTER = (initialRoster === null ? JSON.parse(JSON.stringify(DEFAULT_ROSTER)) : initialRoster).map(normPerson);
@@ -162,7 +222,7 @@ document.body.innerHTML = '\n<aside class="sidebar" id="sidebar">\n  <div class=
     return false;
   }
   function supportsEngineer(e, county, category) {
-    return isEngineer(e) && !!e.active && Array.isArray(e.regions) && e.regions.includes(county) && Array.isArray(e.skills) && e.skills.includes(category);
+    return isEngineer(e) && !!e.active && regionsOf(e).includes(county) && Array.isArray(e.skills) && e.skills.includes(category);
   }
   function suggestEngineers(draft) {
     var staff = ROSTER.filter(function(e) {
@@ -200,20 +260,26 @@ document.body.innerHTML = '\n<aside class="sidebar" id="sidebar">\n  <div class=
     lineBanner();
     loadLine(false);
   }
-  var PQ = "", PAREA = "\u5168\u90E8", PTITLE = "\u5168\u90E8", PSORT = "asc", PREVEAL = {};
-  function areaGroup(a) {
-    a = String(a || "").trim();
-    return a === "\u96D9\u5317" || a === "\u6843\u7AF9" ? a : a ? "\u5176\u4ED6" : "\u672A\u8A2D\u5B9A";
+  var PQ = "", PCOUNTY = "\u5168\u90E8", PPRIMARY = false, PTITLE = "\u5168\u90E8", PSORT = "asc", PREVEAL = {}, IMPORT_PLAN = null, IMPORT_FILE_TEXT = null;
+  function lc(v) {
+    return String(v == null ? "" : v).trim().toLowerCase();
   }
   function peopleRows() {
     var q = PQ.trim().toLowerCase();
     var list = ROSTER.filter(function(e) {
-      if (PAREA !== "\u5168\u90E8" && areaGroup(e.area) !== PAREA) return false;
+      if (PCOUNTY === "__none") {
+        if (regionsOf(e).length) return false;
+      } else if (PCOUNTY !== "\u5168\u90E8") {
+        var inP = (e.primaryRegions || []).indexOf(PCOUNTY) >= 0, inS = (e.supportRegions || []).indexOf(PCOUNTY) >= 0;
+        if (!(inP || !PPRIMARY && inS)) return false;
+      }
       if (PTITLE === "__eng") {
         if (!isEngineer(e)) return false;
-      } else if (PTITLE !== "\u5168\u90E8" && String(e.title || "") !== PTITLE) return false;
+      } else if (PTITLE === "__none") {
+        if (e.title) return false;
+      } else if (PTITLE !== "\u5168\u90E8" && e.title !== PTITLE) return false;
       if (!q) return true;
-      return [e.employeeId, e.name, e.title, e.area, e.account].some(function(x) {
+      return [e.employeeId, e.name, e.title, e.account, regionsOf(e).join(" ")].some(function(x) {
         return String(x || "").toLowerCase().indexOf(q) >= 0;
       });
     });
@@ -224,11 +290,26 @@ document.body.innerHTML = '\n<aside class="sidebar" id="sidebar">\n  <div class=
       return (PSORT === "asc" ? c : -c) || String(a.name).localeCompare(String(b.name), "zh-Hant");
     });
   }
+  function personTitle(e) {
+    if (e.title) return esc(e.title);
+    return '<span class="badge people-missing">\u8ACB\u9078\u64C7\u8077\u4F4D</span>' + (e.legacyTitle ? '<div class="p2-sub">\u539F\u8077\u4F4D\uFF1A' + esc(e.legacyTitle) + "</div>" : "") + (e.legacyEngineer ? '<div class="p2-sub">\u9078\u5B9A\u524D\u4ECD\u53EF\u6D3E\u5DE5</div>' : "");
+  }
+  function personRegions(e) {
+    var p = e.primaryRegions || [], s = e.supportRegions || [];
+    var html = p.length ? '<div class="region-primary">' + p.map(function(r) {
+      return "<span>" + esc(r) + "</span>";
+    }).join("") + "</div>" : s.length ? '<span class="p2-sub">\u672A\u8A2D\u5B9A\u4E3B\u8981\u8CA0\u8CAC</span>' : '<span class="p2-sub">\u672A\u8A2D\u5B9A</span>';
+    if (s.length) html += '<div class="region-support">\u652F\u63F4\uFF1A' + esc(s.join("\u3001")) + "</div>";
+    if (e.legacyArea) html += '<div class="p2-sub">\u539F\u5340\u57DF\uFF1A' + esc(e.legacyArea) + "\uFF08\u8ACB\u91CD\u65B0\u9078\u64C7\uFF09</div>";
+    return '<span class="region-cell">' + html + "</span>";
+  }
+  function personAdmin(e) {
+    if (isOwnerRow(e)) return '<label class="admin-flag"><input type="checkbox" checked disabled aria-label="\u64C1\u6709\u8005\u6C38\u9060\u5177\u5099\u7BA1\u7406\u6B0A\u9650"> \u64C1\u6709\u8005</label>';
+    return hasAdmin(e) ? '<span class="badge admin-yes">\u2713 \u7BA1\u7406\u6B0A\u9650</span>' : '<span class="p2-sub">\u2014</span>';
+  }
   function personDispatch(e) {
     if (!isEngineer(e)) return '<span class="p2-sub">\u4E0D\u53C3\u8207\u6D3E\u5DE5</span>';
-    return '<span class="roster-state ' + (e.active ? "is-active" : "") + '">' + (e.active ? "\u555F\u7528\u4E2D" : "\u5DF2\u505C\u7528") + '</span><div class="p2-sub">' + esc((e.skills || []).join("\u3001") || "\u672A\u8A2D\u5B9A\u985E\u5225") + '</div><div class="p2-sub">\u4E3B\u8981\uFF1A' + esc((e.primaryRegions || []).join("\u3001") || "\u672A\u8A2D\u5B9A") + '</div><div class="roster-tags">' + (e.regions || []).map(function(r) {
-      return "<span>" + esc(r) + "</span>";
-    }).join("") + "</div>";
+    return '<span class="roster-state ' + (e.active ? "is-active" : "") + '">' + (e.active ? "\u555F\u7528\u4E2D" : "\u5DF2\u505C\u7528") + '</span><div class="p2-sub">' + esc((e.skills || []).join("\u3001") || "\u672A\u8A2D\u5B9A\u985E\u5225") + "</div>" + (regionsOf(e).length ? "" : '<div class="p2-sub">\u672A\u8A2D\u5B9A\u7E23\u5E02</div>');
   }
   function personPassword(e) {
     if (!e.password) return '<span class="p2-sub">\u672A\u8A2D\u5B9A</span>';
@@ -239,30 +320,41 @@ document.body.innerHTML = '\n<aside class="sidebar" id="sidebar">\n  <div class=
     var box = document.getElementById("people-list");
     if (!box) return;
     var list = peopleRows(), arrow = PSORT === "asc" ? "\u2191" : "\u2193";
-    box.innerHTML = (list.length ? '<div class="card people-card"><table class="people-table"><thead><tr><th aria-sort="' + (PSORT === "asc" ? "ascending" : "descending") + '"><button type="button" class="people-sort" data-people="sort">\u54E1\u5DE5\u7DE8\u865F ' + arrow + "</button></th><th>\u59D3\u540D</th><th>\u8077\u4F4D</th><th>\u5340\u57DF</th><th>\u5E33\u865F</th><th>\u5BC6\u78BC</th><th>\u6D3E\u5DE5\u8A2D\u5B9A</th><th>\u64CD\u4F5C</th></tr></thead><tbody>" + list.map(function(e) {
-      return '<tr data-person="' + esc(e.id) + '"><td data-label="\u54E1\u5DE5\u7DE8\u865F">' + (e.employeeId ? "<b>" + esc(e.employeeId) + "</b>" : '<span class="badge people-missing">\u5F85\u88DC\u7DE8\u865F</span>') + '</td><td data-label="\u59D3\u540D"><b>' + esc(e.name) + '</b></td><td data-label="\u8077\u4F4D">' + (e.title ? esc(e.title) : '<span class="p2-sub">\u672A\u8A2D\u5B9A</span>') + '</td><td data-label="\u5340\u57DF">' + (e.area ? esc(e.area) : '<span class="p2-sub">\u672A\u8A2D\u5B9A</span>') + '</td><td data-label="\u5E33\u865F">' + (e.account ? esc(e.account) : '<span class="p2-sub">\u672A\u8A2D\u5B9A</span>') + '</td><td data-label="\u5BC6\u78BC">' + personPassword(e) + '</td><td data-label="\u6D3E\u5DE5\u8A2D\u5B9A">' + personDispatch(e) + '</td><td data-label="\u64CD\u4F5C"><span class="people-actions"><button type="button" class="btn-sm" data-roster="edit" data-id="' + esc(e.id) + '">\u7DE8\u8F2F</button>' + (isEngineer(e) ? '<button type="button" class="btn-sm" data-roster="toggle" data-id="' + esc(e.id) + '">' + (e.active ? "\u505C\u7528" : "\u555F\u7528") + "</button>" : "") + '<button type="button" class="btn-sm people-del" data-roster="delete" data-id="' + esc(e.id) + '">\u522A\u9664</button></span></td></tr>';
+    box.innerHTML = (list.length ? '<div class="card people-card"><table class="people-table"><thead><tr><th aria-sort="' + (PSORT === "asc" ? "ascending" : "descending") + '"><button type="button" class="people-sort" data-people="sort">\u54E1\u5DE5\u7DE8\u865F ' + arrow + "</button></th><th>\u59D3\u540D</th><th>\u8077\u4F4D</th><th>\u5340\u57DF</th><th>\u5E33\u865F</th><th>\u5BC6\u78BC</th><th>\u7BA1\u7406\u6B0A\u9650</th><th>\u6D3E\u5DE5\u8A2D\u5B9A</th><th>\u64CD\u4F5C</th></tr></thead><tbody>" + list.map(function(e) {
+      return '<tr data-person="' + esc(e.id) + '"><td data-label="\u54E1\u5DE5\u7DE8\u865F">' + (e.employeeId ? "<b>" + esc(e.employeeId) + "</b>" : '<span class="badge people-missing">\u5F85\u88DC\u7DE8\u865F</span>') + '</td><td data-label="\u59D3\u540D"><b>' + esc(e.name) + '</b></td><td data-label="\u8077\u4F4D">' + personTitle(e) + '</td><td data-label="\u5340\u57DF">' + personRegions(e) + '</td><td data-label="\u5E33\u865F">' + (e.account ? esc(e.account) : '<span class="p2-sub">\u672A\u8A2D\u5B9A</span>') + '</td><td data-label="\u5BC6\u78BC">' + personPassword(e) + '</td><td data-label="\u7BA1\u7406\u6B0A\u9650">' + personAdmin(e) + '</td><td data-label="\u6D3E\u5DE5\u8A2D\u5B9A">' + personDispatch(e) + '</td><td data-label="\u64CD\u4F5C"><span class="people-actions"><button type="button" class="btn-sm" data-roster="edit" data-id="' + esc(e.id) + '">\u7DE8\u8F2F</button>' + (isEngineer(e) ? '<button type="button" class="btn-sm" data-roster="toggle" data-id="' + esc(e.id) + '">' + (e.active ? "\u505C\u7528" : "\u555F\u7528") + "</button>" : "") + '<button type="button" class="btn-sm people-del" data-roster="delete" data-id="' + esc(e.id) + '">\u522A\u9664</button></span></td></tr>';
     }).join("") + "</tbody></table></div>" : '<p class="p2-empty card">' + (ROSTER.length ? "\u6C92\u6709\u7B26\u5408\u689D\u4EF6\u7684\u4EBA\u54E1\u3002" : "\u5C1A\u7121\u4EBA\u54E1\uFF0C\u8ACB\u5148\u65B0\u589E\u3002") + "</p>") + '<p class="p2-sub">\u5171 ' + ROSTER.length + " \u4F4D\uFF0C\u986F\u793A " + list.length + " \u4F4D \xB7 \u4F9D\u54E1\u5DE5\u7DE8\u865F" + (PSORT === "asc" ? "\u7531\u5C0F\u5230\u5927" : "\u7531\u5927\u5230\u5C0F") + "</p>";
   }
   function renderRosterManager() {
-    var el = document.getElementById("content"), titles = Array.from(new Set(ROSTER.map(function(e) {
-      return String(e.title || "");
-    }).filter(Boolean).concat(TITLE_SUGGEST))), missing = ROSTER.filter(function(e) {
+    var el = document.getElementById("content"), missing = ROSTER.filter(function(e) {
       return !e.employeeId;
+    }).length, noTitle = ROSTER.filter(function(e) {
+      return !e.title;
     }).length;
     function opt(v, l, cur) {
       return '<option value="' + esc(v) + '"' + (v === cur ? " selected" : "") + ">" + esc(l) + "</option>";
     }
-    el.innerHTML = '<div class="p2-head"><div><h2>\u4EBA\u54E1\u540D\u55AE</h2><p class="p2-sub">\u5168\u9AD4\u4EBA\u54E1\u8CC7\u6599\u3002\u8077\u4F4D\u542B\u300C\u5DE5\u7A0B\u5E2B\u300D\u8005\u624D\u6703\u51FA\u73FE\u5728\u6D3E\u5DE5\u5EFA\u8B70\u3001\u884C\u4E8B\u66C6\u7BE9\u9078\u8207 LINE \u7D81\u5B9A\u3002\u5E33\u865F\u8207\u5BC6\u78BC\u50C5\u7BA1\u7406\u8005\u53EF\u898B\u3002</p></div><button class="p2-btn" data-roster="new">\uFF0B \u65B0\u589E\u4EBA\u54E1</button></div>' + (missing ? '<div class="p2-note" id="people-missing-note">\u6709 ' + missing + " \u4F4D\u4EBA\u54E1\u5C1A\u672A\u586B\u5BEB\u54E1\u5DE5\u7DE8\u865F\uFF08\u7531\u820A\u5DE5\u7A0B\u5E2B\u540D\u518A\u8F49\u5165\uFF09\uFF0C\u8ACB\u6309\u300C\u7DE8\u8F2F\u300D\u88DC\u4E0A\u3002</div>" : "") + '<div class="p2-filters people-filters"><input id="people-search" type="search" placeholder="\u641C\u5C0B\u54E1\u5DE5\u7DE8\u865F\u3001\u59D3\u540D\u3001\u8077\u4F4D\u3001\u5E33\u865F" aria-label="\u641C\u5C0B\u4EBA\u54E1" value="' + esc(PQ) + '"><select id="people-area" aria-label="\u5340\u57DF\u7BE9\u9078">' + ["\u5168\u90E8", "\u96D9\u5317", "\u6843\u7AF9", "\u5176\u4ED6", "\u672A\u8A2D\u5B9A"].map(function(v) {
-      return opt(v, v === "\u5168\u90E8" ? "\u5168\u90E8\u5340\u57DF" : v, PAREA);
-    }).join("") + '</select><select id="people-title" aria-label="\u8077\u4F4D\u7BE9\u9078">' + opt("\u5168\u90E8", "\u5168\u90E8\u8077\u4F4D", PTITLE) + opt("__eng", "\u542B\u300C\u5DE5\u7A0B\u5E2B\u300D", PTITLE) + titles.map(function(v) {
+    el.innerHTML = '<div class="p2-head"><div><h2>\u4EBA\u54E1\u540D\u55AE</h2><p class="p2-sub">\u5168\u9AD4\u4EBA\u54E1\u8CC7\u6599\u3002\u8077\u4F4D\u70BA\u300C\u5F31\u96FB\u5DE5\u7A0B\u5E2B\u300D\u300C\u7DAD\u8B77\u5DE5\u7A0B\u5E2B\u300D\u8005\u624D\u6703\u51FA\u73FE\u5728\u6D3E\u5DE5\u5EFA\u8B70\u3001\u884C\u4E8B\u66C6\u7BE9\u9078\u8207 LINE \u7D81\u5B9A\u3002\u5E33\u865F\u8207\u5BC6\u78BC\u50C5\u5177\u7BA1\u7406\u6B0A\u9650\u8005\u53EF\u898B\u3002</p></div><div class="people-head-actions"><button class="p2-btn secondary" data-roster="import">\u532F\u5165\u540D\u55AE</button><button class="p2-btn" data-roster="new">\uFF0B \u65B0\u589E\u4EBA\u54E1</button></div></div>' + (missing ? '<div class="p2-note" id="people-missing-note">\u6709 ' + missing + " \u4F4D\u4EBA\u54E1\u5C1A\u672A\u586B\u5BEB\u54E1\u5DE5\u7DE8\u865F\uFF08\u7531\u820A\u5DE5\u7A0B\u5E2B\u540D\u518A\u8F49\u5165\uFF09\uFF0C\u8ACB\u6309\u300C\u7DE8\u8F2F\u300D\u88DC\u4E0A\u3002</div>" : "") + (noTitle ? '<div class="p2-note" id="people-title-note">\u6709 ' + noTitle + " \u4F4D\u4EBA\u54E1\u9700\u8981\u9078\u64C7\u8077\u4F4D\uFF08\u820A\u8CC7\u6599\u7121\u6CD5\u81EA\u52D5\u5224\u65B7\uFF09\uFF0C\u8ACB\u6309\u300C\u7DE8\u8F2F\u300D\u9078\u64C7\u3002\u539F\u70BA\u5DE5\u7A0B\u5E2B\u8005\u5728\u9078\u5B9A\u524D\u4ECD\u53EF\u6D3E\u5DE5\u3002</div>" : "") + '<div class="p2-filters people-filters"><input id="people-search" type="search" placeholder="\u641C\u5C0B\u54E1\u5DE5\u7DE8\u865F\u3001\u59D3\u540D\u3001\u8077\u4F4D\u3001\u5E33\u865F\u3001\u7E23\u5E02" aria-label="\u641C\u5C0B\u4EBA\u54E1" value="' + esc(PQ) + '"><select id="people-county" aria-label="\u7E23\u5E02\u7BE9\u9078">' + opt("\u5168\u90E8", "\u5168\u90E8\u7E23\u5E02", PCOUNTY) + COUNTIES.map(function(c) {
+      return opt(c, c, PCOUNTY);
+    }).join("") + opt("__none", "\u672A\u8A2D\u5B9A\u5340\u57DF", PCOUNTY) + '</select><label class="people-primary-toggle"><input type="checkbox" id="people-primary"' + (PPRIMARY ? " checked" : "") + '> \u53EA\u770B\u4E3B\u8981\u8CA0\u8CAC</label><select id="people-title" aria-label="\u8077\u4F4D\u7BE9\u9078">' + opt("\u5168\u90E8", "\u5168\u90E8\u8077\u4F4D", PTITLE) + opt("__eng", "\u6D3E\u5DE5\u5DE5\u7A0B\u5E2B\uFF08\u5F31\u96FB\uFF0B\u7DAD\u8B77\uFF09", PTITLE) + opt("__none", "\u8ACB\u9078\u64C7\u8077\u4F4D\uFF08\u672A\u8A2D\u5B9A\uFF09", PTITLE) + TITLES.map(function(v) {
       return opt(v, v, PTITLE);
-    }).join("") + '</select><button type="button" class="p2-btn secondary" data-people="sort">\u54E1\u5DE5\u7DE8\u865F ' + (PSORT === "asc" ? "\u2191" : "\u2193") + '</button></div><div id="people-list"></div>';
+    }).join("") + '</select><button type="button" class="p2-btn secondary" data-people="sort">\u54E1\u5DE5\u7DE8\u865F ' + (PSORT === "asc" ? "\u2191" : "\u2193") + '</button></div><div id="people-list"></div>' + (OWNER_EMAIL ? '<p class="p2-sub people-owner-note">\u64C1\u6709\u8005\uFF08' + esc(OWNER_EMAIL) + "\uFF09\u6C38\u9060\u5177\u5099\u7BA1\u7406\u6B0A\u9650\uFF0C\u7121\u6CD5\u79FB\u9664\u3002\u52FE\u9078\u300C\u7BA1\u7406\u6B0A\u9650\u300D\u7684\u4EBA\u54E1\u4EE5\u5176\u5E33\u865F Email \u767B\u5165\u4E26\u5B8C\u6210\u9A57\u8B49\u5668\u5F8C\uFF0C\u53EA\u80FD\u6AA2\u8996\u8207\u7DE8\u8F2F\u4EBA\u54E1\u540D\u55AE\u3002</p>" : "");
     renderPeopleList();
+  }
+  async function saveRoster(next) {
+    if (!window.leyanRoster) throw Error("\u7121\u6CD5\u9023\u7DDA\u4EBA\u54E1\u540D\u55AE\u3002");
+    ROSTER = (await window.leyanRoster.save(next)).map(normPerson);
+    return window.leyanRoster.syncWarning || "";
+  }
+  function countyChoice(name, selected, other) {
+    return COUNTIES.map(function(x) {
+      var on = selected.indexOf(x) >= 0, blocked = other.indexOf(x) >= 0;
+      return '<label class="region-choice"><input type="checkbox" name="' + name + '" value="' + esc(x) + '"' + (on ? " checked" : "") + (blocked ? " disabled" : "") + "><span>" + esc(x) + "</span></label>";
+    }).join("");
   }
   function rosterEditor(id) {
     var old = ROSTER.find(function(e) {
       return e.id === id;
-    }), v = old || { employeeId: "", name: "", title: "", area: "", account: "", password: "", regions: [], primaryRegions: [], skills: [], active: true };
+    }), v = old || { employeeId: "", name: "", title: "", account: "", password: "", primaryRegions: [], supportRegions: [], skills: [], active: true, admin: false };
     var dialog = document.createElement("dialog");
     dialog.className = "p2-dialog";
     dialog.id = "roster-dialog";
@@ -272,37 +364,75 @@ document.body.innerHTML = '\n<aside class="sidebar" id="sidebar">\n  <div class=
     document.body.appendChild(dialog);
     var lockName = !!old && (isEngineer(old) || JOBS.some(function(j) {
       return j.engineer === old.name;
-    })), areaSel = v.area === "\u96D9\u5317" || v.area === "\u6843\u7AF9" || !v.area ? v.area || "" : "\u5176\u4ED6";
+    })), ownerRow = !!old && isOwnerRow(old), selfRow = ROSTER_ONLY && !!old && !!SELF_EMAIL && lc(old.account) === SELF_EMAIL;
     function choice(name, values, selected) {
       return values.map(function(x) {
         return '<label class="region-choice"><input type="checkbox" name="' + name + '" value="' + esc(x) + '"' + (selected.includes(x) ? " checked" : "") + "><span>" + esc(x) + "</span></label>";
       }).join("");
     }
-    dialog.innerHTML = "<h2>" + (old ? "\u7DE8\u8F2F\u4EBA\u54E1" : "\u65B0\u589E\u4EBA\u54E1") + '</h2><form id="roster-form" autocomplete="off"><div class="p2-form"><label>\u54E1\u5DE5\u7DE8\u865F *<input name="employeeId" maxlength="30" required value="' + esc(v.employeeId || "") + '"></label><label>\u59D3\u540D *<input name="engineerName" maxlength="60" required value="' + esc(v.name) + '"' + (lockName ? " readonly" : "") + '></label><label>\u8077\u4F4D<input name="title" list="people-title-suggest" maxlength="40" value="' + esc(v.title || "") + '" placeholder="\u4F8B\u5982\uFF1A\u7DAD\u8B77\u5DE5\u7A0B\u5E2B"><datalist id="people-title-suggest">' + TITLE_SUGGEST.map(function(t) {
-      return '<option value="' + esc(t) + '"></option>';
-    }).join("") + '</datalist></label><label>\u5340\u57DF<select name="areaSel">' + [["", "\u8ACB\u9078\u64C7"], ["\u96D9\u5317", "\u96D9\u5317"], ["\u6843\u7AF9", "\u6843\u7AF9"], ["\u5176\u4ED6", "\u5176\u4ED6\uFF08\u81EA\u884C\u586B\u5BEB\uFF09"]].map(function(o) {
-      return '<option value="' + o[0] + '"' + (o[0] === areaSel ? " selected" : "") + ">" + o[1] + "</option>";
-    }).join("") + '</select></label><label class="area-other"' + (areaSel === "\u5176\u4ED6" ? "" : " hidden") + '>\u5176\u4ED6\u5340\u57DF<input name="areaOther" maxlength="40" value="' + esc(areaSel === "\u5176\u4ED6" ? v.area : "") + '"></label><label>\u5E33\u865F<input name="account" maxlength="120" autocomplete="off" value="' + esc(v.account || "") + '"></label><label>\u5BC6\u78BC<span class="pw-edit"><input name="password" type="password" maxlength="200" autocomplete="new-password" value="' + esc(v.password || "") + '"><button type="button" class="btn-sm" data-people="pw-edit">\u986F\u793A</button></span></label><div class="p2-wide eng-fields"><fieldset class="roster-field"><legend>\u5DE5\u4F5C\u985E\u5225\uFF08\u53EF\u8907\u9078\uFF09*</legend><div class="roster-tags">' + choice("skills", ["\u5F31\u96FB\u7DAD\u8B77", "\u786C\u9AD4\u7DAD\u8B77"], v.skills || []) + '</div></fieldset><fieldset class="roster-field"><legend>\u652F\u63F4\u7E23\u5E02\uFF08\u53EF\u8907\u9078\uFF09*</legend><div class="county-grid">' + choice("regions", COUNTIES, v.regions || []) + '</div></fieldset><fieldset class="roster-field"><legend>\u4E3B\u8981\u8CA0\u8CAC\u7E23\u5E02\uFF08\u53EF\u8907\u9078\uFF09</legend><p class="p2-sub">\u4E3B\u8981\u7E23\u5E02\u5FC5\u9808\u5305\u542B\u5728\u652F\u63F4\u7E23\u5E02\u5167\uFF1B\u7B26\u5408\u689D\u4EF6\u6642\u512A\u5148\u63A8\u85A6\u3002</p><div class="county-grid">' + choice("primaryRegions", COUNTIES, v.primaryRegions || []) + '</div></fieldset><p class="p2-sub">\u4EE5\u4E0A\u6D3E\u5DE5\u8A2D\u5B9A\u50C5\u9069\u7528\u8077\u4F4D\u542B\u300C\u5DE5\u7A0B\u5E2B\u300D\u7684\u4EBA\u54E1\u3002</p></div></div><p class="p2-sub">' + (lockName ? "\u59D3\u540D\u7528\u65BC\u65E2\u6709\u5DE5\u55AE\u53CA LINE \u7D81\u5B9A\uFF0C\u5DF2\u5EFA\u7ACB\u5F8C\u4E0D\u76F4\u63A5\u66F4\u6539\u3002" : "\u8077\u4F4D\u542B\u300C\u5DE5\u7A0B\u5E2B\u300D\u8005\u6703\u52A0\u5165\u6D3E\u5DE5\u5EFA\u8B70\uFF1B\u59D3\u540D\u5EFA\u7ACB\u5F8C\u7528\u65BC\u5DE5\u55AE\u8207 LINE \u7D81\u5B9A\u3002") + '</p><p class="req-error" role="alert"></p><div class="p2-actions"><button class="p2-btn" type="submit">\u5132\u5B58\u4EBA\u54E1</button><button class="p2-btn secondary" type="button" data-roster="close">\u53D6\u6D88</button></div></form>';
-    var form = dialog.querySelector("form"), engBox = dialog.querySelector(".eng-fields");
-    function syncEng() {
-      engBox.hidden = !isEngineer({ title: form.elements.title.value });
+    dialog.innerHTML = "<h2>" + (old ? "\u7DE8\u8F2F\u4EBA\u54E1" : "\u65B0\u589E\u4EBA\u54E1") + '</h2><form id="roster-form" autocomplete="off"><div class="p2-form"><label>\u54E1\u5DE5\u7DE8\u865F *<input name="employeeId" maxlength="30" required value="' + esc(v.employeeId || "") + '"></label><label>\u59D3\u540D *<input name="engineerName" maxlength="60" required value="' + esc(v.name) + '"' + (lockName ? " readonly" : "") + '></label><label>\u8077\u4F4D *<select name="title" required><option value="">\u8ACB\u9078\u64C7\u8077\u4F4D</option>' + TITLES.map(function(t) {
+      return '<option value="' + esc(t) + '"' + (t === v.title ? " selected" : "") + ">" + esc(t) + "</option>";
+    }).join("") + "</select>" + (v.legacyTitle ? '<span class="p2-sub">\u539F\u8077\u4F4D\uFF1A' + esc(v.legacyTitle) + "</span>" : "") + (v.legacyEngineer ? '<span class="p2-sub">\u539F\u70BA\u5DE5\u7A0B\u5E2B\uFF1B\u9078\u5B9A\u8077\u4F4D\u524D\u4ECD\u53EF\u6D3E\u5DE5\u3002</span>' : "") + '</label><label>\u5E33\u865F<input name="account" maxlength="120" autocomplete="off" placeholder="Email" value="' + esc(v.account || "") + '"' + (ownerRow || selfRow ? " readonly" : "") + '></label><label>\u5BC6\u78BC<span class="pw-edit"><input name="password" type="password" maxlength="200" autocomplete="new-password" value="' + esc(v.password || "") + '"><button type="button" class="btn-sm" data-people="pw-edit">\u986F\u793A</button></span></label><div class="p2-wide admin-box"><label class="admin-choice"><input type="checkbox" name="admin"' + (ownerRow || selfRow || v.admin ? " checked" : "") + "><span>\u7BA1\u7406\u6B0A\u9650" + (ownerRow ? "\uFF08\u64C1\u6709\u8005\uFF09" : "") + '</span></label><p class="p2-sub admin-hint"></p></div><fieldset class="roster-field p2-wide"><legend>\u4E3B\u8981\u8CA0\u8CAC\u5340\u57DF\uFF08\u53EF\u8907\u9078\uFF09</legend><div class="county-grid" data-group="primary">' + countyChoice("primaryRegions", v.primaryRegions || [], v.supportRegions || []) + '</div></fieldset><fieldset class="roster-field p2-wide"><legend>\u652F\u63F4\u5340\u57DF\uFF08\u53EF\u8907\u9078\uFF09</legend><div class="county-grid" data-group="support">' + countyChoice("supportRegions", v.supportRegions || [], v.primaryRegions || []) + '</div></fieldset><p class="p2-sub p2-wide">\u540C\u4E00\u7E23\u5E02\u53EA\u80FD\u662F\u300C\u4E3B\u8981\u8CA0\u8CAC\u300D\u6216\u300C\u652F\u63F4\u300D\u5176\u4E2D\u4E4B\u4E00\u3002\u6D3E\u5DE5\u6642\uFF0C\u4E3B\u8981\u8CA0\u8CAC\u8A72\u7E23\u5E02\u7684\u5DE5\u7A0B\u5E2B\u512A\u5148\u63A8\u85A6\u3002' + (v.legacyArea ? "\u539F\u5340\u57DF\uFF1A" + esc(v.legacyArea) + "\uFF0C\u8ACB\u91CD\u65B0\u52FE\u9078\u3002" : "") + '</p><div class="p2-wide eng-fields"><fieldset class="roster-field"><legend>\u5DE5\u4F5C\u985E\u5225\uFF08\u53EF\u8907\u9078\uFF09*</legend><div class="roster-tags">' + choice("skills", ["\u5F31\u96FB\u7DAD\u8B77", "\u786C\u9AD4\u7DAD\u8B77"], v.skills || []) + '</div></fieldset><p class="p2-sub">\u5DE5\u4F5C\u985E\u5225\u50C5\u9069\u7528\u5F31\u96FB\u5DE5\u7A0B\u5E2B\u8207\u7DAD\u8B77\u5DE5\u7A0B\u5E2B\u3002</p></div></div><p class="p2-sub">' + (lockName ? "\u59D3\u540D\u7528\u65BC\u65E2\u6709\u5DE5\u55AE\u53CA LINE \u7D81\u5B9A\uFF0C\u5DF2\u5EFA\u7ACB\u5F8C\u4E0D\u76F4\u63A5\u66F4\u6539\u3002" : "\u5F31\u96FB\u5DE5\u7A0B\u5E2B\u8207\u7DAD\u8B77\u5DE5\u7A0B\u5E2B\u6703\u52A0\u5165\u6D3E\u5DE5\u5EFA\u8B70\uFF1B\u59D3\u540D\u5EFA\u7ACB\u5F8C\u7528\u65BC\u5DE5\u55AE\u8207 LINE \u7D81\u5B9A\u3002") + '</p><p class="req-error" role="alert"></p><div class="p2-actions"><button class="p2-btn" type="submit">\u5132\u5B58\u4EBA\u54E1</button><button class="p2-btn secondary" type="button" data-roster="close">\u53D6\u6D88</button></div></form>';
+    var form = dialog.querySelector("form"), engBox = dialog.querySelector(".eng-fields"), adminBox = form.elements.admin, adminHint = dialog.querySelector(".admin-hint");
+    function engTitle() {
+      var t = form.elements.title.value;
+      return ENG_TITLES.indexOf(t) >= 0 || !t && !!v.legacyEngineer;
     }
-    function syncArea() {
-      var other = form.elements.areaSel.value === "\u5176\u4ED6";
-      dialog.querySelector(".area-other").hidden = !other;
+    function syncEng() {
+      engBox.hidden = !engTitle();
+    }
+    function syncAdmin() {
+      if (ownerRow) {
+        adminBox.checked = true;
+        adminBox.disabled = true;
+        adminHint.textContent = "\u64C1\u6709\u8005\u6C38\u9060\u5177\u5099\u7BA1\u7406\u6B0A\u9650\uFF0C\u7121\u6CD5\u79FB\u9664\u3002";
+        return;
+      }
+      if (selfRow) {
+        adminBox.checked = true;
+        adminBox.disabled = true;
+        adminHint.textContent = "\u7121\u6CD5\u79FB\u9664\u81EA\u5DF1\u7684\u7BA1\u7406\u6B0A\u9650\uFF1B\u8ACB\u7531\u64C1\u6709\u8005\u6216\u5176\u4ED6\u7BA1\u7406\u8005\u8ABF\u6574\u3002";
+        return;
+      }
+      var ok = isEmail(form.elements.account.value);
+      adminBox.disabled = !ok;
+      if (!ok) adminBox.checked = false;
+      adminHint.textContent = ok ? "\u52FE\u9078\u5F8C\uFF0C\u6B64 Email \u5B8C\u6210\u9A57\u8B49\u5668\u767B\u5165\u5F8C\u53EF\u6AA2\u8996\u8207\u7DE8\u8F2F\u4EBA\u54E1\u540D\u55AE\uFF08\u4E0D\u542B\u6D3E\u5DE5\u3001LINE \u7B49\u5176\u4ED6\u529F\u80FD\uFF09\u3002" : "\u5E33\u865F\u9808\u70BA\u6709\u6548 Email \u624D\u80FD\u52FE\u9078\u7BA1\u7406\u6B0A\u9650\u3002";
+    }
+    function syncRegions(changed) {
+      if (changed && changed.checked) {
+        var otherName = changed.name === "primaryRegions" ? "supportRegions" : "primaryRegions";
+        var twin = form.querySelector("[name=" + otherName + '][value="' + CSS.escape(changed.value) + '"]');
+        if (twin) twin.checked = false;
+      }
+      COUNTIES.forEach(function(c) {
+        var p = form.querySelector('[name=primaryRegions][value="' + CSS.escape(c) + '"]'), s = form.querySelector('[name=supportRegions][value="' + CSS.escape(c) + '"]');
+        s.disabled = p.checked;
+        p.disabled = s.checked;
+      });
     }
     syncEng();
-    form.elements.title.addEventListener("input", syncEng);
-    form.elements.areaSel.addEventListener("change", syncArea);
+    syncAdmin();
+    syncRegions();
+    form.elements.title.addEventListener("change", syncEng);
+    form.elements.account.addEventListener("input", syncAdmin);
+    form.addEventListener("change", function(ev) {
+      var t = ev.target;
+      if (t && (t.name === "primaryRegions" || t.name === "supportRegions")) syncRegions(t);
+    });
     form.onsubmit = async function(ev) {
       ev.preventDefault();
-      var f = ev.target, error = dialog.querySelector("[role=alert]"), empId = f.elements.employeeId.value.trim(), name = f.elements.engineerName.value.trim(), title = f.elements.title.value.trim(), area = f.elements.areaSel.value === "\u5176\u4ED6" ? f.elements.areaOther.value.trim() : f.elements.areaSel.value, fd = new FormData(f), regions = fd.getAll("regions"), primary = fd.getAll("primaryRegions"), skills = fd.getAll("skills"), eng = isEngineer({ title });
+      var f = ev.target, error = dialog.querySelector("[role=alert]"), empId = f.elements.employeeId.value.trim(), name = f.elements.engineerName.value.trim(), title = f.elements.title.value, account = f.elements.account.value.trim(), fd = new FormData(f), primary = countyList(fd.getAll("primaryRegions")), support = countyList(fd.getAll("supportRegions")), skills = fd.getAll("skills"), eng = ENG_TITLES.indexOf(title) >= 0;
       if (!empId || !name) {
         error.textContent = "\u8ACB\u586B\u5BEB\u54E1\u5DE5\u7DE8\u865F\u8207\u59D3\u540D\u3002";
         return;
       }
+      if (!title) {
+        error.textContent = "\u8ACB\u9078\u64C7\u8077\u4F4D\u3002";
+        return;
+      }
       if (ROSTER.some(function(e) {
-        return e.id !== id && String(e.employeeId || "").trim().toLowerCase() === empId.toLowerCase();
+        return e.id !== id && lc(e.employeeId) === empId.toLowerCase();
       })) {
         error.textContent = "\u54E1\u5DE5\u7DE8\u865F\u300C" + empId + "\u300D\u5DF2\u88AB\u4F7F\u7528\uFF0C\u8ACB\u78BA\u8A8D\u5F8C\u518D\u8F38\u5165\u3002";
         return;
@@ -313,39 +443,303 @@ document.body.innerHTML = '\n<aside class="sidebar" id="sidebar">\n  <div class=
         error.textContent = "\u5DF2\u6709\u540C\u540D\u4EBA\u54E1\uFF1B\u8ACB\u7528\u53EF\u8FA8\u8B58\u7684\u59D3\u540D\uFF0C\u907F\u514D LINE \u901A\u77E5\u9001\u932F\u5C0D\u8C61\u3002";
         return;
       }
-      if (eng && (!skills.length || !regions.length)) {
-        error.textContent = "\u5DE5\u7A0B\u5E2B\u8ACB\u81F3\u5C11\u52FE\u9078\u4E00\u9805\u5DE5\u4F5C\u985E\u5225\u53CA\u4E00\u500B\u652F\u63F4\u7E23\u5E02\u3002";
-        return;
-      }
-      if (eng && primary.some(function(x) {
-        return !regions.includes(x);
+      if (account && ROSTER.some(function(e) {
+        return e.id !== id && lc(e.account) === account.toLowerCase();
       })) {
-        error.textContent = "\u4E3B\u8981\u8CA0\u8CAC\u7E23\u5E02\u5FC5\u9808\u4E5F\u52FE\u9078\u5728\u652F\u63F4\u7E23\u5E02\u4E2D\u3002";
+        error.textContent = "\u5E33\u865F\u300C" + account + "\u300D\u5DF2\u88AB\u5176\u4ED6\u4EBA\u54E1\u4F7F\u7528\u3002";
         return;
       }
-      var obj = Object.assign({}, old || {}, { id: old ? old.id : crypto.randomUUID(), employeeId: empId, name, title, area, account: f.elements.account.value.trim(), password: f.elements.password.value, active: old ? old.active !== false : true });
-      if (eng) {
-        obj.regions = regions;
-        obj.primaryRegions = primary;
-        obj.skills = skills;
+      if (primary.some(function(c) {
+        return support.indexOf(c) >= 0;
+      })) {
+        error.textContent = "\u540C\u4E00\u7E23\u5E02\u4E0D\u80FD\u540C\u6642\u662F\u4E3B\u8981\u8CA0\u8CAC\u8207\u652F\u63F4\u3002";
+        return;
       }
+      if (eng && (!skills.length || !(primary.length + support.length))) {
+        error.textContent = "\u5DE5\u7A0B\u5E2B\u8ACB\u81F3\u5C11\u52FE\u9078\u4E00\u9805\u5DE5\u4F5C\u985E\u5225\uFF0C\u53CA\u4E00\u500B\u4E3B\u8981\u8CA0\u8CAC\u6216\u652F\u63F4\u7E23\u5E02\u3002";
+        return;
+      }
+      var admin = ownerRow || selfRow || !!f.elements.admin.checked && isEmail(account);
+      var obj = Object.assign({}, old || {}, { id: old ? old.id : crypto.randomUUID(), employeeId: empId, name, title, account, password: f.elements.password.value, primaryRegions: primary, supportRegions: support, admin, active: old ? old.active !== false : true });
+      delete obj.legacyEngineer;
+      delete obj.legacyTitle;
+      delete obj.legacyArea;
+      delete obj.regions;
+      delete obj.area;
+      if (eng) obj.skills = skills;
       var next = old ? ROSTER.map(function(e) {
         return e.id === old.id ? obj : e;
       }) : ROSTER.concat([obj]);
       var button = f.querySelector("[type=submit]");
       button.disabled = true;
       try {
-        if (!window.leyanRoster) throw Error("\u7121\u6CD5\u9023\u7DDA\u4EBA\u54E1\u540D\u55AE\u3002");
-        ROSTER = (await window.leyanRoster.save(next)).map(normPerson);
+        var warn = await saveRoster(next);
         dialog.close();
         dialog.remove();
         renderRosterManager();
-        notify("\u4EBA\u54E1\u540D\u55AE\u5DF2\u5132\u5B58\u3002");
+        notify(warn || "\u4EBA\u54E1\u540D\u55AE\u5DF2\u5132\u5B58\u3002");
       } catch (e) {
         error.textContent = e.message || "\u5132\u5B58\u5931\u6557\u3002";
         button.disabled = false;
       }
     };
+    dialog.showModal();
+  }
+  var IMPORT_HEADERS = { "\u54E1\u5DE5\u7DE8\u865F": "employeeId", "\u59D3\u540D": "name", "\u8077\u4F4D": "title", "\u4E3B\u8981\u8CA0\u8CAC\u5340\u57DF": "primary", "\u4E3B\u8981\u8CA0\u8CAC": "primary", "\u4E3B\u8981\u8CA0\u8CAC\u7E23\u5E02": "primary", "\u652F\u63F4\u5340\u57DF": "support", "\u652F\u63F4": "support", "\u652F\u63F4\u7E23\u5E02": "support", "\u5E33\u865F": "account", "\u5BC6\u78BC": "password", "\u7BA1\u7406\u6B0A\u9650": "admin" };
+  function parseDelimited(text) {
+    text = String(text || "").replace(/^﻿/, "");
+    var first = text.split(/\r?\n/, 1)[0] || "", d = first.indexOf("	") >= 0 ? "	" : ",";
+    var rows = [], row = [], cell = "", q = false;
+    for (var i = 0; i < text.length; i++) {
+      var c = text[i];
+      if (q) {
+        if (c === '"') {
+          if (text[i + 1] === '"') {
+            cell += '"';
+            i++;
+          } else q = false;
+        } else cell += c;
+      } else if (c === '"' && cell.trim() === "") {
+        cell = "";
+        q = true;
+      } else if (c === d) {
+        row.push(cell);
+        cell = "";
+      } else if (c === "\n" || c === "\r") {
+        if (c === "\r" && text[i + 1] === "\n") i++;
+        row.push(cell);
+        rows.push(row);
+        row = [];
+        cell = "";
+      } else cell += c;
+    }
+    if (cell !== "" || row.length) {
+      row.push(cell);
+      rows.push(row);
+    }
+    return rows.filter(function(r) {
+      return r.some(function(x) {
+        return String(x).trim() !== "";
+      });
+    });
+  }
+  function planImport(text) {
+    var table = parseDelimited(text);
+    if (table.length < 2) return { error: "\u6C92\u6709\u53EF\u532F\u5165\u7684\u8CC7\u6599\uFF08\u7B2C\u4E00\u5217\u9808\u70BA\u6A19\u984C\u5217\uFF0C\u7B2C\u4E8C\u5217\u8D77\u70BA\u4EBA\u54E1\uFF09\u3002" };
+    var head = table[0].map(function(h) {
+      return String(h).replace(/^﻿/, "").replace(/[\s*＊]/g, "");
+    }), map = {};
+    head.forEach(function(h, i) {
+      var k = IMPORT_HEADERS[h];
+      if (k && map[k] == null) map[k] = i;
+    });
+    var legacy = head.indexOf("\u5340\u57DF");
+    if (legacy >= 0 && map.primary == null) map.primary = legacy;
+    if (map.employeeId == null || map.name == null) return { error: "\u6A19\u984C\u5217\u9700\u5305\u542B\u300C\u54E1\u5DE5\u7DE8\u865F\u300D\u8207\u300C\u59D3\u540D\u300D\u6B04\u4F4D\u3002" };
+    var body = table.slice(1), counts = {};
+    body.forEach(function(r) {
+      var k = lc(r[map.employeeId]);
+      if (k) counts[k] = (counts[k] || 0) + 1;
+    });
+    var next = ROSTER.map(function(e) {
+      return Object.assign({}, e);
+    }), rows = [];
+    body.forEach(function(r, idx) {
+      var errors = [], warnings = [];
+      function get(k) {
+        return map[k] == null ? null : String(r[map[k]] == null ? "" : r[map[k]]).trim();
+      }
+      var empId = get("employeeId"), name = get("name");
+      if (!empId) errors.push("\u7F3A\u5C11\u54E1\u5DE5\u7DE8\u865F");
+      if (!name) errors.push("\u7F3A\u5C11\u59D3\u540D");
+      if (empId && counts[lc(empId)] > 1) errors.push("\u6A94\u6848\u5167\u54E1\u5DE5\u7DE8\u865F\u91CD\u8907");
+      var titleRaw = get("title"), title = null;
+      if (titleRaw) {
+        var t = titleRaw.replace(/台/g, "\u81FA");
+        if (TITLES.indexOf(t) < 0) errors.push("\u8077\u4F4D\u300C" + titleRaw + "\u300D\u4E0D\u5728\u6E05\u55AE\u5167");
+        else title = t;
+      }
+      function counties(raw, label) {
+        if (!raw) return null;
+        var out = [];
+        raw.split(/[、,，\/\s;；]+/).filter(Boolean).forEach(function(p) {
+          var c2 = normCounty(p);
+          if (!c2) errors.push(label + "\u300C" + p + "\u300D\u4E0D\u662F\u81FA\u7063\u7E23\u5E02");
+          else if (out.indexOf(c2) < 0) out.push(c2);
+        });
+        return out;
+      }
+      var prim = counties(get("primary"), "\u4E3B\u8981\u8CA0\u8CAC\u5340\u57DF"), sup = counties(get("support"), "\u652F\u63F4\u5340\u57DF");
+      if (prim && sup) {
+        var both = prim.filter(function(c2) {
+          return sup.indexOf(c2) >= 0;
+        });
+        if (both.length) errors.push("\u300C" + both.join("\u3001") + "\u300D\u540C\u6642\u5728\u4E3B\u8981\u8CA0\u8CAC\u8207\u652F\u63F4");
+      }
+      var account = get("account"), password = get("password"), adminRaw = get("admin"), adminVal = null;
+      if (adminRaw) {
+        if (/^(是|有|y|yes|true|1|v|✓|✔|○)$/i.test(adminRaw)) adminVal = true;
+        else if (/^(否|無|n|no|false|0|x|✗|-)$/i.test(adminRaw)) adminVal = false;
+        else errors.push("\u7BA1\u7406\u6B0A\u9650\u8ACB\u586B\u300C\u662F\u300D\u6216\u300C\u5426\u300D");
+      }
+      var target = empId ? next.find(function(e) {
+        return lc(e.employeeId) === lc(empId);
+      }) : null;
+      if (!target && name) {
+        var c = next.filter(function(e) {
+          return !e.employeeId && String(e.name).trim() === name;
+        });
+        if (c.length === 1) target = c[0];
+      }
+      var m = target ? Object.assign({}, target) : { id: crypto.randomUUID(), employeeId: "", name: "", title: "", account: "", password: "", primaryRegions: [], supportRegions: [], active: true, admin: false };
+      if (target && name && name !== target.name && (isEngineer(target) || JOBS.some(function(j) {
+        return j.engineer === target.name;
+      }))) errors.push("\u59D3\u540D\u5DF2\u7528\u65BC\u5DE5\u55AE\u6216 LINE\uFF0C\u8ACB\u5728\u7CFB\u7D71\u5167\u4FEE\u6539");
+      if (name && next.some(function(e) {
+        return e !== target && String(e.name).trim() === name;
+      })) errors.push("\u5DF2\u6709\u540C\u540D\u4EBA\u54E1");
+      m.employeeId = empId || "";
+      m.name = name || "";
+      if (title) {
+        m.title = title;
+        delete m.legacyEngineer;
+        delete m.legacyTitle;
+      }
+      if (account) m.account = account;
+      if (password) m.password = password;
+      if (prim) {
+        m.primaryRegions = prim;
+        if (!sup) m.supportRegions = (m.supportRegions || []).filter(function(c2) {
+          return prim.indexOf(c2) < 0;
+        });
+        delete m.legacyArea;
+      }
+      if (sup) {
+        m.supportRegions = sup;
+        if (!prim) m.primaryRegions = (m.primaryRegions || []).filter(function(c2) {
+          return sup.indexOf(c2) < 0;
+        });
+        delete m.legacyArea;
+      }
+      if (adminVal !== null) m.admin = adminVal;
+      if (m.admin && !isEmail(m.account) && !isOwnerRow(m)) {
+        if (adminVal) errors.push("\u7BA1\u7406\u6B0A\u9650\u9700\u8981\u6709\u6548 Email \u5E33\u865F");
+        else m.admin = false;
+      }
+      if (m.account && next.some(function(e) {
+        return e !== target && lc(e.account) === lc(m.account);
+      })) errors.push("\u5E33\u865F\u5DF2\u88AB\u5176\u4ED6\u4EBA\u54E1\u4F7F\u7528");
+      if (!m.title && !m.legacyEngineer) warnings.push("\u672A\u586B\u8077\u4F4D\uFF0C\u532F\u5165\u5F8C\u8ACB\u9078\u64C7\u8077\u4F4D");
+      if (isEngineer(m) && !(m.skills || []).length) warnings.push("\u5DE5\u7A0B\u5E2B\u5C1A\u672A\u8A2D\u5B9A\u5DE5\u4F5C\u985E\u5225\uFF0C\u532F\u5165\u5F8C\u8ACB\u6309\u300C\u7DE8\u8F2F\u300D\u88DC\u4E0A");
+      rows.push({ line: idx + 2, m, errors, warnings, action: errors.length ? "skip" : target ? "update" : "add" });
+      if (!errors.length) {
+        if (target) next[next.indexOf(target)] = m;
+        else next.push(m);
+      }
+    });
+    return { rows, next, add: rows.filter(function(x) {
+      return x.action === "add";
+    }).length, update: rows.filter(function(x) {
+      return x.action === "update";
+    }).length, skip: rows.filter(function(x) {
+      return x.action === "skip";
+    }).length };
+  }
+  function renderImportPreview(dialog) {
+    var box = dialog.querySelector("#import-preview"), btn = dialog.querySelector("[data-import=confirm]"), error = dialog.querySelector("[role=alert]"), plan = IMPORT_PLAN;
+    error.textContent = "";
+    if (!plan) {
+      box.innerHTML = "";
+      btn.disabled = true;
+      return;
+    }
+    if (plan.error) {
+      box.innerHTML = "";
+      error.textContent = plan.error;
+      btn.disabled = true;
+      return;
+    }
+    box.innerHTML = '<p class="import-summary" id="import-summary">\u65B0\u589E <b>' + plan.add + "</b> \u4F4D\u3001\u66F4\u65B0 <b>" + plan.update + "</b> \u4F4D\u3001\u7565\u904E <b>" + plan.skip + '</b> \u5217\uFF08\u6709\u932F\u8AA4\uFF09\u3002\u540D\u55AE\u4E2D\u672A\u51FA\u73FE\u7684\u4EBA\u54E1\u4E0D\u6703\u88AB\u522A\u9664\u3002</p><div class="import-scroll"><table class="import-table"><thead><tr><th>\u5217</th><th>\u54E1\u5DE5\u7DE8\u865F</th><th>\u59D3\u540D</th><th>\u8077\u4F4D</th><th>\u4E3B\u8981\u8CA0\u8CAC</th><th>\u652F\u63F4</th><th>\u5E33\u865F</th><th>\u5BC6\u78BC</th><th>\u7BA1\u7406\u6B0A\u9650</th><th>\u7D50\u679C</th></tr></thead><tbody>' + plan.rows.map(function(x) {
+      var m = x.m;
+      return '<tr class="' + (x.errors.length ? "import-bad" : "import-ok") + '" data-line="' + x.line + '"><td>' + x.line + "</td><td>" + esc(m.employeeId) + "</td><td>" + esc(m.name) + "</td><td>" + esc(m.title || "\u2014") + "</td><td>" + esc((m.primaryRegions || []).join("\u3001") || "\u2014") + "</td><td>" + esc((m.supportRegions || []).join("\u3001") || "\u2014") + "</td><td>" + esc(m.account || "\u2014") + "</td><td>" + (m.password ? "\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022" : "\u2014") + "</td><td>" + (isOwnerRow(m) ? "\u64C1\u6709\u8005" : hasAdmin(m) ? "\u662F" : "\u5426") + "</td><td>" + (x.errors.length ? '<b class="import-err">\u7565\u904E\uFF1A' + esc(x.errors.join("\uFF1B")) + "</b>" : x.action === "add" ? "\u65B0\u589E" : "\u66F4\u65B0") + (x.warnings.length ? '<div class="p2-sub">' + esc(x.warnings.join("\uFF1B")) + "</div>" : "") + "</td></tr>";
+    }).join("") + "</tbody></table></div>";
+    btn.disabled = !(plan.add + plan.update);
+    btn.textContent = "\u78BA\u8A8D\u532F\u5165\uFF08" + (plan.add + plan.update) + " \u4F4D\uFF09";
+  }
+  function importDialog() {
+    IMPORT_PLAN = null;
+    IMPORT_FILE_TEXT = null;
+    var prev = document.getElementById("import-dialog");
+    if (prev) prev.remove();
+    var dialog = document.createElement("dialog");
+    dialog.className = "p2-dialog import-dialog";
+    dialog.id = "import-dialog";
+    dialog.setAttribute("aria-label", "\u532F\u5165\u540D\u55AE");
+    document.body.appendChild(dialog);
+    dialog.innerHTML = '<h2>\u532F\u5165\u540D\u55AE</h2><p class="p2-sub">\u4E0A\u50B3 CSV\uFF08UTF-8\uFF0C\u53EF\u542B BOM\uFF09\u6216\u5F9E Excel \u8907\u88FD\u5F8C\u8CBC\u4E0A\u3002\u7B2C\u4E00\u5217\u70BA\u6A19\u984C\uFF1A\u54E1\u5DE5\u7DE8\u865F\u3001\u59D3\u540D\u3001\u8077\u4F4D\u3001\u4E3B\u8981\u8CA0\u8CAC\u5340\u57DF\u3001\u652F\u63F4\u5340\u57DF\u3001\u5E33\u865F\u3001\u5BC6\u78BC\u3001\u7BA1\u7406\u6B0A\u9650\uFF08\u820A\u300C\u5340\u57DF\u300D\u6B04\u8996\u70BA\u4E3B\u8981\u8CA0\u8CAC\uFF1B\u5176\u4ED6\u6B04\u4F4D\u5FFD\u7565\uFF09\u3002\u591A\u500B\u7E23\u5E02\u4EE5\u300C\u3001\u300D\u300C,\u300D\u300C/\u300D\u6216\u7A7A\u767D\u5206\u9694\u3002\u4F9D\u54E1\u5DE5\u7DE8\u865F\u5408\u4F75\uFF1A\u5DF2\u5B58\u5728\u8005\u66F4\u65B0\u3001\u65B0\u7DE8\u865F\u65B0\u589E\uFF0C\u540D\u55AE\u5916\u7684\u4EBA\u54E1\u4E0D\u6703\u522A\u9664\uFF1B\u7A7A\u767D\u6B04\u4F4D\u4FDD\u7559\u539F\u8CC7\u6599\u3002\u6709\u932F\u8AA4\u7684\u5217\u6703\u7565\u904E\u3002</p><form id="import-form" autocomplete="off"><div class="p2-form"><label class="p2-wide">\u9078\u64C7 CSV \u6A94<input type="file" name="file" accept=".csv,.tsv,.txt,text/csv,text/plain"></label><label class="p2-wide">\u6216\u8CBC\u4E0A Excel \u5167\u5BB9<textarea name="text" rows="5" spellcheck="false" placeholder="\u54E1\u5DE5\u7DE8\u865F	\u59D3\u540D	\u8077\u4F4D	\u4E3B\u8981\u8CA0\u8CAC\u5340\u57DF	\u652F\u63F4\u5340\u57DF	\u5E33\u865F	\u5BC6\u78BC	\u7BA1\u7406\u6B0A\u9650"></textarea></label></div><p class="req-error" role="alert"></p><div id="import-preview"></div><div class="p2-actions"><button type="button" class="p2-btn secondary" data-import="preview">\u9810\u89BD</button><button type="button" class="p2-btn" data-import="confirm" disabled>\u78BA\u8A8D\u532F\u5165</button><button type="button" class="p2-btn secondary" data-import="close">\u53D6\u6D88</button></div></form>';
+    var form = dialog.querySelector("form");
+    form.elements.file.addEventListener("change", async function() {
+      var file = form.elements.file.files[0];
+      IMPORT_FILE_TEXT = null;
+      if (!file) {
+        IMPORT_PLAN = null;
+        renderImportPreview(dialog);
+        return;
+      }
+      if (file.size > 2e6) {
+        IMPORT_PLAN = { error: "\u6A94\u6848\u904E\u5927\uFF08\u4E0A\u9650 2MB\uFF09\u3002" };
+        renderImportPreview(dialog);
+        return;
+      }
+      try {
+        IMPORT_FILE_TEXT = await file.text();
+        IMPORT_PLAN = planImport(IMPORT_FILE_TEXT);
+      } catch (e) {
+        IMPORT_PLAN = { error: "\u7121\u6CD5\u8B80\u53D6\u6A94\u6848\uFF0C\u8ACB\u78BA\u8A8D\u70BA UTF-8 CSV\u3002" };
+      }
+      renderImportPreview(dialog);
+    });
+    form.elements.text.addEventListener("input", function() {
+      IMPORT_FILE_TEXT = null;
+      form.elements.file.value = "";
+      IMPORT_PLAN = null;
+      renderImportPreview(dialog);
+    });
+    dialog.addEventListener("click", async function(ev) {
+      var b = ev.target.closest("[data-import]");
+      if (!b) return;
+      var type = b.dataset.import;
+      if (type === "close") {
+        IMPORT_PLAN = null;
+        IMPORT_FILE_TEXT = null;
+        dialog.close();
+        dialog.remove();
+        return;
+      }
+      if (type === "preview") {
+        var text = IMPORT_FILE_TEXT != null ? IMPORT_FILE_TEXT : form.elements.text.value;
+        IMPORT_PLAN = text.trim() ? planImport(text) : { error: "\u8ACB\u9078\u64C7 CSV \u6A94\u6216\u8CBC\u4E0A Excel \u5167\u5BB9\u3002" };
+        renderImportPreview(dialog);
+        return;
+      }
+      if (type === "confirm") {
+        var plan = IMPORT_PLAN;
+        if (!plan || plan.error || !(plan.add + plan.update)) return;
+        b.disabled = true;
+        try {
+          var warn = await saveRoster(plan.next);
+          IMPORT_PLAN = null;
+          IMPORT_FILE_TEXT = null;
+          dialog.close();
+          dialog.remove();
+          renderRosterManager();
+          notify("\u5DF2\u532F\u5165\uFF1A\u65B0\u589E " + plan.add + " \u4F4D\u3001\u66F4\u65B0 " + plan.update + " \u4F4D\u3001\u7565\u904E " + plan.skip + " \u5217\u3002" + (warn ? " " + warn : ""));
+        } catch (e) {
+          dialog.querySelector("[role=alert]").textContent = e.message || "\u532F\u5165\u5931\u6557\u3002";
+          b.disabled = false;
+        }
+      }
+    });
     dialog.showModal();
   }
   function copyText(text) {
@@ -376,8 +770,11 @@ document.body.innerHTML = '\n<aside class="sidebar" id="sidebar">\n  <div class=
   document.addEventListener("change", function(ev) {
     var t = ev.target;
     if (!t) return;
-    if (t.id === "people-area") {
-      PAREA = t.value;
+    if (t.id === "people-county") {
+      PCOUNTY = t.value;
+      renderPeopleList();
+    } else if (t.id === "people-primary") {
+      PPRIMARY = t.checked;
       renderPeopleList();
     } else if (t.id === "people-title") {
       PTITLE = t.value;
@@ -429,6 +826,10 @@ document.body.innerHTML = '\n<aside class="sidebar" id="sidebar">\n  <div class=
       rosterEditor();
       return;
     }
+    if (type === "import") {
+      importDialog();
+      return;
+    }
     if (type === "edit") {
       rosterEditor(b.dataset.id);
       return;
@@ -449,11 +850,11 @@ document.body.innerHTML = '\n<aside class="sidebar" id="sidebar">\n  <div class=
       if (!confirm((item.active ? "\u505C\u7528" : "\u555F\u7528") + "\u300C" + item.name + "\u300D\uFF1F\u65E2\u6709\u5DE5\u55AE\u4E0D\u6703\u66F4\u52D5\u3002")) return;
       b.disabled = true;
       try {
-        ROSTER = (await window.leyanRoster.save(ROSTER.map(function(e) {
+        var w = await saveRoster(ROSTER.map(function(e) {
           return e.id === item.id ? Object.assign({}, e, { active: !e.active }) : e;
-        }))).map(normPerson);
+        }));
         renderRosterManager();
-        notify("\u5DE5\u7A0B\u5E2B\u72C0\u614B\u5DF2\u66F4\u65B0\u3002");
+        notify(w || "\u5DE5\u7A0B\u5E2B\u72C0\u614B\u5DF2\u66F4\u65B0\u3002");
       } catch (e) {
         b.disabled = false;
         notify(e.message || "\u66F4\u65B0\u5931\u6557\u3002");
@@ -461,15 +862,19 @@ document.body.innerHTML = '\n<aside class="sidebar" id="sidebar">\n  <div class=
       return;
     }
     if (type === "delete") {
-      if (!confirm("\u78BA\u5B9A\u522A\u9664\u300C" + item.name + "\u300D" + (item.employeeId ? "\uFF08" + item.employeeId + "\uFF09" : "") + "\uFF1F" + (isEngineer(item) ? "\u65E2\u6709\u5DE5\u55AE\u4ECD\u4FDD\u7559\u539F\u5DE5\u7A0B\u5E2B\u59D3\u540D\uFF0C\u4F46\u4E4B\u5F8C\u4E0D\u6703\u518D\u88AB\u63A8\u85A6\u6D3E\u5DE5\u3002" : "\u6B64\u52D5\u4F5C\u7121\u6CD5\u5FA9\u539F\u3002"))) return;
+      if (ROSTER_ONLY && SELF_EMAIL && lc(item.account) === SELF_EMAIL) {
+        notify("\u7121\u6CD5\u522A\u9664\u81EA\u5DF1\u7684\u8CC7\u6599\uFF1B\u8ACB\u7531\u64C1\u6709\u8005\u6216\u5176\u4ED6\u7BA1\u7406\u8005\u8655\u7406\u3002");
+        return;
+      }
+      if (!confirm("\u78BA\u5B9A\u522A\u9664\u300C" + item.name + "\u300D" + (item.employeeId ? "\uFF08" + item.employeeId + "\uFF09" : "") + "\uFF1F" + (isEngineer(item) ? "\u65E2\u6709\u5DE5\u55AE\u4ECD\u4FDD\u7559\u539F\u5DE5\u7A0B\u5E2B\u59D3\u540D\uFF0C\u4F46\u4E4B\u5F8C\u4E0D\u6703\u518D\u88AB\u63A8\u85A6\u6D3E\u5DE5\u3002" : "\u6B64\u52D5\u4F5C\u7121\u6CD5\u5FA9\u539F\u3002") + (hasAdmin(item) && !isOwnerRow(item) ? "\u5176\u7BA1\u7406\u6B0A\u9650\u4E5F\u6703\u4E00\u4F75\u79FB\u9664\u3002" : ""))) return;
       b.disabled = true;
       try {
-        ROSTER = (await window.leyanRoster.save(ROSTER.filter(function(e) {
+        var w2 = await saveRoster(ROSTER.filter(function(e) {
           return e.id !== item.id;
-        }))).map(normPerson);
+        }));
         delete PREVEAL[item.id];
         renderRosterManager();
-        notify("\u5DF2\u522A\u9664\u300C" + item.name + "\u300D\u3002");
+        notify(w2 || "\u5DF2\u522A\u9664\u300C" + item.name + "\u300D\u3002");
       } catch (e) {
         b.disabled = false;
         notify(e.message || "\u522A\u9664\u5931\u6557\u3002");
@@ -1116,7 +1521,7 @@ document.body.innerHTML = '\n<aside class="sidebar" id="sidebar">\n  <div class=
     return ROSTER.filter(function(e) {
       return isEngineer(e) && e.active;
     }).map(function(e) {
-      return { role: "engineer", ref: e.name, label: (e.regions || []).join("\u3001") + " " + e.name };
+      return { role: "engineer", ref: e.name, label: regionsOf(e).join("\u3001") + " " + e.name };
     }).concat([{ role: "manager", ref: "\u5317\u5340\u7D93\u7406", label: "\u7BA1\u7406\u8005\uFF08\u6211\uFF09\u30FB\u6BCF\u65E5\u63D0\u9192" }]);
   }
   function lineBadge() {
